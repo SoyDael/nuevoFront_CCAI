@@ -1,0 +1,76 @@
+/*h1{
+    color: #646cff;
+    font-size: 50px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.title{
+    color: #646cff;
+    font-size: 50px;
+    margin-top: 0;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #796acf;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th:nth-child(1), td:nth-child(1) {
+    width: 10%; /* Ajusta el ancho de la primera columna */
+/*
+} 
+
+th:nth-child(2), td:nth-child(2) {
+    width: 15%; /* Ajusta el ancho de la segunda columna */
+/*}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 15%; /* Ajusta el ancho de la tercera columna */
+/*}
+
+.btn-detalles {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-detalles:hover {
+    background-color: #005f6b;
+}
+
+*/
