@@ -18,6 +18,10 @@ const Login = () => {
         navigate(`/perfilAlumno/${correo}`);
     }
 
+    const RedireccionarInvetigador = (correo) => {
+        navigate(`/perfilInvestigador/${correo}`);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -34,8 +38,8 @@ const Login = () => {
             // Redirecciona según el tipo de usuario seleccionado
             if (userType === 'alumno interno' && localStorage.getItem('token')) {
                 redireccionarAlumnoInterno(email);
-            } else if (userType === 'investigador') {
-                window.location.href = '/perfilProfesor';
+            } else if (userType === 'investigador' && localStorage.getItem('token')) {
+                RedireccionarInvetigador(email);
             } else if (userType === 'alumno externo' && localStorage.getItem('token')) {
                 window.location.href = '/perfilActividades/id';
             }

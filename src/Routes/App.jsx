@@ -10,6 +10,7 @@ import Navbar from '../components/navbarComponents/Navbar.jsx';
 import NavbarSimple from '../components/navbarComponents/NavbarSimple.jsx';
 import DetallesActividades from '../components/AlumnosInternosComponent/actividades.component/ActividadesDetallesComponents/detallesActividades.jsx';
 import ProyectoAlumnoInt from '../components/AlumnosInternosComponent/proyectoComponent/ProyectoAlumnoInt.jsx';
+import PerfilComponent from '../components/investigadorComponent/perfilComponent/PerfilComponent.jsx';
 
 function App() {
   return (
@@ -25,9 +26,12 @@ function App() {
         <Route path='/perfilActividades/:correo_estudiante' element={<PerfilActividades />} />
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
+
+        <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
       </Routes>
     </BrowserRouter>
   );
+          
 }
 
 export default App;

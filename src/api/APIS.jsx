@@ -48,6 +48,7 @@ export const getPerfilEstudiante = async (correo) => {
     const response = await API.get(`perfilEstudiante/${correo}`);
     return response.data;
 }
+
 export const actualizarPerfil = async (correo, datos) => {
     try {
         // Realiza la solicitud PATCH con los datos actualizados
@@ -66,5 +67,11 @@ export const ParticipantePorProyecto = async (correo) => {
 
 export const navbarEstudiante = async (correo) => {
     const response = await API.get(`navbarEstudiante/${correo}`);
+    return response.data;
+}
+
+export const PerfilInvestigador = async (correo) => {
+    const response = await API.get(`perfilInvestigador/${correo}`);
+    console.log(response.data)
     return response.data;
 }
