@@ -61,7 +61,7 @@ const Login = () => {
                             <input
                                 type="email" name="email" id="email"
                                 className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
+                                
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required />
@@ -70,7 +70,7 @@ const Login = () => {
                             <label htmlFor="password" className='block text-gray-600'>Contraseña: </label>
                             <input type="password" id='password' name='password'
                                 className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
+                                
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required />
@@ -100,16 +100,16 @@ const Login = () => {
                         </button>
                     </form>
 
-                    <div class="mb-2 text-blue-500 text-center">
-                        <a href="usuario" class="hover:underline"
+                    <div className="mb-2 text-blue-500 text-center">
+                        <a href="usuario" className="hover:underline"
                             onClick={redireccionar}
                         >
                             Registrarse
                         </a>
                     </div>
 
-                    <div class="mb-6 text-blue-500 text-center">
-                        <a href="#" class="hover:underline">Recuperar Contraseña</a>
+                    <div className="mb-6 text-blue-500 text-center">
+                        <a href="#" className="hover:underline">Recuperar Contraseña</a>
                     </div>
                 </div>
                 <div className='w-1/2 h-screen hidden lg:block'>

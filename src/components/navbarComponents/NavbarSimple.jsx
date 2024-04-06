@@ -2,11 +2,11 @@ import React from 'react'
 
 const NavbarSimple = () => {
   return (
-    <nav class="fixed top-0 left-0 right-0 z-10 bg-slate-100">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="fixed top-0 left-0 right-0 z-10 bg-slate-100">
+    <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className='flex items-center'>
             <img src="../src/assets/logocai.jpg" class="h-8" alt="CCAI Logo" />
-            <span class="ml-5 self-center text-2xl font-semibold whitespace-nowrap text-dark">Sistema de Gestion de Procesos del CCAI</span>
+            <span className="ml-5 self-center text-2xl font-semibold whitespace-nowrap text-dark">Sistema de Gestion de Procesos del CCAI</span>
         </a>
     </div>
 </nav>

@@ -75,3 +75,28 @@ export const PerfilInvestigador = async (correo) => {
     console.log(response.data)
     return response.data;
 }
+
+
+export const proyectosInvestigador = async (correo) => {
+    const response = await API.get(`proyectosInvestigador/${correo}`);
+    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
+    response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+    console.log(response.data)
+    return response.data;
+}
+
+export const getProyecto = async (id_proyecto) => {
+    const response = await API.get(`proyectoPorId/${id_proyecto}`);
+    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
+    response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
+    console.log(response.data);
+    return response.data;
+}
+
+
+export const participanteProyecto = async (proyecto_id) => {
+    const response = await API.get(`participantePorProyecto/${proyecto_id}`);
+    console.log(response.data);
+    return response.data;
+}
