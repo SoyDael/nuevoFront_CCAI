@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getconsultaActividadesEstudiantesPorId, actualizarPerfil, getPerfilEstudiante, navbarEstudiante } from '../../api/APIS';
+import { navbarEstudiante } from '../../api/APIS';
 import { useNavigate, useParams } from 'react-router-dom'
 
 const Navbar = () => {
@@ -65,10 +65,10 @@ const Navbar = () => {
                         <div className="absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-indigo-100 dark:divide-gray-600">
                             <div className="px-4 py-3">
                                 {perfilEstudiante.length > 0 && (
-                                    <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilEstudiante[0].nombres} {perfilEstudiante[0].apellido_p} {perfilEstudiante[0].apellido_m}</span>
+                                    <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</span>
                                 )}
                                 {perfilEstudiante.length > 0 && (
-                                    <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilEstudiante[0].tipo_programa}</span>
+                                    <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilEstudiante[0]?.tipo_programa}</span>
                                 )}
 
                             </div>

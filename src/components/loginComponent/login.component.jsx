@@ -10,9 +10,6 @@ const Login = () => {
     const [perfilEstudiante, setPerfilEstudiante] = useState(null); // Estado para almacenar el perfil del estudiante
     const navigate = useNavigate();
 
-    const redireccionar = () => {
-        navigate('/usuario');
-    }
 
     const redireccionarAlumnoInterno = (correo) => {
         navigate(`/perfilAlumno/${correo}`);
@@ -99,14 +96,6 @@ const Login = () => {
                             Iniciar Sesión
                         </button>
                     </form>
-
-                    <div className="mb-2 text-blue-500 text-center">
-                        <a href="usuario" className="hover:underline"
-                            onClick={redireccionar}
-                        >
-                            Registrarse
-                        </a>
-                    </div>
 
                     <div className="mb-6 text-blue-500 text-center">
                         <a href="#" className="hover:underline">Recuperar Contraseña</a>

@@ -38,9 +38,14 @@ export const getconsultaActividadesEstudiantes = async () => {
 
 export const getconsultaActividadesEstudiantesPorId = async (correo) => {
     const response = await API.get(`consultaActividadPorID/${correo}`);
-    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
-    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
-    console.log(response.data);
+
+
+    const actividadesFormateadas = response.data.map(actividad => {
+        actividad.fecha_inicio = actividad.fecha_inicio.split('T')[0];
+        actividad.fecha_fin = actividad.fecha_fin.split('T')[0];
+        return actividad;
+    }
+    );
     return response.data;
 }
 
@@ -98,5 +103,22 @@ export const getProyecto = async (id_proyecto) => {
 export const participanteProyecto = async (proyecto_id) => {
     const response = await API.get(`participantePorProyecto/${proyecto_id}`);
     console.log(response.data);
+    return response.data;
+}
+
+export const asignarActividad = async (actividad, id_proyecto, id_estudiante, correo_estudiante) => {
+    // Agregar el id_proyecto al objeto de actividad
+    actividad.id_proyecto = id_proyecto;
+    // Agregar el id_estudiante al objeto de actividad
+    actividad.id_estudiante = id_estudiante;
+    // Agregar el correo_estudiante al objeto de actividad
+    actividad.correo_estudiante = correo_estudiante;
+
+    const response = await API.post("registroActividad", actividad);
+    return response.data;
+}
+
+export const registroEstudiante = async (estudiante) => {
+    const response = await API.post("registroEstudiante", estudiante);
     return response.data;
 }

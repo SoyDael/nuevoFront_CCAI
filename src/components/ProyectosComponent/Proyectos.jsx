@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { proyectosInvestigador,getProyecto } from '../../api/APIS';
+import { proyectosInvestigador, getProyecto } from '../../api/APIS';
 
 const Proyectos = () => {
 
@@ -15,12 +15,12 @@ const Proyectos = () => {
 
     const redireccionarDetallesProyecto = (id_proyecto) => {
         navigate(`/detallesProyecto/${id_proyecto}/${correo}`);
-    
+
     }
 
     const obtenerProyecto = async (id_proyecto) => {
         try {
-            const response = await getProyecto({id_proyecto: id_proyecto}); // Obtener el proyecto por ID
+            const response = await getProyecto({ id_proyecto: id_proyecto }); // Obtener el proyecto por ID
             const token = response.token;
             console.log(token);
             localStorage.setItem('token', token);
@@ -69,31 +69,42 @@ const Proyectos = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Proyecto.map((proyecto) => ( 
-                                        <tr  className=" dark:bg-indigo-50 border-b dark:border-gray-700">
+                                    {Proyecto.map((proyecto) => (
+                                        <tr className=" dark:bg-indigo-50 border-b dark:border-gray-700">
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.titulo_esp}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.estatus}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.fecha_registro}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.fecha_inicio}</td>
                                             <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
                                                 <button
-                                                onClick={() => redireccionarDetallesProyecto(proyecto.id_proyecto)}
+                                                    onClick={() => redireccionarDetallesProyecto(proyecto.id_proyecto)}
                                                 >Ver Detalles</button>
                                             </td>
                                         </tr>
-                                      ))} 
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
                     </section>
                     <div className="flex justify-center mt-4">
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={redireccionarPerfil}
-                        >
-                            Regresar
-                        </button>
+                        <div className="mr-4">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={redireccionarPerfil}
+                            >
+                                Regresar
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                
+                            >
+                                Registrar nuevo proyecto
+                            </button>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </>

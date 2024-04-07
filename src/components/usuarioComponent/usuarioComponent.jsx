@@ -3,6 +3,12 @@ import { createUsuario } from '../../api/APIS';
 import NavbarSimple from '../navbarComponents/NavbarSimple';
 
 const UsuarioForm = () => {
+
+    const RedireccionarInvetigador = (correo) => {
+        navigate(`/perfilInvestigador/${correo}`);
+    }
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -53,8 +59,8 @@ const UsuarioForm = () => {
                         </button>
                     </form>
                     <div class="mb-6 text-blue-500 text-center">
-                        <a href="login" class="hover:underline">
-                            Iniciar Sesion
+                        <a href='login' class="hover:underline">
+                            Regresar
                         </a>
                     </div>
                 </div>

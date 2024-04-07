@@ -78,13 +78,12 @@ const PerfilAlumno = () => {
         <>
             <Navbar />
             <div class="flex justify-center items-center h-screen bg-slate-100 bg-slate-100 bg-opacity-20 pt-12">
-                <div class="max-w-sm mx-auto bg-white bg-indigo-200 bg-opacity-30 rounded-lg overflow-hidden shadow-lg">
+                <div class=" mx-auto bg-white bg-indigo-200 bg-opacity-30 rounded-lg overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">
                         <div class="text-center my-4">
-                            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                            <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4" src="" alt="" >{perfilEstudiante[0]?.foto}</img>
+                         {/**    <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4" src="" alt="" >{perfilEstudiante[0]?.foto}</img> */}
                             <div class="py-2">
-                                <h3 class="font-bold text-2xl text-gray-800 dark:text-dark mb-1">Bienvenido <br></br> {perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</h3>
+                                <h3 class="font-bold text-2xl text-gray-800 dark:text-dark mb-1">Bienvenido(a) <br></br> {perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</h3>
                                 <br></br>
                                 <div class="inline-flex text-gray-700 dark:text-gray-300 items-center">
                                     <h3 class="text-2xl text-gray-800 dark:text-dark mb-1">Division: <br></br> {perfilEstudiante[0]?.division}</h3>
@@ -116,7 +115,7 @@ const PerfilAlumno = () => {
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
                                 onClick={obtenerActividades}
                             >
-                                Ver Actidades
+                                Ver Actividades
                             </button>
                             <button
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"

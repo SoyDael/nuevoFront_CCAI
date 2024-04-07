@@ -19,6 +19,18 @@ const PerfilComponent = () => {
         navigate(`/proyectos/${correo}`);
     }
 
+    const redireccionar = () => {
+        navigate(`/usuario`);
+    }
+
+    const redireccionarAlumnoInterno = () => {
+        navigate(`/alumnoInterno`);
+    }
+
+    const RedireccionarInvetigador = (correo) => {
+        navigate(`/perfilInvestigador/${correo}`);
+    }
+
     useEffect(() => {
         const fetchPerfilInvestigador = async () => {
             try {
@@ -63,11 +75,6 @@ const PerfilComponent = () => {
                             <button
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
                             >
-                                Ver Integrantes
-                            </button>
-                            <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
-                            >
                                 Ver Solicitudes
                             </button>
                             <button
@@ -78,8 +85,15 @@ const PerfilComponent = () => {
                             </button>
                             <button
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                onClick={redireccionar}
                             >
-                                Registrar
+                                Registrar Usuario
+                            </button>
+                            <button
+                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                onClick={redireccionarAlumnoInterno}
+                            >
+                                Registrar Alumno Interno
                             </button>
                         </div>
                     </div>
