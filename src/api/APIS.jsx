@@ -122,3 +122,29 @@ export const registroEstudiante = async (estudiante) => {
     const response = await API.post("registroEstudiante", estudiante);
     return response.data;
 }
+
+export const listadoAlumnos = async (estudiante, id_estudiante, correo) => {
+    const data = {
+        id_estudiante: id_estudiante,
+        correo: correo
+    };
+    const response = await API.get("consultaEstudiante", {params: data});
+    return response.data;
+}
+
+export const asignarProyecto = async (proyecto_id, id_estudiante, correo_estudiante) => {
+    const data = {
+        proyecto_id: proyecto_id,
+        id_estudiante: id_estudiante,
+        correo_estudiante: correo_estudiante
+        
+    };
+    const response = await API.post("registroParticipante", data);
+    return response.data;
+}
+
+export const proyectos = async () => {
+    const response = await API.get("consultaProyectos");
+    console.log(response.data);
+    return response.data;
+}

@@ -54,7 +54,7 @@ const Login = () => {
                     <h1 className='text-2x1 font-semibold mb-4'>Iniciar Sesión</h1>
                     <form onSubmit={handleSubmit}>
                         <div className='mb-4'>
-                            <label htmlFor="email" className='block text-gray-600'>Correo: </label>
+                            <label htmlFor="correo" className='block text-gray-600'>Correo: </label>
                             <input
                                 type="email" name="email" id="email"
                                 className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'

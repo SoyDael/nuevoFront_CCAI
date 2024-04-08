@@ -27,8 +27,8 @@ const PerfilComponent = () => {
         navigate(`/alumnoInterno`);
     }
 
-    const RedireccionarInvetigador = (correo) => {
-        navigate(`/perfilInvestigador/${correo}`);
+const redireccionarListadoAlumnos = () => {
+        navigate(`/listadoAlumnos/${correo}`);
     }
 
     useEffect(() => {
@@ -74,8 +74,9 @@ const PerfilComponent = () => {
                         <div class="flex gap-2 px-2">
                             <button
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                            onClick={redireccionarListadoAlumnos}
                             >
-                                Ver Solicitudes
+                                Ver Alumnos Internos
                             </button>
                             <button
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"

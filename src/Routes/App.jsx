@@ -16,6 +16,8 @@ import DetallesProyecto from '../components/ProyectosComponent/detallesProyectoC
 import Integrantes from '../components/ProyectosComponent/IntegrantesComponet/Integrantes.jsx';
 import AsignarActividad from '../components/ProyectosComponent/AsigActComponent/AsignarActividad.jsx';
 import AlumnoInterno from '../components/registroComponents/AlumnoInternoComponent/AlumnoInterno.jsx';
+import ListadoAlumnos from '../components/AlumnosInternosComponent/ListadoAlumnos.jsx';
+import AsigProyecto from '../components/ProyectosComponent/AsigProyComponent/AsigProyecto.jsx';
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
         <Route path='/integrantes/:id_proyecto/:correo' element={<Integrantes />} /> /// Ruta Integrantes
         <Route path='/asignarActividad/:id_proyecto/:correo/:id_estudiante/:correo_estudiante' element={<AsignarActividad />} /> /// Ruta Asignar Actividad
         <Route path='/alumnoInterno' element={<AlumnoInterno />} /> /// Ruta Alumno Interno
+        <Route path='/listadoAlumnos/:correo' element={<ListadoAlumnos />} /> /// Ruta Listado Alumnos
+        <Route path='/asignarProyecto/:correo/:id_estudiante/:correo' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
       </Routes>
     </BrowserRouter>
   );
