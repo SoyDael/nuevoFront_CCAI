@@ -13,6 +13,10 @@ const RegistroPrograma = () => {
         navigate(`/integrantes/${id_proyecto}/${correo}`);
     }
 
+    const redireccionarAsignarProyecto = () => {
+        navigate(`/asignarProyecto/${correo}/${id_estudiante}/${estudiante_correo}`);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -21,7 +25,7 @@ const RegistroPrograma = () => {
         try {
             await registroPrograma(programa, id_estudiante, estudiante_correo);
             alert('Programa asignado correctamente');
-            navigate(`/listadoAlumnos/${correo}`);
+            navigate(`/asignarProyecto/${correo}/${id_estudiante}/${estudiante_correo}`);
         } catch (error) {
             console.error('Error al asignar programa:', error);
             alert('Error al asignar programa. Por favor, inténtelo de nuevo más tarde.');

@@ -34,23 +34,23 @@ const AlumnoInterno = () => {
                             />
                         </div>
                         <div className='mb-4'>
-                            <label htmlFor="nombres" className='block text-gray-600'>Nombres: </label>
+                            <label htmlFor="nombres" className='block text-gray-600 '>Nombres: </label>
                             <input type="text" name="nombres" id="nombres" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-transform: uppercase'
                                 autoComplete='off'
                             />
                         </div>
                         <div className='mb-4'>
                             <label htmlFor="apellido_p" className='block text-gray-600'>Apellido Paterno: </label>
                             <input type="text" name="apellido_p" id="apellido_p" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-transform: uppercase'
                                 autoComplete='off'
                             />
                         </div>
                         <div className='mb-4'>
                             <label htmlFor="apellido_m" className='block text-gray-600'>Apellido Materno: </label>
                             <input type="text" name="apellido_m" id="apellido_m" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-transform: uppercase'
                                 autoComplete='off'
                             />
                         </div>
@@ -78,7 +78,7 @@ const AlumnoInterno = () => {
                         <div className='mb-4'>
                             <label htmlFor="division" className='block text-gray-600'>División: </label>
                             <input type="text" name="division" id="division" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-transform: uppercase'
                                 autoComplete='off'
                             />
                         </div>
