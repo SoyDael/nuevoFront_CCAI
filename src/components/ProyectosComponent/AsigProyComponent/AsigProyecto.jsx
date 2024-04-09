@@ -11,6 +11,10 @@ const AsigProyecto = () => {
     const [proyecto, setProyecto] = useState([]);
 
 
+    const redireccionarListadoAlumnos = (coordinador_correo) => {
+        navigate(`/listadoAlumnos/${coordinador_correo}`);
+    }
+
     useEffect(() => {
         const fetchProyectos = async () => {
             try {
@@ -79,9 +83,12 @@ const AsigProyecto = () => {
                         </button>
                     </form>
                     <div class="mb-6 text-blue-500 text-center">
-                        <a href='login' class="hover:underline">
+                    <button type="submit"
+                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'
+                            onClick={redireccionarListadoAlumnos}
+                            >
                             Regresar
-                        </a>
+                        </button>
                     </div>
                 </div>
 

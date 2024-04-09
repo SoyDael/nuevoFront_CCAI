@@ -21,6 +21,10 @@ const ListadoAlumnos = () => {
 
     }
 
+    const redireccionarAsignarPrograma = (id_estudiante, estudiante_correo) => {
+        navigate(`/registroPrograma/${correo}/${id_estudiante}/${estudiante_correo}`);
+    }
+
     useEffect(() => {
         const fetchAlumnos = async () => {
             try {
@@ -61,6 +65,12 @@ const ListadoAlumnos = () => {
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.correo}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.division}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.telefono}</td>
+                                            <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
+                                                <button 
+                                                onClick={() => redireccionarAsignarPrograma(alumno.id_estudiante, alumno.correo)} 
+                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                >Registrar Programa</button>
+                                            </td>
                                             <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
                                                 <button 
                                                 onClick={() => redireccionarAsignarProyecto(alumno.id_estudiante, alumno.correo)} 
