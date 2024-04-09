@@ -10,7 +10,7 @@ const RegistroPrograma = () => {
     const navigate = useNavigate();
 
     const redireccionarIntegrantes = () => {
-        navigate(`/integrantes/${id_proyecto}/${correo}`);
+        navigate(`/listadoAlumnos/${correo}`);
     }
 
     const redireccionarAsignarProyecto = () => {
@@ -25,10 +25,11 @@ const RegistroPrograma = () => {
         try {
             await registroPrograma(programa, id_estudiante, estudiante_correo);
             alert('Programa asignado correctamente');
-            navigate(`/asignarProyecto/${correo}/${id_estudiante}/${estudiante_correo}`);
+            navigate(`/asignarProyecto/${correo}/${id_estudiante}/${correo_estudiante}`);
+
+            e.target.reset();
         } catch (error) {
             console.error('Error al asignar programa:', error);
-            alert('Error al asignar programa. Por favor, inténtelo de nuevo más tarde.');
         }
     }
 

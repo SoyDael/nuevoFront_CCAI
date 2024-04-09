@@ -18,7 +18,6 @@ const ListadoAlumnos = () => {
 
     const redireccionarAsignarProyecto = (id_estudiante, correo_estudiante) => {
         navigate(`/asignarProyecto/${correo}/${id_estudiante}/${correo_estudiante}`);
-
     }
 
     const redireccionarAsignarPrograma = (id_estudiante, estudiante_correo) => {

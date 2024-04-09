@@ -7,7 +7,7 @@ const AsigProyecto = () => {
     const navigate = useNavigate();
 
     const { correo } = useParams();
-    const { id_proyecto, id_estudiante, correo_estudiante } = useParams();
+    const { id_proyecto, id_estudiante, correo_estudiante, tipo_programa } = useParams();
     const [proyecto, setProyecto] = useState([]);
 
 
@@ -40,12 +40,13 @@ const AsigProyecto = () => {
         try {
 
             const proyectoSeleccionado = proyecto.find(proyecto => proyecto.titulo_esp === proyectoNombre);
+
             if (!proyectoSeleccionado) {
                 alert('Proyecto no encontrado');
                 return;
             }
 
-            await asignarProyecto(proyectoSeleccionado.id_proyecto, id_estudiante, correo_estudiante, tipoPrograma);
+            await asignarProyecto(proyectoSeleccionado.id_proyecto, id_estudiante, correo_estudiante, proyectoSeleccionado.tipo_programa);
             alert('Proyecto asignado correctamente');
             navigate(`/integrantes/${id_proyecto}/${correo}`);
         } catch (error) {
@@ -74,6 +75,7 @@ const AsigProyecto = () => {
                             <label htmlFor="tipo_programa" className='block text-gray-600'>Tipo de programa: </label>
                             <input type="text" name="tipo_programa" id="tipo_programa" required
                                 className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                key={proyecto.tipo_programa}
                             />
                         </div>
 
