@@ -19,6 +19,9 @@ import AlumnoInterno from '../components/registroComponents/AlumnoInternoCompone
 import ListadoAlumnos from '../components/AlumnosInternosComponent/ListadoAlumnos.jsx';
 import AsigProyecto from '../components/ProyectosComponent/AsigProyComponent/AsigProyecto.jsx';
 import RegistroPrograma from '../components/ProyectosComponent/programaComponent/RegistroPrograma.jsx';
+import NavBarInvestigador from '../components/investigadorComponent/navbarComponents/NavBarInvestigador.jsx'
+import EditarPerfilInvestigador from '../components/investigadorComponent/EditarPerfilInvestigador.jsx';
+
 
 function App() {
   return (
@@ -35,6 +38,8 @@ function App() {
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
 
+        <Route path='/NavBarInvestigador' element={<NavBarInvestigador/>} />
+        <Route path='/EditarPerfilInvestigador' element={<EditarPerfilInvestigador/>} />
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
         <Route path='/proyectos/:correo' element={<Proyectos />} /> /// Ruta Proyectos
         <Route path='/detallesProyecto/:id_proyecto/:correo' element={<DetallesProyecto />} /> /// Ruta Detalles Proyecto

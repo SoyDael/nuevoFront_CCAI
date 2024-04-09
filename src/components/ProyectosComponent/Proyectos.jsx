@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { proyectosInvestigador, getProyecto } from '../../api/APIS';
 
+
 const Proyectos = () => {
 
     const { correo, id_proyecto } = useParams(); // Buscar El correo del investigador y el id del proyecto
