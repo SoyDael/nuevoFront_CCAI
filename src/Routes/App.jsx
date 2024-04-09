@@ -41,7 +41,7 @@ function App() {
         <Route path='/asignarActividad/:id_proyecto/:correo/:id_estudiante/:correo_estudiante' element={<AsignarActividad />} /> /// Ruta Asignar Actividad
         <Route path='/alumnoInterno' element={<AlumnoInterno />} /> /// Ruta Alumno Interno
         <Route path='/listadoAlumnos/:correo' element={<ListadoAlumnos />} /> /// Ruta Listado Alumnos
-        <Route path='/asignarProyecto/:correo/:id_estudiante/:correo' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
+        <Route path='/asignarProyecto/:coordinador_correo/:id_estudiante/:correo_estudiante' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
       </Routes>
     </BrowserRouter>
   );
