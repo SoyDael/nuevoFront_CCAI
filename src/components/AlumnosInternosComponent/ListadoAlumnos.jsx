@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { listadoAlumnos } from '../../api/APIS'
+import { listadoAlumnos, consultaProgramasPorAlumno } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const ListadoAlumnos = () => {
@@ -9,6 +9,7 @@ const ListadoAlumnos = () => {
     const { id_estudiante, correo_estudiante } = useParams(); 
     const { correo, id_proyecto } = useParams(); // Buscar El correo del investigador y el id del proyecto
     const [alumnos, setAlumnos] = useState([]); // Estado para almacenar el perfil del investigador
+    const [programa, setPrograma] = useState([]); // Estado para almacenar los programas del alumno
 
     const navigate = useNavigate();
 
@@ -22,6 +23,24 @@ const ListadoAlumnos = () => {
 
     const redireccionarAsignarPrograma = (id_estudiante, estudiante_correo) => {
         navigate(`/registroPrograma/${correo}/${id_estudiante}/${estudiante_correo}`);
+    }
+
+    const obtenerProgramas = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await listadoAlumnos({correo: correo});
+            const token = response.token;
+            console.log(token);
+            localStorage.setItem('token', token);
+
+            const programas = await consultaProgramasPorAlumno(estudiante_correo);
+            setPrograma(programas);
+
+            redireccionarAsignarPrograma();
+        } catch (error) {
+            console.log('Error al obtener programas:', error);
+        }
+    
     }
 
     useEffect(() => {

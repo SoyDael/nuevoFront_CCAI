@@ -45,7 +45,7 @@ const ProyectoAlumnoInt = () => {
                                     {Proyecto.map((proyecto) => (
                                         <tr key={proyecto.correo_estudiante} className=" dark:bg-indigo-50 border-b dark:border-gray-700">
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.titulo_esp}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.tipo_programa}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.tipo}</td>
                                             <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
                                                 <button>Ver Detalles</button>
                                             </td>

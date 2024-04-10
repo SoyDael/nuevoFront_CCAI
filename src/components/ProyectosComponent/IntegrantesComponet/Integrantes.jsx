@@ -55,7 +55,7 @@ const Integrantes = () => {
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase ">{participante.nombres}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_p}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_m}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.tipo_programa}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.tipo}</td>
                                             <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
                                                 <button onClick={() => redireccionarAsignarActividad(participante.id_estudiante, participante.correo_estudiante)}>Asignar Actividad</button>
                                             </td>

@@ -25,7 +25,7 @@ const RegistroPrograma = () => {
         try {
             await registroPrograma(programa, id_estudiante, estudiante_correo);
             alert('Programa asignado correctamente');
-            navigate(`/asignarProyecto/${correo}/${id_estudiante}/${correo_estudiante}`);
+            redireccionarAsignarProyecto(`/asignarProyecto/${correo}/${id_estudiante}/${estudiante_correo}`);
 
             e.target.reset();
         } catch (error) {

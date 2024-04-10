@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { asignarProyecto, proyectos } from '../../../api/APIS';
+import { asignarProyecto, proyectos, consultaProgramasPorAlumno } from '../../../api/APIS';
 
 const AsigProyecto = () => {
 
     const navigate = useNavigate();
 
     const { correo } = useParams();
-    const { id_proyecto, id_estudiante, correo_estudiante, tipo_programa } = useParams();
+    const { id_proyecto, id_estudiante, correo_estudiante, tipo, estudiante_correo } = useParams();
     const [proyecto, setProyecto] = useState([]);
+    const [programa, setPrograma] = useState([]);
 
 
-    const redireccionarListadoAlumnos = (coordinador_correo) => {
-        navigate(`/listadoAlumnos/${coordinador_correo}`);
+    const redireccionarListadoAlumnos = (correo) => {
+        navigate(`/listadoAlumnos/${correo}`);
     }
 
     useEffect(() => {
@@ -26,27 +27,47 @@ const AsigProyecto = () => {
                 alert('Error al obtener proyectos. Por favor, inténtalo de nuevo.');
             }
         };
+
+        const fetchProgramas = async () => {
+            try {
+                const programasData = await consultaProgramasPorAlumno(correo_estudiante);
+                console.log(programasData);
+                setPrograma(programasData);
+            } catch (error) {
+                console.error('Error al obtener programas:', error);
+                alert('Error al obtener programas. Por favor, inténtalo de nuevo.');
+            }
+        }
         fetchProyectos();
+        fetchProgramas();
     }, []);
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const proyectoNombre = formData.get('titulo_esp');
-        const tipoPrograma = formData.get('tipo_programa'); // Obtener el valor de tipo_programa
-
+        const tipo = formData.get('tipo');
         //  const proyecto = Object.fromEntries(formData);
 
         try {
 
             const proyectoSeleccionado = proyecto.find(proyecto => proyecto.titulo_esp === proyectoNombre);
-
             if (!proyectoSeleccionado) {
                 alert('Proyecto no encontrado');
                 return;
             }
 
-            await asignarProyecto(proyectoSeleccionado.id_proyecto, id_estudiante, correo_estudiante, proyectoSeleccionado.tipo_programa);
+            const programaSeleccionado = programa.find(programa => programa.tipo === tipo);
+            if (!programaSeleccionado) {
+                alert('Programa no encontrado');
+                return;
+            }
+
+            const idPrograma = programaSeleccionado.id_programa;
+
+            await asignarProyecto(proyectoSeleccionado.id_proyecto, id_estudiante, correo_estudiante, idPrograma);
             alert('Proyecto asignado correctamente');
             navigate(`/integrantes/${id_proyecto}/${correo}`);
         } catch (error) {
@@ -72,10 +93,11 @@ const AsigProyecto = () => {
                             </select>
                         </div>
                         <div className='mb-4'>
-                            <label htmlFor="tipo_programa" className='block text-gray-600'>Tipo de programa: </label>
-                            <input type="text" name="tipo_programa" id="tipo_programa" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                key={proyecto.tipo_programa}
+                            <label htmlFor="id_programa" className='block text-gray-600'>Tipo de programa: </label>
+                            <input type="tipo" name="tipo" id="password" required
+                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                autoComplete='off'
+                                value={programa[0]?.tipo}
                             />
                         </div>
 
@@ -85,10 +107,10 @@ const AsigProyecto = () => {
                         </button>
                     </form>
                     <div class="mb-6 text-blue-500 text-center">
-                    <button type="submit"
+                        <button type="submit"
                             className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'
                             onClick={redireccionarListadoAlumnos}
-                            >
+                        >
                             Regresar
                         </button>
                     </div>
@@ -99,4 +121,4 @@ const AsigProyecto = () => {
     )
 }
 
-export default AsigProyecto
+export default AsigProyecto;
