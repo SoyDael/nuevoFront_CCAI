@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { login, getPerfilEstudiante } from '../../api/APIS';
 import NavbarSimple from '../navbarComponents/NavbarSimple';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('');
     const [perfilEstudiante, setPerfilEstudiante] = useState(null); // Estado para almacenar el perfil del estudiante
+
     const navigate = useNavigate();
 
 
@@ -40,9 +42,20 @@ const Login = () => {
             } else if (userType === 'alumno externo' && localStorage.getItem('token')) {
                 window.location.href = '/perfilActividades/id';
             }
+            Swal.fire({
+                title: 'Bienvenido',
+                text: 'Bienvenido',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            alert('Error al iniciar sesión. Por favor, revisa tus credenciales e inténtalo de nuevo.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Error al Iniciar Sesión',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+              })
         }
     };
 
@@ -102,7 +115,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className='w-1/2 h-screen hidden lg:block'>
-                    <img src="../src/assets/loginCCAI.jpg" alt="CCAI" className="object-cover w-full h-full" />
+                    <img src="../src/assets/image1.jpg" alt="CCAI" className="object-cover w-full h-full" />
                 </div>
             </div>
         </>
