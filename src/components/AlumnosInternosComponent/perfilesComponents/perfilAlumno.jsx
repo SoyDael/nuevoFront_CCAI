@@ -4,6 +4,7 @@ import { getPerfilEstudiante, getconsultaActividadesEstudiantesPorId, Participan
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn'
 
 const PerfilAlumno = () => {
 
@@ -76,7 +77,7 @@ const PerfilAlumno = () => {
 
     return (
         <>
-            <Navbar />
+            <SlideBarPruebaAlumn />
             <div class="flex justify-center items-center h-screen bg-slate-100 bg-slate-100 bg-opacity-20 pt-12">
                 <div class=" mx-auto bg-white bg-indigo-200 bg-opacity-30 rounded-lg overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">

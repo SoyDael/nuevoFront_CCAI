@@ -19,6 +19,7 @@ import AlumnoInterno from '../components/registroComponents/AlumnoInternoCompone
 import ListadoAlumnos from '../components/AlumnosInternosComponent/ListadoAlumnos.jsx';
 import AsigProyecto from '../components/ProyectosComponent/AsigProyComponent/AsigProyecto.jsx';
 import RegistroPrograma from '../components/ProyectosComponent/programaComponent/RegistroPrograma.jsx';
+import SlideBarPruebaAlumn from '../components/SlideBar/SlideBarPruebaAlumn.jsx';
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
         <Route path='/listadoAlumnos/:correo' element={<ListadoAlumnos />} /> /// Ruta Listado Alumnos
         <Route path='/asignarProyecto/:coordinador_correo/:id_estudiante/:correo_estudiante' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
         <Route path='/registroPrograma/:correo/:id_estudiante/:estudiante_correo' element={<RegistroPrograma />} /> /// Ruta Registro Programa
+
+        <Route path='/slideBarPruebaAlumn' element={<SlideBarPruebaAlumn />} />
+
       </Routes>
     </BrowserRouter>
   );
