@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 import { createUsuario } from '../../api/APIS';
-import NavbarSimple from '../navbarComponents/NavbarSimple';
+import NavbarInvestigador from '../investigadorComponent/navbarComponents/NavBarInvestigador';
 
 const UsuarioForm = () => {
+
+    const {correo} = useParams();
+
+    const navigate = useNavigate();
 
     const RedireccionarInvetigador = (correo) => {
         navigate(`/perfilInvestigador/${correo}`);
@@ -25,7 +30,7 @@ const UsuarioForm = () => {
 
     return (
         <>
-            <NavbarSimple />
+            <NavbarInvestigador />
             <div className='bg-gray-100 flex justify-center items-center h-screen'>
                 <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
                     <h1 className='text-2x1 font-semibold mb-4'>Registro Usuario</h1>
@@ -58,10 +63,13 @@ const UsuarioForm = () => {
                             Añadir usuario
                         </button>
                     </form>
-                    <div class="mb-6 text-blue-500 text-center">
-                        <a href='login' class="hover:underline">
+                    <div className="mb-6 text-blue-500 text-center">
+                    <button type="submit"
+                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'
+                            onClick={RedireccionarInvetigador}
+                            >
                             Regresar
-                        </a>
+                        </button>
                     </div>
                 </div>
 

@@ -54,10 +54,27 @@ export const getPerfilEstudiante = async (correo) => {
     return response.data;
 }
 
+export const getPerfilInvestigador = async (correo) => {
+    const response = await API.get(`perfilInvestigador/${correo}`);
+    return response.data;
+}
+
+
+
 export const actualizarPerfil = async (correo, datos) => {
     try {
         // Realiza la solicitud PATCH con los datos actualizados
         const response = await API.patch(`actualizarPerfilEstudiante/${correo}`, datos);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
+
+export const actualizarPerfilInvestigador = async (correo, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`editarinvestigador/${correo}`, datos);
         return response;
     } catch (error) {
         throw error; // Propaga el error para manejarlo en el componente
@@ -72,6 +89,11 @@ export const ParticipantePorProyecto = async (correo) => {
 
 export const navbarEstudiante = async (correo) => {
     const response = await API.get(`navbarEstudiante/${correo}`);
+    return response.data;
+}
+
+export const navbarInvestigador= async(correo ) =>{
+    const response = await API.get(`navbarinvestigador/${correo}`);
     return response.data;
 }
 

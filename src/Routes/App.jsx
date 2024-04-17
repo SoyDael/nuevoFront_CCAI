@@ -39,7 +39,7 @@ function App() {
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
 
         <Route path='/NavBarInvestigador' element={<NavBarInvestigador/>} />
-        <Route path='/EditarPerfilInvestigador' element={<EditarPerfilInvestigador/>} />
+        <Route path='/EditarPerfilInvestigador/:correo' element={<EditarPerfilInvestigador/>} />
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
         <Route path='/proyectos/:correo' element={<Proyectos />} /> /// Ruta Proyectos
         <Route path='/detallesProyecto/:id_proyecto/:correo' element={<DetallesProyecto />} /> /// Ruta Detalles Proyecto
