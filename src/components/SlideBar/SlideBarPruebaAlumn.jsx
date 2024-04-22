@@ -1,7 +1,14 @@
-import React, { useState, useRef } from 'react'
-import './SlideBar.css'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { navbarEstudiante } from '../../api/APIS';
+
 
 const SlideBarPruebaAlumn = () => {
+
+    const { correo } = useParams();
+
+
+    const [perfilEstudiante, setPerfilEstudiante] = useState([]);
 
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
     const [isAsideVisible, setIsAsideVisible] = useState(true);
@@ -10,6 +17,18 @@ const SlideBarPruebaAlumn = () => {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isKanbanOpen, setIsKanbanOpen] = useState(false);
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+    const navigate = useNavigate();
+
+    
+    const redireccionarEditar = () => {
+        navigate(`/editarPerfil/${correo}`);
+    }
+
+    const redireccionarProyecto = () => {
+        navigate(`/proyectoAlumnoInt/${correo}`);
+    }
+
 
     const cerrarSesion = () => {
         localStorage.removeItem('token');
@@ -28,6 +47,20 @@ const SlideBarPruebaAlumn = () => {
     const toggleAsideVisibility = () => {
         setIsAsideVisible(!isAsideVisible);
     };
+
+    useEffect(() => {
+        const fetchPerfilEstudiante = async () => {
+            try {
+                const perfil = await navbarEstudiante(correo);
+                console.log(perfil);
+                setPerfilEstudiante(perfil);
+            } catch (error) {
+                //console.error('Error al obtener perfil:', error);
+                //alert('Error al obtener perfil. Por favor, inténtalo de nuevo.');
+            }
+        };
+        fetchPerfilEstudiante();
+    }, [correo]);
 
     return (
         <>
@@ -68,7 +101,7 @@ const SlideBarPruebaAlumn = () => {
                             </button>
                         </div>
                         <div className="flex items-center">
-                            <div className="flex items-center ms-3">
+                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
                                 <div className="relative">
                                     <button
                                         type="button"
@@ -80,20 +113,21 @@ const SlideBarPruebaAlumn = () => {
                                         <span className="sr-only">Open user menu</span>
                                         <img
                                             className="w-8 h-8 rounded-full"
-                                            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                            //src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                             alt="user photo"
-                                        />
+                                        >{perfilEstudiante[0]?.foto}</img>
                                     </button>
                                 </div>
 
                                 {isUserMenuOpen && (
                                     <div
-                                        className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700"
+                                        className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-800 rounded-lg shadow-lg dark:bg-gray-800 dark:divide-gray-700"
                                         style={{ top: '100%' }}
                                     >
                                         <div className="px-4 py-3">
-                                            <p className="text-sm text-gray-900 dark:text-white">Neil Sims</p>
-                                            <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300">neil.sims@flowbite.com</p>
+                                            <p className="text-sm text-gray-900 dark:text-white">{perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</p>
+                                          {/**   <p className="text-sm  text-gray-900 dark:text-gray-300">{perfilEstudiante[0]?.correo}</p> */}
+                                            <p className="text-sm font-medium text-gray-900 dark:text-gray-300">{perfilEstudiante[0]?.tipo}</p>
                                         </div>
                                         <ul className="py-1 text-sm text-gray-700 dark:text-gray-300" aria-labelledby="user-menu-button">
                                             <li>
