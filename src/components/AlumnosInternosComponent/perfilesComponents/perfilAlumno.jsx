@@ -13,7 +13,7 @@ const PerfilAlumno = () => {
 
     const [perfilEstudiante, setPerfilEstudiante] = useState([]);
     const [actividadEstudiante, setActividadEstudiante] = useState(null);
-    const [proyectoEstudiante, setProyectoEstudiante ] = useState(null);
+    const [proyectoEstudiante, setProyectoEstudiante] = useState(null);
 
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const PerfilAlumno = () => {
             console.log(proyecto)
 
             redireccionarProyecto();
-        }catch (error) {
+        } catch (error) {
             console.log('Error al obtener proyecto:', error);
         }
 
@@ -78,48 +78,48 @@ const PerfilAlumno = () => {
     return (
         <>
             <SlideBarPruebaAlumn />
-            <div class="flex justify-center items-center h-screen bg-slate-100 bg-slate-100 bg-opacity-20 pt-12">
-                <div class=" mx-auto bg-white bg-indigo-200 bg-opacity-30 rounded-lg overflow-hidden shadow-lg">
+            <div class="flex justify-center items-center h-screen bg-slate-700  pt-12">
+                <div class=" mx-auto bg-white bg-slate-900 bg-opacity-30 shadow-lg shadow-blue-500/50 rounded-lg overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">
                         <div class="text-center my-4">
-                         {/**    <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4" src="" alt="" >{perfilEstudiante[0]?.foto}</img> */}
+                            {/**    <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4" src="" alt="" >{perfilEstudiante[0]?.foto}</img> */}
                             <div class="py-2">
-                                <h3 class="font-bold text-2xl text-gray-800 dark:text-dark mb-1">Bienvenido(a) <br></br> {perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</h3>
+                                <h3 class="font-bold text-2xl text-white dark:text-dark mb-1">Bienvenido(a) <br></br> {perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</h3>
                                 <br></br>
                                 <div class="inline-flex text-gray-700 dark:text-gray-300 items-center">
-                                    <h3 class="text-2xl text-gray-800 dark:text-dark mb-1">Division: <br></br> {perfilEstudiante[0]?.division}</h3>
+                                    <h3 class="text-2xl text-white dark:text-dark mb-1">Division: <br></br> {perfilEstudiante[0]?.division}</h3>
                                 </div>
                             </div>
                             <div class="py-2">
                                 <div class="inline-flex text-gray-700 dark:text-gray-300 items-center">
-                                    <h3 class="text-2xl text-gray-800 dark:text-dark mb-1">Matricula:<br></br> {perfilEstudiante[0]?.matricula}</h3>
+                                    <h3 class="text-2xl text-white dark:text-dark mb-1">Matricula:<br></br> {perfilEstudiante[0]?.matricula}</h3>
                                 </div>
                             </div>
                             <div class="py-2 items-center">
                                 <div class="inline-flex justify-center text-gray-700 dark:text-gray-300 items-center">
-                                    <h3 class="text-2xl text-gray-800 dark:text-dark mb-1">Correo: {perfilEstudiante[0]?.correo}</h3>
+                                    <h3 class="text-2xl text-white dark:text-dark mb-1">Correo: {perfilEstudiante[0]?.correo}</h3>
                                 </div>
                             </div>
                             <div class="py-2 items-center">
                                 <div class="inline-flex justify-center text-gray-700 dark:text-gray-300 items-center">
-                                    <h3 class="text-2xl text-gray-800 dark:text-dark mb-1">Correo Adicional: {perfilEstudiante[0]?.correo_adicional}</h3>
+                                    <h3 class="text-2xl text-white dark:text-dark mb-1">Correo Adicional: {perfilEstudiante[0]?.correo_adicional}</h3>
                                 </div>
                             </div>
                             <div class="py-2 items-center">
                                 <div class="inline-flex justify-center text-gray-700 dark:text-gray-300 items-center">
-                                    <h3 class="text-2xl text-gray-800 dark:text-dark mb-1">Telefono:<br></br> {perfilEstudiante[0]?.telefono}</h3>
+                                    <h3 class="text-2xl text-white dark:text-dark mb-1">Telefono:<br></br> {perfilEstudiante[0]?.telefono}</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="flex gap-2 px-2">
                             <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                class="flex-1 rounded-full bg-blue-950 dark:bg-blue-950 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
                                 onClick={obtenerActividades}
                             >
                                 Ver Actividades
                             </button>
                             <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                class="flex-1 rounded-full bg-blue-950 dark:bg-blue-950 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
                                 onClick={redireccionarProyecto}
                             >
                                 Ver Proyecto
