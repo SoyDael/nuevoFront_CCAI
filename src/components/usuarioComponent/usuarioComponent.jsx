@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { createUsuario } from '../../api/APIS';
-import NavbarInvestigador from '../investigadorComponent/navbarComponents/NavBarInvestigador';
+import NavbarInvestigador from '../SlideBar/SlideBarPruebaAlumn';
 
 const UsuarioForm = () => {
 

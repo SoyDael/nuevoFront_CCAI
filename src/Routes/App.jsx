@@ -21,6 +21,7 @@ import AsigProyecto from '../components/ProyectosComponent/AsigProyComponent/Asi
 import RegistroPrograma from '../components/ProyectosComponent/programaComponent/RegistroPrograma.jsx';
 import NavBarInvestigador from '../components/investigadorComponent/navbarComponents/NavBarInvestigador.jsx'
 import EditarPerfilInvestigador from '../components/investigadorComponent/EditarPerfilInvestigador.jsx';
+import SlideBarPruebaAlumn from '../components/SlideBar/SlideBarPruebaAlumn.jsx';
 
 
 function App() {
@@ -49,6 +50,8 @@ function App() {
         <Route path='/listadoAlumnos/:correo' element={<ListadoAlumnos />} /> /// Ruta Listado Alumnos
         <Route path='/asignarProyecto/:coordinador_correo/:id_estudiante/:correo_estudiante' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
         <Route path='/registroPrograma/:correo/:id_estudiante/:estudiante_correo' element={<RegistroPrograma />} /> /// Ruta Registro Programa
+
+        <Route path='/SlideBarPruebaAlumn' element={<SlideBarPruebaAlumn/>}/>
       </Routes>
     </BrowserRouter>
   );

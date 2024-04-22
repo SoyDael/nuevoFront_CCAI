@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavBarInvestigador from '../navbarComponents/NavBarInvestigador.jsx'
+import NavBarInvestigador from '../../SlideBar/SlideBarPruebaAlumn'
 
 import { PerfilInvestigador } from '../../../api/APIS'
 

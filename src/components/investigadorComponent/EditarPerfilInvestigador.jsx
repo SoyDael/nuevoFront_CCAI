@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPerfilInvestigador, actualizarPerfilInvestigador } from '../../api/APIS';
-import NavBarInvestigador from '../investigadorComponent/navbarComponents/NavBarInvestigador'
+import NavBarInvestigador from '../SlideBar/SlideBarPruebaAlumn'
 
 const EditarPerfilInvestigador = () => {
 
