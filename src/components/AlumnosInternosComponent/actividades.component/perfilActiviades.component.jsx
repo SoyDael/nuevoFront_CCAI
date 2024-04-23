@@ -16,7 +16,7 @@ const PerfilActividades = () => {
     }
 
     const redireccionarDetalles = () => {
-        navigate(`/detallesActividad/${correo_estudiante}`);
+        navigate(`/detallesActividad/${correo_estudiante || correo}`);
     }
 
     const obtenerActividades = async (e) => {
@@ -70,6 +70,7 @@ const PerfilActividades = () => {
 
     return (
         <>
+            <SlideBarPruebaAlumn />
             <div class="flex min-h-screen items-center justify-center bg-slate-700 from-gray-700 via-gray-800 to-gray-900">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-800 shadow-lg shadow-blue-500/100">
                     <div class="">
@@ -143,9 +144,7 @@ const PerfilActividades = () => {
                         </table>
                     </div>
                 </div>
-
             </div>
-            <SlideBarPruebaAlumn />
             {/** 
             <div className="flex justify-center items-center h-screen bg-slate-400 ">
                 <div className="relative overflow-x-auto  sm:rounded-lg ">

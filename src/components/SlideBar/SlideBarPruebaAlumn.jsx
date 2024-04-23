@@ -31,11 +31,11 @@ const SlideBarPruebaAlumn = () => {
     }
 
     const redireccionarProyecto = () => {
-        navigate(`/proyectoAlumnoInt/${correo}`);
+        navigate(`/proyectoAlumnoInt/${correo || correo_estudiante}`);
     }
 
     const redireccionarActividades = () => {
-        navigate(`/perfilActividades/${correo}`);
+        navigate(`/perfilActividades/${correo || correo_estudiante}`);
     }
 
     const obtenerActividades = async (e) => {
@@ -153,9 +153,9 @@ const SlideBarPruebaAlumn = () => {
                                         <div className="px-4 py-3">
                                             <p className="text-sm text-gray-300 dark:text-white">{perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</p>
                                             {/**   <p className="text-sm  text-gray-900 dark:text-gray-300">{perfilEstudiante[0]?.correo}</p> */}
-                                            <p className="text-sm font-medium text-gray-900 text-gray-300">{perfilEstudiante[0]?.tipo}</p>
+                                            <p className="text-sm font-medium text-gray-900 text-gray-200">{perfilEstudiante[0]?.tipo}</p>
                                         </div>
-                                        <ul className="py-1 text-sm text-gray-700 text-gray-300" aria-labelledby="user-menu-button">
+                                        <ul className="py-1 text-sm text-gray-700 text-gray-100" aria-labelledby="user-menu-button">
                                             <li>
                                                 <button  className="block px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-600"
                                                 onClick={redireccionarPerfil }
