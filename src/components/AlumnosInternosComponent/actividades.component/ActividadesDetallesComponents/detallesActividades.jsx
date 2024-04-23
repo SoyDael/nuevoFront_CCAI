@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../../navbarComponents/Navbar'
 import { getconsultaActividadesEstudiantesPorId } from '../../../../api/APIS'
 import { useParams, useNavigate } from 'react-router-dom'
+import SlideBarPruebaAlumn from '../../../SlideBar/SlideBarPruebaAlumn'
 
 
 const DetallesActividades = () => {
@@ -32,9 +33,9 @@ const DetallesActividades = () => {
 
     return (
         <>
-            <Navbar />
+            <SlideBarPruebaAlumn />
             <div className="flex justify-center items-center h-screen">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-">
                     <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Detalles de actividad: </h1>
                     <section>
                         <div>

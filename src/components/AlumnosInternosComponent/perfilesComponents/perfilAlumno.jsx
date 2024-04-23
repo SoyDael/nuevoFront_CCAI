@@ -78,8 +78,8 @@ const PerfilAlumno = () => {
     return (
         <>
             <SlideBarPruebaAlumn />
-            <div class="flex justify-center items-center h-screen bg-slate-700  pt-12">
-                <div class="mx-auto bg-slate-900 bg-opacity-30 shadow-lg shadow-blue-500/100 rounded-lg overflow-hidden shadow-lg">
+            <div class="flex justify-center items-center h-screen bg-slate-400 pt-12">
+                <div class="mx-auto bg-slate-800 shadow-lg shadow-blue-500/100 rounded-lg overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">
                         <div class="text-center my-4">
                             {/**    <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4" src="" alt="" >{perfilEstudiante[0]?.foto}</img> */}
