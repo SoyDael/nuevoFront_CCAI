@@ -1,13 +1,24 @@
 import React from 'react'
-import NavbarSimple from '../../navbarComponents/NavbarSimple'
 import { registroEstudiante } from '../../../api/APIS';
+import { useNavigate, useParams } from 'react-router-dom'
+import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
 
 const AlumnoInterno = () => {
+
+    const { correo,coordinador_correo ,correo_investigador} = useParams(); // Buscar El correo del investigador y el id del proyecto
+        const navigate = useNavigate();
+
+
+        const redireccionarPerfilInvestigador = () => {
+            navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador } ` );
+        }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const estudiante = Object.fromEntries(formData);
+
+        
 
         try {
             await registroEstudiante(estudiante);
@@ -21,7 +32,7 @@ const AlumnoInterno = () => {
 
     return (
         <>
-            <NavbarSimple />
+            <SlideBarPruebaAlumn />
             <div className='bg-gray-100 flex flex-col justify-center items-center min-h-screen'>
                 <div className='lg:p-35 md:p-16 sm:20 p-8 w-full lg:w-1/2'>
                     <h1 className='text-2xl font-semibold mb-4'>Registro Alumno Interno</h1>
@@ -88,12 +99,17 @@ const AlumnoInterno = () => {
                         </button>
                     </form>
                     <div className="mb-6 text-blue-500 text-center">
-                        <a href='/login' className="hover:underline">
+                        <a href='/login' className="hover:underline" onClick={redireccionarPerfilInvestigador}>
                             Regresar
                         </a>
                     </div>
                 </div>
             </div>
+
+
+            
+
+
         </>
 
     )

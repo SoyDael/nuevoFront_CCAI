@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { listadoAlumnos } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
+import SlideBarPruebaAlumn from '../SlideBar/SlideBarPruebaAlumn'
 
 const ListadoAlumnos = () => {
 
@@ -41,6 +42,7 @@ const ListadoAlumnos = () => {
 
     return (
         <>
+        <SlideBarPruebaAlumn/>
             <div className="flex justify-center items-center h-screen">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
                     <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Bienvenido { } { } { } los alumnos aceptados son: </h1>

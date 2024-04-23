@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { proyectosInvestigador, getProyecto } from '../../api/APIS';
+import SlideBarPruebaAlumn from '../SlideBar/SlideBarPruebaAlumn';
 
 
 const Proyectos = () => {
@@ -54,28 +55,48 @@ const Proyectos = () => {
 
     return (
         <>
-            <div className="flex justify-center items-center h-screen">
+        <SlideBarPruebaAlumn/>
+            
+        <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+        <div className="relative bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700   shadow-blue-500/50 ">
+        <div className="flex justify-center items-center h-3/5">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-                    <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Bienvenido {Proyecto[0]?.nombres} {Proyecto[0]?.apellido_p} {Proyecto[0]?.apellido_m} los proyectos que coordinas son: </h1>
-                    <section>
-                        <div>
-                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase dark:bg-indigo-50 bg-opacity-20 dark:text-gray-400">
-                                    <tr className=''>
-                                        <th scope='col' className="px-6 py-3">Nombre del Proyecto</th>
-                                        <th scope='col' className="px-6 py-3">Estatus</th>
-                                        <th scope='col' className="px-6 py-3">Fecha de Registro</th>
-                                        <th scope='col' className="px-6 py-3">Fecha de Inicio</th>
-                                        <th scope='col' className="px-1 py-3">Detalles</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {Proyecto.map((proyecto) => (
-                                        <tr className=" dark:bg-indigo-50 border-b dark:border-gray-700">
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.titulo_esp}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.estatus}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.fecha_registro}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{proyecto.fecha_inicio}</td>
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <caption className="p-7 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            Proyectos del CCAI
+            
+            <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Bienvenido {Proyecto[0]?.nombres} {Proyecto[0]?.apellido_p} {Proyecto[0]?.apellido_m} los proyectos que coordinas son:
+            </p>
+                                  
+
+            
+        </caption>
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    Nombre del proyecto
+                </th>
+                <th scope="col" className="px-6 py-3">
+                Estatus
+                </th>
+                <th scope="col" className="px-6 py-3">
+                Fecha de registro
+                </th>
+                <th scope="col" className="px-6 py-3">
+                Fecha de registro
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    <span className="sr-only">Ver detalles</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {Proyecto.map((proyecto) => (
+                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{proyecto.titulo_esp}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{proyecto.estatus}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{proyecto.fecha_registro}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{proyecto.fecha_inicio}</td>
                                             <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
                                                 <button
                                                     onClick={() => redireccionarDetallesProyecto(proyecto.id_proyecto)}
@@ -83,31 +104,17 @@ const Proyectos = () => {
                                             </td>
                                         </tr>
                                     ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-                    <div className="flex justify-center mt-4">
-                        <div className="mr-4">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={redireccionarPerfil}
-                            >
-                                Regresar
-                            </button>
-                        </div>
-                        <div>
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                
-                            >
-                                Registrar nuevo proyecto
-                            </button>
-                        </div>
-                    </div>
+        </tbody>
+    </table>
+    
+    
+</div>
+</div>
 
-                </div>
-            </div>
+
+
+        </div>
+        </div>
         </>
     )
 }
