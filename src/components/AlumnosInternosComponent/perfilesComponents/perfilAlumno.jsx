@@ -79,7 +79,7 @@ const PerfilAlumno = () => {
         <>
             <SlideBarPruebaAlumn />
             <div class="flex justify-center items-center h-screen bg-slate-700  pt-12">
-                <div class=" mx-auto bg-white bg-slate-900 bg-opacity-30 shadow-lg shadow-blue-500/50 rounded-lg overflow-hidden shadow-lg">
+                <div class="mx-auto bg-slate-900 bg-opacity-30 shadow-lg shadow-blue-500/100 rounded-lg overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">
                         <div class="text-center my-4">
                             {/**    <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4" src="" alt="" >{perfilEstudiante[0]?.foto}</img> */}
@@ -110,20 +110,6 @@ const PerfilAlumno = () => {
                                     <h3 class="text-2xl text-white dark:text-dark mb-1">Telefono:<br></br> {perfilEstudiante[0]?.telefono}</h3>
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex gap-2 px-2">
-                            <button
-                                class="flex-1 rounded-full bg-blue-950 dark:bg-blue-950 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
-                                onClick={obtenerActividades}
-                            >
-                                Ver Actividades
-                            </button>
-                            <button
-                                class="flex-1 rounded-full bg-blue-950 dark:bg-blue-950 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
-                                onClick={redireccionarProyecto}
-                            >
-                                Ver Proyecto
-                            </button>
                         </div>
                     </div>
                 </div>

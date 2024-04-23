@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../navbarComponents/Navbar';
+import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getconsultaActividadesEstudiantesPorId } from '../../../api/APIS';
+import { getconsultaActividadesEstudiantesPorId, getPerfilEstudiante, navbarEstudiante } from '../../../api/APIS';
 
 const PerfilActividades = () => {
-    const { correo_estudiante } = useParams();
+    const { correo_estudiante, correo } = useParams();
     const [actividadesForm, setActividadesForm] = useState([]);
     const [actividad, setActividad] = useState(null)
+    const [perfilEstudiante, setPerfilEstudiante] = useState(null)
 
     const navigate = useNavigate();
 
     const redireccionarPerfil = () => {
-        navigate(`/perfilAlumno/${correo_estudiante}`);
+        navigate(`/perfilAlumno/${correo}`);
     }
 
     const redireccionarDetalles = () => {
@@ -23,6 +24,7 @@ const PerfilActividades = () => {
         try {
             const response  = await getPerfilEstudiante({correo: correo}); // Pasar solo el correo del estudiante
             const token = response.token;
+            redireccionarPerfil();
             console.log(token);
             localStorage.setItem('token', token);
 
@@ -33,6 +35,22 @@ const PerfilActividades = () => {
         } catch (error) {
             console.log('Error al obtener actividades:', error);
         }
+    }
+
+    const obtenerPerfil = async (e) => {
+        e.preventDefault();
+        try {
+            const response  = await getPerfilEstudiante({correo: correo}); // Pasar solo el correo del estudiante
+            const token = response.token;
+            console.log(token);
+            localStorage.setItem('token', token);
+
+            const perfil = await navbarEstudiante(correo);
+            setPerfilEstudiante(perfil);
+        } catch (error) {
+            console.log('Error al obtener perfil:', error);
+        }
+    
     }
 
     useEffect(() => {
@@ -52,7 +70,7 @@ const PerfilActividades = () => {
 
     return (
         <>
-            <Navbar />
+            <SlideBarPruebaAlumn />
             <div className="flex justify-center items-center h-screen">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
                     <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Bienvenido tus actividades son: </h1>

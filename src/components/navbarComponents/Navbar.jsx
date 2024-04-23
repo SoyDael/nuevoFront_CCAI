@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const Navbar = () => {
 
-    const { correo } = useParams();
+    const { correo, correo_estudiante } = useParams();
 
     const [perfilEstudiante, setPerfilEstudiante] = useState([]);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -31,7 +31,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchPerfilEstudiante = async () => {
             try {
-                const perfil = await navbarEstudiante(correo);
+                const perfil = await navbarEstudiante(correo || correo_estudiante);
                 console.log(perfil);
                 setPerfilEstudiante(perfil);
             } catch (error) {
