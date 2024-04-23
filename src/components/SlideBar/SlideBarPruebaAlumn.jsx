@@ -1,5 +1,5 @@
 import React, {useState,useRef, useEffect} from 'react';
-import './SlideBar.css'
+
 import {navbarInvestigador} from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
 import EditarPerfil from '../AlumnosInternosComponent/EditarPerfil';

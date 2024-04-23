@@ -58,11 +58,11 @@ const Proyectos = () => {
         <SlideBarPruebaAlumn/>
             
         <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
-        <div className="relative bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700   shadow-blue-500/50 ">
-        <div className="flex justify-center items-center h-3/5">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <caption className="p-7 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        <div className="rounded-l-md relative bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700   shadow-blue-500/50  ">
+      
+             
+    <table className=" text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+        <caption className="px-6 py-4 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
             Proyectos del CCAI
             
             <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Bienvenido {Proyecto[0]?.nombres} {Proyecto[0]?.apellido_p} {Proyecto[0]?.apellido_m} los proyectos que coordinas son:
@@ -71,7 +71,7 @@ const Proyectos = () => {
 
             
         </caption>
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
             <tr>
                 <th scope="col" className="px-6 py-3">
                     Nombre del proyecto
@@ -90,7 +90,7 @@ const Proyectos = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
         {Proyecto.map((proyecto) => (
                                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{proyecto.titulo_esp}</td>
@@ -113,8 +113,8 @@ const Proyectos = () => {
 
 
 
-        </div>
-        </div>
+       
+       
         </>
     )
 }
