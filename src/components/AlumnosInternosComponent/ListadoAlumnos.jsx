@@ -43,61 +43,76 @@ const ListadoAlumnos = () => {
     return (
         <>
         <SlideBarPruebaAlumn/>
-            <div className="flex justify-center items-center h-screen">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-                    <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Bienvenido { } { } { } los alumnos aceptados son: </h1>
-                    <section>
-                        <div>
-                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase dark:bg-indigo-50 bg-opacity-20 dark:text-gray-400">
-                                    <tr className=''>
-                                        <th scope='col' className="px-6 py-3">Matricula</th>
-                                        <th scope='col' className="px-6 py-3">Nombres</th>
-                                        <th scope='col' className="px-6 py-3">Correo</th>
-                                        <th scope='col' className="px-6 py-3">Division</th>
-                                        <th scope='col' className="px-6 py-3">Telefono</th>
-                                        <th scope='col' className="px-10 py-3">Operacion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {alumnos.map((alumno) => (
-                                        <tr className=" dark:bg-indigo-50 border-b dark:border-gray-700">
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.matricula}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.nombres}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.correo}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.division}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{alumno.telefono}</td>
+            
+
+
+            <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+        <div className="rounded-l-md relative bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700   shadow-blue-500/50  ">
+      
+             
+    <table className=" text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+        <caption className="px-6 py-4 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            Alumnos internos
+            
+            <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Bienvenido { } { } { } los alumnos aceptados son:
+            </p>
+                                  
+
+            
+        </caption>
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    Matricula
+                </th>
+                <th scope="col" className="px-6 py-3">
+                Nombres
+                </th>
+                <th scope="col" className="px-6 py-3">
+                Correo
+                </th>
+                <th scope="col" className="px-6 py-3">
+                División
+                </th>
+                <th scope="col" className="px-6 py-3">
+                Telefono
+                </th>
+                <th scope="col" className="px-6 py-3">
+                </th>
+                <th scope="col" className="px-6 py-3">
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody >
+        {alumnos.map((alumno) => (
+                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{alumno.matricula}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{alumno.nombres}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{alumno.correo}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{alumno.division}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{alumno.telefono}</td>
+
                                             <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
-                                                <button 
-                                                onClick={() => redireccionarAsignarPrograma(alumno.id_estudiante, alumno.correo)} 
-                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                >Registrar Programa</button>
+                                                <button
+                                                    onClick={() => redireccionarAsignarPrograma(alumno.id_estudiante, alumno.correo)} 
+                                                >Registrar programa</button>
                                             </td>
-                                            <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
-                                                <button 
-                                                onClick={() => redireccionarAsignarProyecto(alumno.id_estudiante, alumno.correo)} 
-                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                >Asignar Proyecto</button>
-                                            </td>
+                                            {/* <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
+                                                <button
+                                                    onClick={() => redireccionarAsignarProyecto(alumno.id_estudiante, alumno.correo)}
+                                                >Asignar proyecto</button>
+                                            </td> */}
                                         </tr>
                                     ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-                    <div className="flex justify-center mt-4">
-                        <div className="mr-4">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={redireccionarPerfilInvestigador}
-                            >
-                                Regresar
-                            </button>
-                        </div>
-                    </div>
+        </tbody>
+    </table>
+    
+    
+</div>
+</div>
 
-                </div>
-            </div>
+
         </>
     )
 }

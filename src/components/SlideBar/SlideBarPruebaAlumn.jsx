@@ -71,7 +71,7 @@ const SlideBarPruebaAlumn = () => {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <nav className="fixed top-0 z-50 w-full bg-slate-800 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -172,15 +172,15 @@ const SlideBarPruebaAlumn = () => {
             <aside
                 id="logo-sidebar"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isAsideVisible ? "sm:translate-x-0" : "-translate-x-full"
-                    } bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
+                    } bg-slate-800 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+                <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-800 dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <button
                                 onClick={() => setIsDashboardOpen(!isDashboardOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
@@ -213,13 +213,13 @@ const SlideBarPruebaAlumn = () => {
                             {isDashboardOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                                         onClick={redireccionarProyectos}>
                                             Ver proyectos
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                             Registrar nuevo proyecto
                                         </a>
                                     </li>
@@ -229,7 +229,7 @@ const SlideBarPruebaAlumn = () => {
                         <li>
                             <button
                                 onClick={() => setIsKanbanOpen(!isKanbanOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
@@ -256,7 +256,7 @@ const SlideBarPruebaAlumn = () => {
                             {isKanbanOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                                         onClick={redireccionarListadoAlumnos}>
                                             Ver alumnos internos
                                         </a>
@@ -268,7 +268,7 @@ const SlideBarPruebaAlumn = () => {
                         <li>
                             <button
                                 onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
@@ -295,13 +295,13 @@ const SlideBarPruebaAlumn = () => {
                             {isCalendarOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                                         onClick={redireccionar}>
                                             Registrar nuevo usuario
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                                         onClick={redireccionarAlumnoInterno}>
                                             Registro alumno interno
                                         </a>

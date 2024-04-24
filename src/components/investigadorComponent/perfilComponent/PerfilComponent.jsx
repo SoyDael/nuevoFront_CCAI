@@ -15,21 +15,6 @@ const PerfilComponent = () => {
 
     const navigate = useNavigate();
 
-    const redireccionarProyectos = () => {
-        navigate(`/proyectos/${correo}`);
-    }
-
-    const redireccionar = () => {
-        navigate(`/usuario`);
-    }
-
-    const redireccionarAlumnoInterno = () => {
-        navigate(`/alumnoInterno`);
-    }
-
-const redireccionarListadoAlumnos = () => {
-        navigate(`/listadoAlumnos/${correo}`);
-    }
 
     useEffect(() => {
         const fetchPerfilInvestigador = async () => {
