@@ -47,15 +47,15 @@ const DetallesProyectoAlumno = () => {
                     <div className="p-5 text-center">
                         <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-slate-300">Detalles del Proyecto</h1>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-slate-300">Titulo: {proyecto[0]?.titulo_esp}</h5>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400">Objetivo: {proyecto[0]?.objetivo}</p>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400"> Descripcion: {proyecto[0]?.descripcion.substring(0, 100)}...</p>
+                        <p className="mb-3 font-normal text-gray-700 text-gray-200">Objetivo: {proyecto[0]?.objetivo}</p>
+                        <p className="mb-3 font-normal text-gray-700 text-gray-200"> Descripcion: {proyecto[0]?.descripcion.substring(0, 100)}...</p>
                         <div className="flex justify-center">
                             <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-5 ">Leer más</button>
                         </div>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400 mt-2">Fecha de Registro: {proyecto[0]?.fecha_registro}</p>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400">Fecha de Inicio: {proyecto[0]?.fecha_inicio}</p>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400">Fecha de Fin: {proyecto[0]?.fecha_fin}</p>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400">Estatus: {proyecto[0]?.estatus}</p>
+                        <p className="mb-3 font-normal text-gray-700 text-gray-200 mt-2">Fecha de Registro: {proyecto[0]?.fecha_registro}</p>
+                        <p className="mb-3 font-normal text-gray-700 text-gray-200">Fecha de Inicio: {proyecto[0]?.fecha_inicio}</p>
+                        <p className="mb-3 font-normal text-gray-700 text-gray-200">Fecha de Fin: {proyecto[0]?.fecha_fin}</p>
+                        <p className="mb-3 font-normal text-gray-700 text-gray-200">Estatus: {proyecto[0]?.estatus}</p>
                     </div>
                 </div>
             </div>

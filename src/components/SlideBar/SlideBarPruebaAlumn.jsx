@@ -90,7 +90,7 @@ const SlideBarPruebaAlumn = () => {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800 bg-slate-800 border-slate-800">
+            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800 border-slate-800">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
