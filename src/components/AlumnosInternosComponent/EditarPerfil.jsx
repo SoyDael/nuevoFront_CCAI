@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPerfilEstudiante, actualizarPerfil } from '../../api/APIS';
+import SlideBarPruebaAlumn from '../SlideBar/SlideBarPruebaAlumn';
 
 const EditarPerfil = () => {
 
-    const { correo } = useParams();
+    const { correo, correo_estudiante } = useParams();
 
     const navigate = useNavigate();
 
     const redireccionarPerfil = () => {
-        navigate(`/perfilAlumno/${correo}`);
+        navigate(`/perfilAlumno/${correo || correo_estudiante}`);
     }
 
     const [perfilEstudiante, setPerfilEstudiante] = useState({});
@@ -71,7 +72,225 @@ const EditarPerfil = () => {
 
 
     return (
-        <div className="flex justify-center items-center min-h-screen">
+        <>
+            <SlideBarPruebaAlumn />
+            <br /><br /><br /><br /><br />
+            <form className="max-w-md mx-auto">
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            id="matricula"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            required
+                            readOnly
+                            value={perfilEstudiante[0]?.matricula}
+                            onChange={(e) => handleModificar('matricula', e.target.value)}
+                        />
+                        <label
+                            htmlFor="matricula"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Matrícula
+                        </label>
+                    </div>
+
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            id="nombres"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            value={perfilEstudiante.nombres}
+                            onChange={(e) => handleModificar('nombres', e.target.value)}
+                        />
+                        <label
+                            htmlFor="nombres"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Nombres
+                        </label>
+                        <button
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                            onClick={() => actualizarInfo('nombres', nuevoValor)}
+                        >
+                            Modificar
+                        </button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            id="apellido_p"
+                            className="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            value={perfilEstudiante?.apellido_p}
+                            onChange={(e) => handleModificar('apellido_p', e.target.value)}
+                        />
+                        <label
+                            htmlFor="apellido_p"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Apellido Paterno
+                        </label>
+                        <button
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                            onClick={() => actualizarInfo('apellido_p', nuevoValor)}
+                        >
+                            Modificar
+                        </button>
+                    </div>
+
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            id="apellido_m"
+                            className="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            value={perfilEstudiante.apellido_m}
+                            onChange={(e) => handleModificar('apellido_m', e.target.value)}
+                        />
+                        <label
+                            htmlFor="apellido_m"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Apellido Materno
+                        </label>
+                        <button
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                            onClick={() => actualizarInfo('apellido_m', nuevoValor)}
+                        >
+                            Modificar
+                        </button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="email"
+                            id="correo"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            required
+                            value={perfilEstudiante[0]?.correo}
+                            readOnly
+                            onChange={(e) => handleModificar('', e.target.value)}
+                        />
+                        <label
+                            htmlFor="correo"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Correo
+                        </label>
+                    </div>
+
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="email"
+                            id="correo_adicional"
+                            className="block py-2.5 px-0 w-[100%] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            value={perfilEstudiante?.correo_adicional}
+                            onChange={(e) => handleModificar('correo_adicional', e.target.value)}
+                        />
+                        <label
+                            htmlFor="correo_adicional"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Correo Adicional
+                        </label>
+                        <button
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                            onClick={() => actualizarInfo('correo_adicional', nuevoValor)}
+                        >
+                            Modificar
+                        </button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="tel"
+                            id="telefono"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            value={perfilEstudiante.telefono}
+                            onChange={(e) => handleModificar('telefono', e.target.value)}
+                        />
+                        <label
+                            htmlFor="telefono"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            Teléfono
+                        </label>
+                        <button
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                            onClick={() => actualizarInfo('telefono', nuevoValor)}
+                        >
+                            Modificar
+                        </button>
+                    </div>
+
+                    <div className="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            id="division"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autoComplete='off'
+                            required
+                            readOnly
+                            value={perfilEstudiante[0]?.division}
+                        />
+                        <label
+                            htmlFor="division"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                            División
+                        </label>
+                    </div>
+                </div>
+
+                <div className="flex justify-center space-x-40 mt-8 sm:mt-14">
+                    <button
+                        type="submit"
+                        className="text-indigo-100 bg-[#202142] hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        onClick={redireccionarPerfil}
+                    >
+                        Regresar
+                    </button>
+                    <button
+                        type="submit"
+                        className="text-white bg-[#202142] hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        onClick={actualizarInfo}
+                    >
+                        Guardar
+                    </button>
+                </div>
+            </form>
+
+
+
+        </>
+    )
+}
+
+export default EditarPerfil;
+
+{/**
+       <div className="flex justify-center items-center min-h-screen">
             <div className="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
                 <div className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 flex flex-col justify-center">
                     <div className="p-2 md:p-4">
@@ -246,7 +465,4 @@ const EditarPerfil = () => {
                 </div>
             </div>
         </div>
-    )
-}
-
-export default EditarPerfil;
+*/}

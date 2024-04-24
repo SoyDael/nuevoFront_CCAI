@@ -27,7 +27,7 @@ const SlideBarPruebaAlumn = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/editarPerfil/${correo_estudiante}`);
+        navigate(`/editarPerfil/${correo_estudiante || correo}`);
     }
 
     const redireccionarProyecto = () => {
@@ -90,7 +90,7 @@ const SlideBarPruebaAlumn = () => {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-80 border-b border-slate-800 dark:bg-gray-800 dark:border-slate-800">
+            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800 bg-slate-800 border-slate-800">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -141,7 +141,7 @@ const SlideBarPruebaAlumn = () => {
                                             className="w-8 h-8 rounded-full"
                                             //src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                             alt="user photo"
-                                        >{perfilEstudiante[0]?.foto}</img>
+                                        ></img>
                                     </button>
                                 </div>
 
@@ -153,7 +153,7 @@ const SlideBarPruebaAlumn = () => {
                                         <div className="px-4 py-3">
                                             <p className="text-sm text-gray-300 dark:text-white">{perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</p>
                                             {/**   <p className="text-sm  text-gray-900 dark:text-gray-300">{perfilEstudiante[0]?.correo}</p> */}
-                                            <p className="text-sm font-medium text-gray-900 text-gray-200">{perfilEstudiante[0]?.tipo}</p>
+                                            <p className="text-sm font-medium text-gray-900 text-gray-600">{perfilEstudiante[0]?.tipo}</p>
                                         </div>
                                         <ul className="py-1 text-sm text-gray-700 text-gray-100" aria-labelledby="user-menu-button">
                                             <li>

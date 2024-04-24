@@ -37,7 +37,7 @@ const DetallesProyectoAlumno = () => {
                 {showModal && (
                     <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
                         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
-                            <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Descripcion</h1>
+                            <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Descripcion</h1>
                             <p className="mb-3 font-normal text-gray-700">{proyecto[0]?.descripcion}</p>
                             <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
                         </div>
