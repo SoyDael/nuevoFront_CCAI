@@ -21,6 +21,7 @@ import AsigProyecto from '../components/ProyectosComponent/AsigProyComponent/Asi
 import RegistroPrograma from '../components/ProyectosComponent/programaComponent/RegistroPrograma.jsx';
 import SlideBarPruebaAlumn from '../components/SlideBar/SlideBarPruebaAlumn.jsx';
 import DetallesProyectoAlumno from '../components/AlumnosInternosComponent/proyectoComponent/DetallesProyectoAlumno/DetallesProyectoAlumno.jsx';
+import DocumentacionProyecto from '../components/AlumnosInternosComponent/proyectoComponent/documentacionProyecto/DocumentacionProyecto.jsx';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
         <Route path='/detallesProyectoAlumno/:correo_estudiante/:id_proyecto' element={<DetallesProyectoAlumno />} />
+        <Route path='/documentacionProyecto' element={<DocumentacionProyecto />} />
 
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
         <Route path='/proyectos/:correo' element={<Proyectos />} /> /// Ruta Proyectos

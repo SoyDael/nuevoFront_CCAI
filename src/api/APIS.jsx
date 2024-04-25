@@ -164,3 +164,9 @@ export const consultaProgramasPorAlumno = async (estudiante_correo) => {
     console.log(response.data);
     return response.data;
 }
+
+export const obtenerDocumentacionPrograma = async () => {
+    const response = await API.get(`obtenerDocumentacionPrograma`);
+    console.log(response.data);
+    return response.data;
+}
