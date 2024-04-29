@@ -1,6 +1,6 @@
-import React, {useState,useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-import {navbarInvestigador} from '../../api/APIS'
+import { navbarInvestigador } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
 import EditarPerfil from '../AlumnosInternosComponent/EditarPerfil';
 
@@ -24,7 +24,7 @@ const SlideBarPruebaAlumn = () => {
         navigate(`/EditarPerfilInvestigador/${correo}`);
     }
 
-    const verPerfil= () =>{
+    const verPerfil = () => {
         navigate(`/perfilInvestigador/${correo}`);
     }
     {/**  const toggleUserMenu = () => {
@@ -71,7 +71,7 @@ const SlideBarPruebaAlumn = () => {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-slate-800 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <nav className="fixed top-0 z-50 w-full border-b  bg-gray-800 border-gray-700">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -81,7 +81,7 @@ const SlideBarPruebaAlumn = () => {
                                 data-drawer-toggle="logo-sidebar"
                                 aria-controls="logo-sidebar"
                                 type="button"
-                                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 text-sm  rounded-lg sm:hidden focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
                                 onClick={toggleAsideVisibility}
                             >
                                 <span className="sr-only">Open sidebar</span>
@@ -104,7 +104,7 @@ const SlideBarPruebaAlumn = () => {
                                 className="flex ms-2 md:me-24"
                             >
                                 <img src="../src/assets/logocai.jpg" className="h-8 me-3" alt="CCAI Logo" />
-                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">CCAI</span>
+                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">CCAI</span>
                             </button>
                         </div>
                         <div className="flex items-center">
@@ -112,7 +112,7 @@ const SlideBarPruebaAlumn = () => {
                                 <div className="relative">
                                     <button
                                         type="button"
-                                        className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                        className="flex text-sm bg-gray-800 rounded-full focus:ring-4  focus:ring-gray-600"
                                         id="user-menu-button"
                                         aria-expanded={isUserMenuOpen ? "true" : "false"}
                                         onClick={toggleUserMenu}
@@ -128,37 +128,37 @@ const SlideBarPruebaAlumn = () => {
 
                                 {isUserMenuOpen && (
                                     <div
-                                        className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700"
+                                        className="absolute right-0 mt-2 w-48  rounded shadow-lg bg-gray-700"
                                         style={{ top: '100%' }}
                                     >
                                         <div className="px-4 py-3">
-                                        {perfilInvestigador.length > 0 && (
-                                        <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
-                                        )}
-                                        {perfilInvestigador.length > 0 && (
-                                        <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
-                                        )}
+                                            {perfilInvestigador.length > 0 && (
+                                                <span className="block text-sm  text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
+                                            )}
+                                            {perfilInvestigador.length > 0 && (
+                                                <span className="block text-sm  truncate text-gray-400">{perfilInvestigador[0]?.tipo}</span>
+                                            )}
                                         </div>
-                                        <ul className="py-1 text-sm text-gray-700 dark:text-gray-300" aria-labelledby="user-menu-button">
+                                        <ul className="py-1 text-sm  text-gray-300" aria-labelledby="user-menu-button">
                                             <li>
-                                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                                onClick={verPerfil}>
+                                                <a href="#" className="block px-4 py-2  hover:bg-gray-600"
+                                                    onClick={verPerfil}>
                                                     Ver perfil
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                                onClick={redireccionarEditar}>
+                                                <a href="#" className="block px-4 py-2  hover:bg-gray-600"
+                                                    onClick={redireccionarEditar}>
                                                     Editar perfil
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                                onClick={cerrarSesion}>
+                                                <a href="#" className="block px-4 py-2  hover:bg-gray-600"
+                                                    onClick={cerrarSesion}>
                                                     Cerrar sesión
                                                 </a>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 )}
@@ -172,19 +172,19 @@ const SlideBarPruebaAlumn = () => {
             <aside
                 id="logo-sidebar"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isAsideVisible ? "sm:translate-x-0" : "-translate-x-full"
-                    } bg-slate-800 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
+                    }  border-r  bg-gray-800 border-gray-700`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-800 dark:bg-gray-800">
+                <div className="h-full px-3 pb-4 overflow-y-auto  bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <button
                                 onClick={() => setIsDashboardOpen(!isDashboardOpen)}
-                                className="flex items-center justify-between w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2  rounded-lg text-white  hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5  transition duration-75 text-gray-400 group-hover:text-gray-900 "
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -213,13 +213,13 @@ const SlideBarPruebaAlumn = () => {
                             {isDashboardOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                                        onClick={redireccionarProyectos}>
+                                        <a href="#" className="block p-2 rounded-lg  text-white  hover:bg-gray-700"
+                                            onClick={redireccionarProyectos}>
                                             Ver proyectos
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <a href="#" className="block p-2 rounded-lg  text-white  hover:bg-gray-700">
                                             Registrar nuevo proyecto
                                         </a>
                                     </li>
@@ -229,11 +229,11 @@ const SlideBarPruebaAlumn = () => {
                         <li>
                             <button
                                 onClick={() => setIsKanbanOpen(!isKanbanOpen)}
-                                className="flex items-center justify-between w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2  rounded-lg text-white  hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-900 "
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -256,23 +256,23 @@ const SlideBarPruebaAlumn = () => {
                             {isKanbanOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                                        onClick={redireccionarListadoAlumnos}>
+                                        <a href="#" className="block p-2 rounded-lg  text-white hover:bg-gray-700"
+                                            onClick={redireccionarListadoAlumnos}>
                                             Ver alumnos internos
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
                             )}
                         </li>
                         <li>
                             <button
                                 onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-                                className="flex items-center justify-between w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2  rounded-lg text-white hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5  transition duration-75  text-gray-400 group-hover:text-gray-900 "
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -295,14 +295,14 @@ const SlideBarPruebaAlumn = () => {
                             {isCalendarOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                                        onClick={redireccionar}>
+                                        <a href="#" className="block p-2 rounded-lg text-white hover:bg-gray-700"
+                                            onClick={redireccionar}>
                                             Registrar nuevo usuario
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg text-white dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                                        onClick={redireccionarAlumnoInterno}>
+                                        <a href="#" className="block p-2 rounded-lg text-white hover:bg-gray-700"
+                                            onClick={redireccionarAlumnoInterno}>
                                             Registro alumno interno
                                         </a>
                                     </li>
