@@ -170,3 +170,14 @@ export const obtenerDocumentacionPrograma = async () => {
     console.log(response.data);
     return response.data;
 }
+
+export const actualizarDocumentacion = async (id_documento, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`actualizarDocumentacionPrograma/${id_documento}`, datos);
+        response.data[0].fecha = response.data[0].fecha.split('T')[0];
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}

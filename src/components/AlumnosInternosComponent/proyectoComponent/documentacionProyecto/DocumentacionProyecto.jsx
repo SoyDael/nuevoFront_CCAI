@@ -1,19 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import { obtenerDocumentacionPrograma } from '../../../../api/APIS';
+import { obtenerDocumentacionPrograma, actualizarDocumentacion } from '../../../../api/APIS';
+import { useParams } from 'react-router-dom';
 
 const DocumentacionProyecto = () => {
+
+    const { id_documento } = useParams();
+
     const [documentacion, setDocumentacion] = useState([]);
     const [loading, setLoading] = useState(true);
     const [fileName, setFileName] = useState("No hay archivos seleccionados");
 
+    const [nuevoValor, setNuevoValor] = useState('');
+    const [campoAEditar, setCampoAEditar] = useState('');
+
+
+
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setFileName(file.name);
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base64File = reader.result.split(',')[1]; // Elimina la parte del encabezado
+                setFileName(file.name);
+                setNuevoValor(base64File); // Almacena el archivo en base64 en nuevoValor
+            };
         } else {
             setFileName("No hay archivos seleccionados");
         }
     };
+
+    const actualizarDocumentacionLocal = (field, value, fecha) => {
+        const documento = documentacion[0]?.id_documento;
+        if (documento) {
+            const documentacionActualizada = { ...documentacion[0], [field]: value, fecha }; // Actualizar el campo de la documentacion
+
+            actualizarDocumentacion(documento, documentacionActualizada).then(resp => {
+                if (resp.status === 200) {
+                    alert('Documentacion actualizada correctamente');
+                }
+            }).catch(error => {
+                console.error('Error al actualizar documentacion:', error);
+                alert('Error al actualizar documentacion. Por favor, inténtalo de nuevo.');
+
+            })
+        }
+    }
+
+
+    const handleModificar = (field, value) => {
+        setCampoAEditar(field);
+        setNuevoValor(value);
+    }
 
     useEffect(() => {
         const fetchDocumentacion = async () => {
@@ -34,16 +72,73 @@ const DocumentacionProyecto = () => {
         fetchDocumentacion();
     }, []);
 
+
+
+    {/** menu desplegable*/ }
+
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); // Evitar el envío del formulario por defecto
+
+        // Convertir la fecha al formato adecuado
+        const fecha = new Date();
+        const formattedFecha = fecha.toISOString().slice(0, 19).replace('T', ' ').replace(/-/g, '/');
+
+
+        // Llamar a la función de actualización con los datos relevantes
+        actualizarDocumentacionLocal(campoAEditar, nuevoValor, formattedFecha);
+    };
+
     return (
         <section className="bg-white dark:bg-gray-900">
             <div className="max-w-2xl px-4 py-8 mx-auto lg:py-16">
                 <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Documentacion</h2>
-                <form action="#">
+                <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+                        {showModal && (
+                            <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                                <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
+                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        value={documentacion.nombre}
+                                        placeholder="Nombre del documento"
+                                        required=""
+                                        onChange={(e) => handleModificar('nombre', e.target.value)} />
+                                    <div className='flex justify-between mt-4'>
+                                        <button onClick={() => actualizarDocumentacionLocal('nombre', nuevoValor)} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Guardar</button>
+                                        <button onClick={() => { toggleModal(); window.location.reload(); }} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         <div className="sm:col-span-2">
-                            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                            <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={documentacion[0]?.nombre} placeholder="Type product name" required="" />
+                            <div className="flex flex-col">
+                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <div className="flex items-center">
+                                    <input
+                                        type="text"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        value={documentacion[0]?.nombre}
+                                        placeholder="Type product name"
+                                        required=""
+                                        readOnly />
+                                    <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-5 ml-2" type="button">Modificar</button>
+                                </div>
+                            </div>
                         </div>
+
+
+
                         <div className="sm:col-span-2">
                             <label htmlFor="correo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
                             <input type="email" name="correo" id="correo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={documentacion[0]?.correo_estudiante} placeholder="Type email address" required="" />
