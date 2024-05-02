@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { participanteProyecto } from '../../../api/APIS'
+import NavBarInvestigador from '../../SlideBar/SlideBarPruebaAlumn'
+
 
 const Integrantes = () => {
 
@@ -34,47 +36,66 @@ const Integrantes = () => {
 
     return (
         <>
-            <div className="flex justify-center items-center h-screen">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-                    <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Bienvenido { } { } { } los integrantes del proyecto son: </h1>
-                    <section>
-                        <div>
-                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase dark:bg-indigo-50 bg-opacity-20 dark:text-gray-400">
-                                    <tr className=''>
-                                        <th scope='col' className="px-6 py-3">Nombres</th>
-                                        <th scope='col' className="px-6 py-3">Apellido Paterno</th>
-                                        <th scope='col' className="px-6 py-3">Apellido Paterno</th>
-                                        <th scope='col' className="px-6 py-3">Tipo de Programa</th>
-                                        <th scope='col' className="px-10 py-3">Detalles</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {Participante.map((participante) => (
-                                        <tr key={participante.id_estudiante} className=" dark:bg-indigo-50 border-b dark:border-gray-700">
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{participante.nombres}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{participante.apellido_p}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{participante.apellido_m}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text">{participante.tipo_programa}</td>
-                                            <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
-                                                <button onClick={() => redireccionarAsignarActividad(participante.id_estudiante, participante.correo_estudiante)}>Asignar Actividad</button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-                    <div className="flex justify-center mt-4">
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={redireccionarDetallesProyecto}
-                        >
-                            Regresar
-                        </button>
-                    </div>
+            <NavBarInvestigador />
+
+
+
+
+            <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+                <div className="rounded-l-md relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+
+
+                    <table className=" text-sm text-left rtl:text-right  text-gray-400 ">
+                        <caption className="px-6 py-4 text-lg font-semibold text-left rtl:text-right   text-white bg-gray-800">
+                            Integrantes del proyecto
+
+                            <p className="mt-1 text-sm font-normal  text-gray-400">Bienvenido { } { } { } los integrantes del proyecto son:
+                            </p>
+
+
+
+                        </caption>
+                        <thead className="text-xs  uppercase  bg-gray-700 text-gray-400 ">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Nombres
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Apellido paterno
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Apellido materno
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Tipo de programa
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Detalles
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    <span className="sr-only">Detalles</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {Participante.map((participante) => (
+                                <tr key={participante.id_estudiante} className=" dark:bg-indigo-50 border-b dark:border-gray-700">
+                                    <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.nombres}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.apellido_p}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.apellido_m}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.tipo_programa}</td>
+                                    <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
+                                        <button onClick={() => redireccionarAsignarActividad(participante.id_estudiante, participante.correo_estudiante)}>Asignar Actividad</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+
                 </div>
             </div>
+
         </>
     )
 }

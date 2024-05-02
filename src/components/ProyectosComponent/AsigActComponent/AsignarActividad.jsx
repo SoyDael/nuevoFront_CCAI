@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { asignarActividad } from '../../../api/APIS';
+import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
+
 
 
 const AsignarActividad = () => {
@@ -31,49 +33,54 @@ const AsignarActividad = () => {
 
     return (
         <>
-        <div className='bg-gray-100 flex justify-center items-center h-screen'>
-            <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
-                <h1 className='text-2xl font-semibold mb-4'>Asignar actividad </h1>
-                <form action="" onSubmit={handleSubmit}>
-                    <div className='flex mb-4'>
-                        <label htmlFor="actividad" className='block text-gray-600 mr-2'>Nombre de la Actividad: </label>
-                        <input type="text" name="actividad" id="actividad" required
-                            className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className='flex mb-4'>
-                        <label htmlFor="fecha_inicio" className='block text-gray-600 mr-2'>Fecha de inicio: </label>
-                        <input type="datetime-local" name="fecha_inicio" id="fecha_inicio" required
-                            className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className='flex mb-4'>
-                        <label htmlFor="fecha_fin" className='block text-gray-600 mr-2'>Fecha de termino: </label>
-                        <input type="date" name="fecha_fin" id="fecha_fin" required
-                            className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className="flex gap-4">
-                        <button type="submit"
-                            className='flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4'>
-                            Asignar Actividad
-                        </button>
-                    </div>
-                </form>
-                <div className="flex justify-center mt-4">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={redireccionarIntegrantes}
-                    >
-                        Regresar
-                    </button>
+            <SlideBarPruebaAlumn />
+
+
+
+
+
+            <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+                <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+
+                    <form className="max-w-md mx-auto " onSubmit={handleSubmit}>
+
+                        <h1 className='text-2xl font-semibold mb-4 text-white'>Asignar actividad </h1>
+
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-white border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0  peer" placeholder=" " required />
+                            <label for="floating_password" className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre de actividad</label>
+                        </div>
+
+
+                        <div date-rangepicker class="flex items-center">
+                            <span class="mx-4 text-gray-500">Inicio </span>
+                            <div class="relative">
+
+                                <input name="start" type="date" class="border  text-sm rounded-lg  block w-full ps-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Select date start"></input>
+                            </div>
+
+                        </div>
+
+
+                        <div date-rangepicker class="flex items-">
+
+                            <span class="mx-4 text-gray-500"><br />Termino </span>
+                            <div class="relative">
+                                <br />
+                                <input name="end" type="date" class=" border  text-sm rounded-lg  block w-full ps-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Select date end"></input>
+                                <br />
+                            </div>
+                        </div>
+
+
+                        <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
+                            <button type="  submit" className="  bg-blue-400 hover:bg-blue-600 text-white  rounded-md py-2 px-4">Asignar actividad</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
-        </div>
-    </>
+        </>
 
 
     )
