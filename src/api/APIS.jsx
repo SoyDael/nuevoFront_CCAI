@@ -182,3 +182,9 @@ export const actualizarDocumentacion = async (id_documento, datos) => {
         throw error; // Propaga el error para manejarlo en el componente
     }
 }
+
+export const recuperarContraseña = async (correo) => {
+    const response = await API.patch(`recuperarContrasena/${correo}`, correo);
+    return response.data;
+
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../navbarComponents/Navbar'
+
 import { getPerfilEstudiante, getconsultaActividadesEstudiantesPorId, ParticipantePorProyecto } from '../../../api/APIS'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
