@@ -37,7 +37,8 @@ const DetallesProyecto = () => {
     return (
         <>
             <SlideBarPruebaAlumn />
-
+            <br />
+            <br />
 
 
             <div class='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
@@ -45,7 +46,7 @@ const DetallesProyecto = () => {
                     <div class='max-w-md mx-auto space-y-6'>
 
 
-                        <p class='text-gray-600'>Detalles Proyecto</p>
+                        <p class='text-teal-100'>Detalles del Proyecto</p>
 
                         <div class='text-base leading-7'>
                             <p class='text-teal-400 '>Titulo: </p>
@@ -82,23 +83,23 @@ const DetallesProyecto = () => {
 
                         <div class="flex gap-2 px-2">
                             <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                class="flex-1 rounded-md bg-teal-500  text-white  antialiased font-bold hover:bg-teal-700  px-4 py-2"
                                 onClick={redireccionarIntegrantes}
                             >
                                 Ver Integrantes
                             </button>
                             <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                class="flex-1 rounded-md bg-teal-500  text-white  antialiased font-bold hover:bg-teal-700  px-4 py-2"
                             >
                                 Agregar Integrante
                             </button>
                             <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                class="flex-1 rounded-md bg-teal-500  text-white  antialiased font-bold hover:bg-teal-700  px-4 py-2"
                             >
                                 Editar
                             </button>
                             <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+                                class="flex-1 rounded-md bg-teal-500  text-white  antialiased font-bold hover:bg-teal-700  px-4 py-2"
                                 onClick={redireccionarPerfil}
                             >
                                 Regresar Perfil

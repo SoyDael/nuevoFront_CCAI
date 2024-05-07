@@ -5,20 +5,20 @@ import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
 
 const AlumnoInterno = () => {
 
-    const { correo,coordinador_correo ,correo_investigador} = useParams(); // Buscar El correo del investigador y el id del proyecto
-        const navigate = useNavigate();
+    const { correo, coordinador_correo, correo_investigador } = useParams(); // Buscar El correo del investigador y el id del proyecto
+    const navigate = useNavigate();
 
 
-        const redireccionarPerfilInvestigador = () => {
-            navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador } ` );
-        }
+    const redireccionarPerfilInvestigador = () => {
+        navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador} `);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const estudiante = Object.fromEntries(formData);
 
-        
+
 
         try {
             await registroEstudiante(estudiante);
@@ -33,81 +33,39 @@ const AlumnoInterno = () => {
     return (
         <>
             <SlideBarPruebaAlumn />
-            <div className='bg-gray-100 flex flex-col justify-center items-center min-h-screen'>
-                <div className='lg:p-35 md:p-16 sm:20 p-8 w-full lg:w-1/2'>
-                    <h1 className='text-2xl font-semibold mb-4'>Registro Alumno Interno</h1>
-                    <form action="" onSubmit={handleSubmit}>
-                        <div className='mb-4'>
-                            <label htmlFor="matricula" className='block text-gray-600'>Matricula: </label>
-                            <input type="text" name="matricula" id="matricula" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="nombres" className='block text-gray-600'>Nombres: </label>
-                            <input type="text" name="nombres" id="nombres" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="apellido_p" className='block text-gray-600'>Apellido Paterno: </label>
-                            <input type="text" name="apellido_p" id="apellido_p" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="apellido_m" className='block text-gray-600'>Apellido Materno: </label>
-                            <input type="text" name="apellido_m" id="apellido_m" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="correo" className='block text-gray-600'>Correo Institucional: </label>
-                            <input type="email" name="correo" id="correo" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="correo_adicional" className='block text-gray-600'>Correo Adicional: </label>
-                            <input type="email" name="correo_adicional" id="correo_adicional" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="telefono" className='block text-gray-600'>Teléfono: </label>
-                            <input type="tel" name="telefono" id="telefono" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="division" className='block text-gray-600'>División: </label>
-                            <input type="text" name="division" id="division" required
-                                className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <button type="submit"
-                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'>
-                            Añadir Alumno
-                        </button>
-                    </form>
-                    <div className="mb-6 text-blue-500 text-center">
-                        <a href='/login' className="hover:underline" onClick={redireccionarPerfilInvestigador}>
-                            Regresar
-                        </a>
-                    </div>
+
+
+            <section class="grid h-screen place-content-center bg-slate-700 text-slate-300">
+                <div class="mb-10 text-center text-indigo-400">
+                    <h1 class="text-4xl font-semibold mb-4">Registro Alumno Interno</h1>
+
                 </div>
-            </div>
+                <div class="flex flex-col items-center justify-center space-y-6">
+                    <input type="text" id="password" name="password" placeholder="Matricula" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <input type="text" id="password" name="password" placeholder="Nombres" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <input type="text" id="password" name="password" placeholder="Apellido paterno" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <input type="text" id="password" name="password" placeholder="Apellido materno" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <input type="text" id="password" name="password" placeholder="Correo institucional" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <input type="text" id="password" name="password" placeholder="Correo adicional" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <input type="number" id="password" name="password" placeholder="Telefono" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
 
 
-            
+                    <div class="relative inline-flex">
+                        <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero" /></svg>
+                        <select class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 ">
+                            <option>Sistemas</option>
+                            <option>Informatica</option>
+                            <option>Bioquimica</option>
+
+                        </select>
+                    </div>
+                    <button id="showPw" class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> alumno</button>
+
+                </div>
+            </section>
+
+
+
 
 
         </>

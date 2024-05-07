@@ -71,143 +71,151 @@ const EditarPerfilInvestigador = () => {
     }, [correo]);
 
 
-  return (
-    <>
-    <NavBarInvestigador/>
-    <div className="flex justify-center items-center min-h-screen">
-    <div className="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
-        <div className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 flex flex-col justify-center">
-            <div className="p-2 md:p-4">
-                <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
-                  <br />
-                    <h2 className="pl-6 text-2xl font-bold sm:text-xl">Bienvenido investigador {perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}<br />
-                    Solo puedes editar los datos en blanco los demas los asigna el CCAI
-                    </h2>
-                    <div className="grid max-w-2xl mx-auto mt-8">
-                        <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
-                            <input type="file" accept="image/*" className="hidden" id="inputFoto" onChange={handleFotoChange}
-                            />
-                            <label htmlFor="inputFoto" className="cursor-pointer">
-                                <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"  src={perfilInvestigador.foto} alt="Foto" />
-                            </label>
-                            <div className="flex flex-col space-y-5 sm:ml-8">
-                                <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200">
-                                    Cambiar Foto
-                                </button>
-                                <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200">
-                                    Eliminar Foto
-                                </button>
-                            </div>
-                        </div>
-                        <div className="items-center mt-8 sm:mt-14 text-[#202142]">
+    return (
+        <>
+            <NavBarInvestigador />
+            <br />
+            <br />
 
-                            <div className="mb-2 sm:mb-6">
 
-                                <label htmlFor="nombres" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Nombre(s)</label>
-                                <div className='relative'>
-                                    <input type="text" id="nombres"
-                                        className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                        placeholder="Nombres" autoComplete='off' required
-                                        value={perfilInvestigador.nombres}
-                                        onChange={e => handleModificar('nombres', e.target.value)}
-                                        
-                                    />
-                                    <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                        onClick={() => actualizarInfo('nombres', nuevoValor)}
-                                    >
-                                        Modificar
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="mb-2 sm:mb-6">
-                                <label htmlFor="apellido_p" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Apellido Paterno</label>
-                                <div className='relative'>
-                                    <input type="text" id="apellido_p"
-                                        className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                        placeholder="Apellido Paterno" autoComplete='off' required
-                                        value={perfilInvestigador.apellido_p}
-                                        onChange={e => handleModificar('apellido_p', e.target.value)}
-                                        
-                                    />
-                                    <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                        onClick={() => actualizarInfo('apellido_p', nuevoValor)}
-                                    >
-                                        Modificar
-                                    </button>
-                                </div>
-                            </div>
+            <div className='  bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900 '>
+                <div className="text-white relative w-full  max-w-md min-w-0 mx-auto mt-6 mb-6 break-word border shadow-2xl bg-gray-800 border-gray-700 md:max-w-sm rounded-xl  shadow-blue-500/50">
+                    <div className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 flex flex-col justify-center">
+                        <div className="p-2 md:p-4">
+                            <div className="w-full px-6 pb-8  sm:max-w-xl sm:rounded-lg">
+                                <br />
 
-                            <div className="mb-2 sm:mb-6">
-                                <label htmlFor="apellido_m" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Apellido Materno</label>
-                                <div className='relative'>
-                                    <input type="text" id="apellido_m"
-                                        className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                        placeholder="Apellido Materno" autoComplete='off' required
-                                        value={perfilInvestigador.apellido_m}
-                                        onChange={e => handleModificar('apellido_m', e.target.value)}
-                                        
+                                <h2 className="pl-6  font-bold sm:text-xl"> {perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}<br />
 
-                                    />
-                                    <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                        onClick={() => actualizarInfo('apellido_m', nuevoValor)}
-                                    >
-                                        Modificar
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="mb-2 sm:mb-6">
-                                <label htmlFor="correo" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Correo Adicional</label>
-                                <div className='relative'>
-                                    <input type="email" id="correo"
-                                        className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                        placeholder="Correo" autoComplete='off' required
-                                        value={perfilInvestigador.correo_adicional}
-                                        onChange={e => handleModificar('correo_adicional', e.target.value)}
-                                        
-                                    />
-                                    <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                        onClick={() => actualizarInfo('correo_adicional', nuevoValor)}
-                                    >
-                                        Modificar
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="mb-2 sm:mb-6">
-                                <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Telefono</label>
-                                <div className='relative'>
-                                    <input type="cellphone" id="telefono"
-                                        className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                        placeholder="Telefono" autoComplete='off' required
-                                        value={perfilInvestigador.telefono}
-                                        onChange={e => handleModificar('telefono', e.target.value)}
-                                        
+                                </h2>
+                                <h2 className="text-gray-500 pl-6  font-bold sm:text-xl">
+                                    Solo puedes editar los datos en blanco los demas los asigna el CCAI
+                                </h2>
+                                <div className="grid max-w-2xl mx-auto mt-8">
+                                    <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
+                                        <input type="file" accept="image/*" className="hidden" id="inputFoto" onChange={handleFotoChange}
+                                        />
+                                        <label htmlFor="inputFoto" className="cursor-pointer">
+                                            <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500" src={perfilInvestigador.foto} alt="Foto" />
+                                        </label>
+                                        <div className="flex flex-col space-y-5 sm:ml-8">
+                                            <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-200 hover:bg-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200">
+                                                Cambiar Foto
+                                            </button>
+                                            <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-200 hover:bg-[#202142]  focus:z-10 focus:ring-4 focus:ring-indigo-200">
+                                                Eliminar Foto
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="items-center mt-8 sm:mt-14 text-[#202142]">
 
-                                    />
-                                    <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                         onClick={() => actualizarInfo('telefono', nuevoValor)}
-                                    >
-                                        Modificar
-                                    </button>
+                                        <div className="mb-2 sm:mb-6">
+
+                                            <label htmlFor="nombres" className="block mb-2 text-sm font-medium text-white ">Nombre(s)</label>
+                                            <div className='relative'>
+                                                <input type="text" id="nombres"
+                                                    className="bg-slate-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                                                    placeholder="Nombres" autoComplete='off' required
+                                                    value={perfilInvestigador.nombres}
+                                                    onChange={e => handleModificar('nombres', e.target.value)}
+
+                                                />
+                                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-gray-600 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                                                    onClick={() => actualizarInfo('nombres', nuevoValor)}
+                                                >
+                                                    Modificar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="mb-2 sm:mb-6">
+                                            <label htmlFor="apellido_p" className="block mb-2 text-sm font-medium text-white ">Apellido Paterno</label>
+                                            <div className='relative'>
+                                                <input type="text" id="apellido_p"
+                                                    className="bg-slate-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                                                    placeholder="Apellido Paterno" autoComplete='off' required
+                                                    value={perfilInvestigador.apellido_p}
+                                                    onChange={e => handleModificar('apellido_p', e.target.value)}
+
+                                                />
+                                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-gray-600 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                                                    onClick={() => actualizarInfo('apellido_p', nuevoValor)}
+                                                >
+                                                    Modificar
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-2 sm:mb-6">
+                                            <label htmlFor="apellido_m" className="block mb-2 text-sm font-medium text-white ">Apellido Materno</label>
+                                            <div className='relative'>
+                                                <input type="text" id="apellido_m"
+                                                    className="bg-slate-700 border border-gray-600 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                                                    placeholder="Apellido Materno" autoComplete='off' required
+                                                    value={perfilInvestigador.apellido_m}
+                                                    onChange={e => handleModificar('apellido_m', e.target.value)}
+
+
+                                                />
+                                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-gray-600 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                                                    onClick={() => actualizarInfo('apellido_m', nuevoValor)}
+                                                >
+                                                    Modificar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="mb-2 sm:mb-6">
+                                            <label htmlFor="correo" className="block mb-2 text-sm font-medium text-white ">Correo Adicional</label>
+                                            <div className='relative'>
+                                                <input type="email" id="correo"
+                                                    className="bg-slate-700 border border-gray-600 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                                                    placeholder="Correo" autoComplete='off' required
+                                                    value={perfilInvestigador.correo_adicional}
+                                                    onChange={e => handleModificar('correo_adicional', e.target.value)}
+
+                                                />
+                                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-gray-600 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                                                    onClick={() => actualizarInfo('correo_adicional', nuevoValor)}
+                                                >
+                                                    Modificar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="mb-2 sm:mb-6">
+                                            <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-white ">Telefono</label>
+                                            <div className='relative'>
+                                                <input type="cellphone" id="telefono"
+                                                    className="bg-slate-700 border border-gray-600 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                                                    placeholder="Telefono" autoComplete='off' required
+                                                    value={perfilInvestigador.telefono}
+                                                    onChange={e => handleModificar('telefono', e.target.value)}
+
+
+                                                />
+                                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-gray-600 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
+                                                    onClick={() => actualizarInfo('telefono', nuevoValor)}
+                                                >
+                                                    Modificar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-center space-x-40 mt-8 sm:mt-14">
+                                            <button
+                                                type="submit"
+                                                className="text-indigo-100 bg-[#202142] hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                                onClick={redireccionarPerfil}
+                                            >
+                                                Regresar
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex justify-center space-x-40 mt-8 sm:mt-14">
-                                <button
-                                    type="submit"
-                                    className="text-indigo-100 bg-[#202142] hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                    onClick={redireccionarPerfil}
-                                >
-                                    Regresar
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</>
-  )
+        </>
+    )
 }
 
 export default EditarPerfilInvestigador

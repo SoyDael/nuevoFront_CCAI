@@ -128,7 +128,7 @@ const SlideBarPruebaAlumn = () => {
 
                                 {isUserMenuOpen && (
                                     <div
-                                        className="absolute right-0 mt-2 w-48  rounded shadow-lg bg-gray-700"
+                                        className="absolute right-0 mt-2 w-48  rounded shadow-lg bg-gray-800"
                                         style={{ top: '100%' }}
                                     >
                                         <div className="px-4 py-3">

@@ -5,7 +5,7 @@ import NavbarInvestigador from '../SlideBar/SlideBarPruebaAlumn';
 
 const UsuarioForm = () => {
 
-    const {correo} = useParams();
+    const { correo } = useParams();
 
     const navigate = useNavigate();
 
@@ -31,49 +31,36 @@ const UsuarioForm = () => {
     return (
         <>
             <NavbarInvestigador />
-            <div className='bg-gray-100 flex justify-center items-center h-screen'>
-                <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
-                    <h1 className='text-2x1 font-semibold mb-4'>Registro Usuario</h1>
-                    <form action="" onSubmit={handleSubmit}>
-                        <div className='mb-4'>
-                            <label htmlFor="correo" className='block text-gray-600'>Correo: </label>
-                            <input type="email" name="correo" id="correo" required
-                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="password" className='block text-gray-600'>Contraseña: </label>
-                            <input type="password" name="password" id="password" required
-                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label htmlFor="tipo" className='block text-gray-600'>Tipo de usuario: </label>
-                            <select name="tipo" id="tipo"
-                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-center'>
-                                <option value="Investigador">Investigador</option>
-                                <option value="Alumno Interno">Alumno Interno</option>
-                                <option value="Alumno Externo">Alumno Externo</option>
-                            </select>
-                        </div>
-                        <button type="submit"
-                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'>
-                            Añadir usuario
-                        </button>
-                    </form>
-                    <div className="mb-6 text-blue-500 text-center">
-                    <button type="submit"
-                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'
-                            onClick={RedireccionarInvetigador}
-                            >
-                            Regresar
-                        </button>
-                    </div>
-                </div>
 
-            </div>
+
+            <section class="grid h-screen place-content-center bg-slate-700 text-slate-300">
+                <div class="mb-10 text-center text-indigo-400">
+                    <h1 class="text-4xl font-semibold mb-4">Registrar nuevo usuario</h1>
+
+                </div>
+                <div class="flex flex-col items-center justify-center space-y-6">
+                    <input type="text" id="password" name="password" placeholder="Correo" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                    <div>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Contraseña" class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 " />
+                        <p id="validation" class="text-center text-orange-500 italic text-sm"></p>
+                    </div>
+
+                    <div class="relative inline-flex">
+                        <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero" /></svg>
+                        <select class="w-80 appearance-none rounded-full border-0 bg-slate-800/50 p-2 px-4 focus:bg-slate-800 focus:ring-2 ">
+                            <option>Investigador</option>
+                            <option>Alumno interno</option>
+                            <option>Alumno externo</option>
+
+                        </select>
+                    </div>
+                    <button id="showPw" class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> usuario</button>
+
+                </div>
+            </section>
+
+
+
         </>
     );
 };
