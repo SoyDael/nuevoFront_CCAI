@@ -11,32 +11,29 @@ const Proyectos = () => {
 
     const navigate = useNavigate();
 
-    const redireccionarPerfil = () => {
-        navigate(`/perfilInvestigador/${correo}`);
-    }
 
     const redireccionarDetallesProyecto = (id_proyecto) => {
         navigate(`/detallesProyecto/${id_proyecto}/${correo}`);
 
     }
 
-    const obtenerProyecto = async (id_proyecto) => {
-        try {
-            const response = await getProyecto({ id_proyecto: id_proyecto }); // Obtener el proyecto por ID
-            const token = response.token;
-            console.log(token);
-            localStorage.setItem('token', token);
+    // const obtenerProyecto = async (id_proyecto) => {
+    //     try {
+    //         const response = await getProyecto({ id_proyecto: id_proyecto }); // Obtener el proyecto por ID
+    //         const token = response.token;
+    //         console.log(token);
+    //         localStorage.setItem('token', token);
 
-            const proyecto = await proyectosInvestigador(id_proyecto);
-            console.log(proyecto);
-            setProyecto(proyecto); // Almacena el proyecto en el estado
+    //         const proyecto = await proyectosInvestigador(id_proyecto);
+    //         console.log(proyecto);
+    //         setProyecto(proyecto); // Almacena el proyecto en el estado
 
-            redireccionarDetallesProyecto(id_proyecto);
-        } catch (error) {
-            console.error('Error al obtener proyecto:', error);
-            alert('Error al obtener proyecto. Por favor, inténtalo de nuevo.');
-        }
-    }
+    //         redireccionarDetallesProyecto(id_proyecto);
+    //     } catch (error) {
+    //         console.error('Error al obtener proyecto:', error);
+    //         alert('Error al obtener proyecto. Por favor, inténtalo de nuevo.');
+    //     }
+    // }
 
 
     useEffect(() => {

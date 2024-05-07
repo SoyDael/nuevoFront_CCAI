@@ -12,9 +12,6 @@ const Integrantes = () => {
 
     const [Participante, setParticipante] = useState([]); // Estado para almacenar el perfil del investigador
 
-    const redireccionarDetallesProyecto = () => {
-        navigate(`/detallesProyecto/${id_proyecto}/${correo}`);
-    }
 
     const redireccionarAsignarActividad = (id_estudiante, correo_estudiante) => {
         navigate(`/asignarActividad/${id_proyecto}/${correo}/${id_estudiante}/${correo_estudiante}`);
@@ -79,7 +76,7 @@ const Integrantes = () => {
                         </thead>
                         <tbody >
                             {Participante.map((participante) => (
-                                <tr key={participante.id_estudiante} className=" dark:bg-indigo-50 border-b dark:border-gray-700">
+                                <tr key={participante.id_estudiante} className="  border-b ">
                                     <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.nombres}</td>
                                     <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.apellido_p}</td>
                                     <td scope='row' className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text">{participante.apellido_m}</td>

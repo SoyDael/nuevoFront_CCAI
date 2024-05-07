@@ -96,7 +96,7 @@ const EditarPerfilInvestigador = () => {
                                         <input type="file" accept="image/*" className="hidden" id="inputFoto" onChange={handleFotoChange}
                                         />
                                         <label htmlFor="inputFoto" className="cursor-pointer">
-                                            <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500" src={perfilInvestigador.foto} alt="Foto" />
+                                            <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 " src={perfilInvestigador.foto} alt="Foto" />
                                         </label>
                                         <div className="flex flex-col space-y-5 sm:ml-8">
                                             <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-200 hover:bg-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200">

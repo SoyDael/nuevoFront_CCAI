@@ -12,9 +12,7 @@ const AsignarActividad = () => {
     const { id_proyecto, id_estudiante, correo_estudiante } = useParams();
     const { correo } = useParams();
 
-    const redireccionarIntegrantes = () => {
-        navigate(`/integrantes/${id_proyecto}/${correo}`);
-    }
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,7 +45,7 @@ const AsignarActividad = () => {
                         <h1 className='text-2xl font-semibold mb-4 text-white'>Asignar actividad </h1>
 
                         <div className="relative z-0 w-full mb-5 group">
-                            <input type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-white border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0  peer" placeholder=" " required />
+                            <input type="text" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-white border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0  peer" placeholder=" " required />
                             <label for="floating_password" className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre de actividad</label>
                         </div>
 

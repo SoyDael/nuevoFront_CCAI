@@ -53,7 +53,7 @@ const NavBarInvestigador = () => {
         <div className="relative">
             <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 "
                 id="user-menu-button"
                 aria-expanded={isUserMenuOpen ? "true" : "false"}
                 onClick={toggleUserMenu}
@@ -63,27 +63,27 @@ const NavBarInvestigador = () => {
             </button>
 
             {isUserMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-indigo-100 dark:divide-gray-600">
+                <div className="absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg ">
                     <div className="px-4 py-3">
                     {perfilInvestigador.length > 0 && (
-                            <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
+                            <span className="block text-sm text-gray-900 ">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
                     )}
                     {perfilInvestigador.length > 0 && (
-                            <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
+                            <span className="block text-sm text-gray-500 truncate ">{perfilInvestigador[0]?.tipo}</span>
                     )}
                         
 
                     </div>
                     <ul className="py-2" aria-labelledby="user-menu-button">
                         <li>
-                            <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-500 dark:hover:text-white"
+                            <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
                                 onClick={redireccionarEditar}
                             >
                                 Editar Perfil
                             </a>
                         </li>
                         <li>
-                            <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-500 dark:hover:text-white" onClick={cerrarSesion} >Cerrar Sesion</a>
+                            <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " onClick={cerrarSesion} >Cerrar Sesion</a>
                         </li>
                     </ul>
                 </div>

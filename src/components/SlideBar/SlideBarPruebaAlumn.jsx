@@ -2,11 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { navbarInvestigador } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
-import EditarPerfil from '../AlumnosInternosComponent/EditarPerfil';
 
 const SlideBarPruebaAlumn = () => {
 
-    const { correo } = useParams();
+    const { correo, coordinador_correo, correo_investigador } = useParams();
     const [perfilInvestigador, setPerfilInvestigador] = useState([]);
     const navigate = useNavigate();
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -21,11 +20,11 @@ const SlideBarPruebaAlumn = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/EditarPerfilInvestigador/${correo}`);
+        navigate(`/EditarPerfilInvestigador/${correo ||coordinador_correo|| correo_investigador }`);
     }
 
     const verPerfil = () => {
-        navigate(`/perfilInvestigador/${correo}`);
+        navigate(`/perfilInvestigador/${correo ||coordinador_correo|| correo_investigador}`);
     }
     {/**  const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
@@ -41,11 +40,11 @@ const SlideBarPruebaAlumn = () => {
     };
 
     const redireccionarListadoAlumnos = () => {
-        navigate(`/listadoAlumnos/${correo}`);
+        navigate(`/listadoAlumnos/${correo ||coordinador_correo|| correo_investigador}`);
     }
 
     const redireccionarProyectos = () => {
-        navigate(`/proyectos/${correo}`);
+        navigate(`/proyectos/${correo ||coordinador_correo|| correo_investigador}`);
     }
 
     const redireccionar = () => {
@@ -58,7 +57,7 @@ const SlideBarPruebaAlumn = () => {
     useEffect(() => {
         const fetchPerfilInvestigador = async () => {
             try {
-                const perfil = await navbarInvestigador(correo);
+                const perfil = await navbarInvestigador(correo ||coordinador_correo|| correo_investigador);
                 console.log(perfil);
                 setPerfilInvestigador(perfil);
             } catch (error) {
@@ -67,7 +66,7 @@ const SlideBarPruebaAlumn = () => {
             }
         };
         fetchPerfilInvestigador();
-    }, [correo]);
+    }, [correo ,coordinador_correo, correo_investigador]);
 
     return (
         <>
@@ -213,15 +212,15 @@ const SlideBarPruebaAlumn = () => {
                             {isDashboardOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg  text-white  hover:bg-gray-700"
+                                        <button className="block p-2 rounded-lg  text-white  hover:bg-gray-700"
                                             onClick={redireccionarProyectos}>
                                             Ver proyectos
-                                        </a>
+                                        </button>
                                     </li>
                                     <li>
-                                        <a href="#" className="block p-2 rounded-lg  text-white  hover:bg-gray-700">
+                                        <button  className="block p-2 rounded-lg  text-white  hover:bg-gray-700">
                                             Registrar nuevo proyecto
-                                        </a>
+                                        </button>
                                     </li>
                                 </ul>
                             )}
