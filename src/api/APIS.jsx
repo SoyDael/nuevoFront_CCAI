@@ -183,8 +183,9 @@ export const actualizarDocumentacion = async (id_documento, datos) => {
     }
 }
 
-export const recuperarContraseña = async (correo) => {
-    const response = await API.patch(`recuperarContrasena/${correo}`, correo);
+export const recuperarContraseña = async (datos) => {
+    const response = await API.patch(`auth/recuperarContrasena`, datos);
+    console.log(response.data);
     return response.data;
 
 }

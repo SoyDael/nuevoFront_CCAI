@@ -90,7 +90,7 @@ const SlideBarPruebaAlumn = () => {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800 border-slate-800">
+            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -138,8 +138,9 @@ const SlideBarPruebaAlumn = () => {
                                     >
                                         <span className="sr-only">Open user menu</span>
                                         <img
-                                            className="w-8 h-8 rounded-full"
-                                            //src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        
+                                            className="w-12 h-12 rounded-full"
+                                            src="https://images7.memedroid.com/images/UPLOADED732/660233b39a8f0.webp"
                                             alt="user photo"
                                         ></img>
                                     </button>

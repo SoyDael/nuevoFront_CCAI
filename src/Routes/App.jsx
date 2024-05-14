@@ -22,6 +22,7 @@ import RegistroPrograma from '../components/ProyectosComponent/programaComponent
 import SlideBarPruebaAlumn from '../components/SlideBar/SlideBarPruebaAlumn.jsx';
 import DetallesProyectoAlumno from '../components/AlumnosInternosComponent/proyectoComponent/DetallesProyectoAlumno/DetallesProyectoAlumno.jsx';
 import DocumentacionProyecto from '../components/AlumnosInternosComponent/proyectoComponent/documentacionProyecto/DocumentacionProyecto.jsx';
+import Recuperarcomponent from '../components/loginComponent/Recuperar.component.jsx';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
         <Route path='/detallesProyectoAlumno/:correo_estudiante/:id_proyecto' element={<DetallesProyectoAlumno />} />
         <Route path='/documentacionProyecto' element={<DocumentacionProyecto />} />
+        <Route path='/recuperarContraseña' element={<Recuperarcomponent />} />
 
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
         <Route path='/proyectos/:correo' element={<Proyectos />} /> /// Ruta Proyectos

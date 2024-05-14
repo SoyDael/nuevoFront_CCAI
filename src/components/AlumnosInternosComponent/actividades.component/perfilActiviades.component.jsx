@@ -72,7 +72,7 @@ const PerfilActividades = () => {
         <>
             <SlideBarPruebaAlumn />
             <div class="flex min-h-screen items-center justify-center bg-slate-700 from-gray-700 via-gray-800 to-gray-900">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-800 shadow-lg shadow-blue-500/100">
+                <div className="relative overflow-x-auto sm:rounded-lg bg-slate-800 shadow-lg shadow-blue-500/100">
                     <div class="">
                         <h3 className="border-blue-gray-100 bg-blue-gray-50/50 font-serif text-lg text-white text-center p-4">Bienvenido tus actividades son: </h3>
                         <table class="w-full min-w-max table-auto text-left">

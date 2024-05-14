@@ -21,6 +21,10 @@ const Login = () => {
         navigate(`/perfilInvestigador/${correo}`);
     }
 
+    const redireccionarRecuperarContraseña = () => {
+      navigate(`/recuperarContraseña`);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -123,7 +127,7 @@ const Login = () => {
  
                     <div className="mb-6 text-gray-800 text-center">
  
-                        <a href="/" className="hover:underline "> Recuperar Contraseña</a>
+                        <a className="hover:underline " onClick={() => redireccionarRecuperarContraseña(userType.email)}> Recuperar Contraseña</a>
                     </div>
                 </div>
                 <div className='w-1/2 h-screen hidden lg:block'>
