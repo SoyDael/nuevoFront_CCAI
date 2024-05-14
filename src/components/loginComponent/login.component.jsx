@@ -63,93 +63,73 @@ const Login = () => {
         <>
             <NavbarSimple />
             <div className="bg-slate-200 flex justify-center items-center h-screen">
-        <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-          <h1 className="text-2x1 font-semibold mb-4">Iniciar Sesión</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="relative z-0 w-full mb-5 group">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                padding="10px"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <label
-                for="floating_first_name"
-                class="peer-focus:font-medium absolute text-sm text-neutral-800  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Correo:{" "}
-              </label>
+                <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
+                    <h1 className='text-center font-semibold mb-4 text-2xl  whitespace-nowrap text-slate-700'>Iniciar Sesión</h1>
+                    <br></br>
+                    <form onSubmit={handleSubmit}>
+                        <div class="flex flex-col  justify-center items-center  space-y-6">
+                            <input 
+                            type="text" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Correo " 
+                            class="w-80 appearance-none rounded-full border-0 bg-slate-500 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" 
+                            required 
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <div>
+                                <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Contraseña" 
+                                class="w-80 appearance-none rounded-full border-0 bg-slate-500 p-2 px-4 focus:bg-slate-800 focus:ring-2 " 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required />
+                                <p id="validation" class="text-center text-orange-500 italic text-sm"></p>
+                            </div>
+ 
+                            <div class="relative inline-flex">
+                                <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero" /></svg>
+                                <select 
+                                class="w-80 appearance-none rounded-full border-0 bg-slate-500 p-2 px-4 focus:bg-slate-700 focus:ring-2 text-white "
+                                value={userType}
+                                onChange={(e) => setUserType (e.target.value)}
+                                >
+
+                                   <option value=""> Seleccionar opcion </option>
+                                    <option value="investigador">Investigador</option>
+                                    <option value="alumno interno">Alumno Interno</option>
+                                    <option value="alumno externo">Alumno externo</option>
+ 
+                                </select>
+                            </div>
+ 
+ 
+                        </div>
+                        <br></br>
+                        <div className="mb-6 text-gray-800 text-center">
+                            <button
+                                type='submit'
+                                className='dark:bg-slate-500 text-center hover:bg-gray-500 text-white font-semibold rounded-full py-2 px-4 w-middle'
+                                >
+                                Iniciar Sesión
+                            </button>
+                        </div>
+                    </form>
+ 
+ 
+                    <div className="mb-6 text-gray-800 text-center">
+ 
+                        <a href="/" className="hover:underline "> Recuperar Contraseña</a>
+                    </div>
+                </div>
+                <div className='w-1/2 h-screen hidden lg:block'>
+                    <img src="../src/assets/image1.jpg" alt="CCAI" className="object-cover w-full h-full" />
+                </div>
             </div>
- 
-            <div className="relative z-0 w-full mb-5 group">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  peer"
-                placeholder=" "
-                padding="10px"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <label
-                for="floating_first_name"
-                class="peer-focus:font-medium absolute text-sm text-neutral-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                {" "}
-                Contraseña:{" "}
-              </label>
-            </div>
- 
-            <div className="relative z-0 w-full mb-5 group peer-focus:font-medium block text-gray-900  appearance-none  focus:outline-none focus:ring-0 focus:border-gray-600 peer">
-              <label htmlFor="userType" className="block text-gray-800">
-                Tipo de Usuario:
-              </label>
-              <select
-                name="floating_company"
-                id="floating_company"
-                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-gray-600 peer"
-                value={userType}
-                onChange={(e) => setUserType(e.target.value)}
-                required
-              >
-                <option class="text-gray-500 " value="">
-                  Selecciona un tipo
-                </option>
-                <option value="alumno interno">Alumno Interno</option>
-                <option value="investigador">Investigador</option>
-                <option value="alumno externo">Alumno Externo</option>
-              </select>
-            </div>
- 
-            <button
-              type="submit"
-              className="mb-6 bg-gray-700 hover:bg-gray-500 text-white font-semibold rounded-md py-2 px-4 w-full"
-            >
-              Iniciar Sesión
-            </button>
-          </form>
- 
-          <div className="mb-6 text-gray-800 text-center">
-            <a href="#" className="hover:underline">
-              Recuperar Contraseña
-            </a>
-          </div>
-        </div>
-        <div className="w-1/2 h-screen hidden lg:block">
-          <img
-            src="../src/assets/loginCCAI.jpg"
-            alt="CCAI"
-            className="object-cover w-full h-full"
-          />
-        </div>
-      </div>
         </>
     );
 };
