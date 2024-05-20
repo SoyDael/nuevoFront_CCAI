@@ -14,7 +14,7 @@ const Login = () => {
 
 
     const redireccionarAlumnoInterno = (correo) => {
-        navigate(`/perfilAlumno/${correo}`);
+        navigate(`/perfilAlumno/${correo || coordinador_correo}`);
     }
 
     const RedireccionarInvetigador = (correo) => {

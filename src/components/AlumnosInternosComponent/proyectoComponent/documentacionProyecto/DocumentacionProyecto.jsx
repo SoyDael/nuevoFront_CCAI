@@ -168,7 +168,7 @@ const DocumentacionProyecto = () => {
                                 <label htmlFor="file-upload" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600">
                                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 100-4 2 2 0 000 4zM3 21a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-4l-3-3-3 3H5a2 2 0 00-2 2v12zm5-10a3 3 0 110 6 3 3 0 010-6z"></path></svg>
                                     <span>Seleccionar Archivo</span>
-                                    <input id="file-upload" name="image" type="file" className="sr-only"
+                                    <input id="file-upload" name="image" type="file" className="sr-only" accept='.word'
                                         onChange={handleFileChange} />
                                 </label>
                                 <span className="text-gray-500 dark:text-gray-400">{fileName}</span>

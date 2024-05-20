@@ -23,6 +23,8 @@ import SlideBarPruebaAlumn from '../components/SlideBar/SlideBarPruebaAlumn.jsx'
 import DetallesProyectoAlumno from '../components/AlumnosInternosComponent/proyectoComponent/DetallesProyectoAlumno/DetallesProyectoAlumno.jsx';
 import DocumentacionProyecto from '../components/AlumnosInternosComponent/proyectoComponent/documentacionProyecto/DocumentacionProyecto.jsx';
 import Recuperarcomponent from '../components/loginComponent/Recuperar.component.jsx';
+import RegistroProyecto from '../components/ProyectosComponent/RegistroProyecto.jsx';
+import ProyectosGenerales from '../components/ProyectosComponent/ProyectosGenerales.jsx';
 
 function App() {
   return (
@@ -53,6 +55,11 @@ function App() {
         <Route path='/registroPrograma/:correo/:id_estudiante/:estudiante_correo' element={<RegistroPrograma />} /> /// Ruta Registro Programa
 
         <Route path='/slideBarPruebaAlumn' element={<SlideBarPruebaAlumn />} />
+
+        <Route path='/registroProyecto' element={<RegistroProyecto />} /> /// Ruta Registro Proyecto
+        <Route path='/verProyectos' element={<ProyectosGenerales />} /> /// Ruta Proyectos Generales
+
+
 
       </Routes>
     </BrowserRouter>

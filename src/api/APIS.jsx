@@ -75,6 +75,13 @@ export const navbarEstudiante = async (correo) => {
     return response.data;
 }
 
+
+export const navbarInvestigador = async (correo) => {
+    const response = await API.get(`navbarInvestigador/${correo}`);
+    return response.data;
+}
+
+
 export const PerfilInvestigador = async (correo) => {
     const response = await API.get(`perfilInvestigador/${correo}`);
     console.log(response.data)
@@ -188,4 +195,24 @@ export const recuperarContraseña = async (datos) => {
     console.log(response.data);
     return response.data;
 
+}
+
+export const registroProyecto = async () => {
+    const response = await API.post('registroProyecto');
+    console.log(response.data);
+    return response.data;
+}
+
+export const verProyectos = async () => {
+    const response = await API.get('consultaProyectos')
+    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
+    response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
+    console.log(response.data);
+    return response.data;
+}
+
+export const consultaInvestigadores = async () => {
+    const response = await API.get('consultaInvestigadores')
+    return response.data;
 }

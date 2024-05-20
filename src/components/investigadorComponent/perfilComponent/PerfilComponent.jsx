@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from '../../navbarComponents/Navbar'
 
 import { PerfilInvestigador } from '../../../api/APIS'
+import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores'
 
 const PerfilComponent = () => {
 
@@ -14,10 +15,6 @@ const PerfilComponent = () => {
     const [perfilInvestigador, setPerfilInvestigador] = useState([]); // Estado para almacenar el perfil del investigador
 
     const navigate = useNavigate();
-
-    const redireccionarProyectos = () => {
-        navigate(`/proyectos/${correo}`);
-    }
 
     const redireccionar = () => {
         navigate(`/usuario`);
@@ -47,7 +44,7 @@ const PerfilComponent = () => {
 
     return (
         <>
-            <Navbar />
+            <SlideBarInvestigadores />
             <div class="flex justify-center items-center h-screen bg-slate-100 bg-slate-100 bg-opacity-20 pt-12">
                 <div class="mx-auto bg-indigo-200 bg-opacity-30 rounded-lg overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">
@@ -77,12 +74,6 @@ const PerfilComponent = () => {
                                 onClick={redireccionarListadoAlumnos}
                             >
                                 Ver Alumnos Internos
-                            </button>
-                            <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
-                                onClick={redireccionarProyectos}
-                            >
-                                Ver Proyectos
                             </button>
                             <button
                                 class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
