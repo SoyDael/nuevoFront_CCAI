@@ -20,11 +20,11 @@ const SlideBarPruebaAlumn = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/EditarPerfilInvestigador/${correo ||coordinador_correo|| correo_investigador }`);
+        navigate(`/EditarPerfilInvestigador/${correo || coordinador_correo || correo_investigador}`);
     }
 
     const verPerfil = () => {
-        navigate(`/perfilInvestigador/${correo ||coordinador_correo|| correo_investigador}`);
+        navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador}`);
     }
     {/**  const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
@@ -40,11 +40,11 @@ const SlideBarPruebaAlumn = () => {
     };
 
     const redireccionarListadoAlumnos = () => {
-        navigate(`/listadoAlumnos/${correo ||coordinador_correo|| correo_investigador}`);
+        navigate(`/listadoAlumnos/${correo || coordinador_correo || correo_investigador}`);
     }
 
     const redireccionarProyectos = () => {
-        navigate(`/proyectos/${correo ||coordinador_correo|| correo_investigador}`);
+        navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
 
     const redireccionar = () => {
@@ -54,10 +54,14 @@ const SlideBarPruebaAlumn = () => {
         navigate(`/alumnoInterno`);
     }
 
+    const registrarProyecto = () => {
+        navigate(`/RegistrarProyecto/${correo || coordinador_correo || correo_investigador}`)
+    }
+
     useEffect(() => {
         const fetchPerfilInvestigador = async () => {
             try {
-                const perfil = await navbarInvestigador(correo ||coordinador_correo|| correo_investigador);
+                const perfil = await navbarInvestigador(correo || coordinador_correo || correo_investigador);
                 console.log(perfil);
                 setPerfilInvestigador(perfil);
             } catch (error) {
@@ -66,7 +70,7 @@ const SlideBarPruebaAlumn = () => {
             }
         };
         fetchPerfilInvestigador();
-    }, [correo ,coordinador_correo, correo_investigador]);
+    }, [correo, coordinador_correo, correo_investigador]);
 
     return (
         <>
@@ -218,7 +222,8 @@ const SlideBarPruebaAlumn = () => {
                                         </button>
                                     </li>
                                     <li>
-                                        <button  className="block p-2 rounded-lg  text-white  hover:bg-gray-700">
+                                        <button className="block p-2 rounded-lg  text-white  hover:bg-gray-700"
+                                            onClick={registrarProyecto}>
                                             Registrar nuevo proyecto
                                         </button>
                                     </li>

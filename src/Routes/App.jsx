@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import  Login  from '../components/loginComponent/login.component.jsx';
+import Login from '../components/loginComponent/login.component.jsx';
 import PerfilAlumno from '../components/AlumnosInternosComponent/perfilesComponents/perfilAlumno.jsx';
 import EditarPerfil from '../components/AlumnosInternosComponent/EditarPerfil.jsx';
 import PerfilActividades from '../components/AlumnosInternosComponent/actividades.component/perfilActiviades.component.jsx';
@@ -22,6 +22,7 @@ import RegistroPrograma from '../components/ProyectosComponent/programaComponent
 import NavBarInvestigador from '../components/investigadorComponent/navbarComponents/NavBarInvestigador.jsx'
 import EditarPerfilInvestigador from '../components/investigadorComponent/EditarPerfilInvestigador.jsx';
 import SlideBarPruebaAlumn from '../components/SlideBar/SlideBarPruebaAlumn.jsx';
+import RegistrarProyecto from '../components/ProyectosComponent/RegistrarProyecto.jsx';
 
 
 function App() {
@@ -33,14 +34,14 @@ function App() {
         <Route path="/usuario" element={<UsuarioForm />} />
         <Route path="/perfilAlumno/:correo" element={<PerfilAlumno />} />
         <Route path="/editarPerfil/:correo" element={<EditarPerfil />} />
-        <Route path='/*' element={<Navbar/>} />
-        <Route path='/navbarSimple' element={<NavbarSimple/>}/>
+        <Route path='/*' element={<Navbar />} />
+        <Route path='/navbarSimple' element={<NavbarSimple />} />
         <Route path='/perfilActividades/:correo_estudiante' element={<PerfilActividades />} />
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
 
-        <Route path='/NavBarInvestigador' element={<NavBarInvestigador/>} />
-        <Route path='/EditarPerfilInvestigador/:correo' element={<EditarPerfilInvestigador/>} />
+        <Route path='/NavBarInvestigador' element={<NavBarInvestigador />} />
+        <Route path='/EditarPerfilInvestigador/:correo' element={<EditarPerfilInvestigador />} />
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
         <Route path='/proyectos/:correo' element={<Proyectos />} /> /// Ruta Proyectos
         <Route path='/detallesProyecto/:id_proyecto/:correo' element={<DetallesProyecto />} /> /// Ruta Detalles Proyecto
@@ -50,12 +51,13 @@ function App() {
         <Route path='/listadoAlumnos/:correo' element={<ListadoAlumnos />} /> /// Ruta Listado Alumnos
         <Route path='/asignarProyecto/:coordinador_correo/:id_estudiante/:correo_estudiante' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
         <Route path='/registroPrograma/:correo/:id_estudiante/:estudiante_correo' element={<RegistroPrograma />} /> /// Ruta Registro Programa
+        <Route path='/RegistrarProyecto/:correo' element={<RegistrarProyecto />} />
 
-        <Route path='/SlideBarPruebaAlumn' element={<SlideBarPruebaAlumn/>}/>
+        <Route path='/SlideBarPruebaAlumn' element={<SlideBarPruebaAlumn />} />
       </Routes>
     </BrowserRouter>
   );
-          
+
 }
 
 export default App;
