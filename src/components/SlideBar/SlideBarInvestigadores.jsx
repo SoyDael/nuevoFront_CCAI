@@ -212,17 +212,6 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-gray-900 text-white hover:bg-gray-400 dark:hover:bg-gray-700"
-                                        onClick={redireccionarProyectos}
-                                        >
-                                            Ver Todos Los Proyectos
-                                        </button>
-                                    </li>
-                                </ul>
-                            )}
-                            {isDashboardOpen && (
-                                <ul className="pl-4 mt-2 space-y-2">
-                                    <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 text-white hover:bg-gray-400 dark:hover:bg-gray-700"
                                             onClick={redireccionarProyectosAsignados}
                                         >
                                             Ver Proyectos Asignados

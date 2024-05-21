@@ -197,8 +197,8 @@ export const recuperarContraseña = async (datos) => {
 
 }
 
-export const registroProyecto = async () => {
-    const response = await API.post('registroProyecto');
+export const registroProyecto = async (proyecto) => {
+    const response = await API.post('registroProyecto', proyecto);
     console.log(response.data);
     return response.data;
 }
