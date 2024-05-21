@@ -43,7 +43,7 @@ const RegistroProyecto = () => {
     <>
       <SlideBarInvestigadores />
       
-      <section class="grid h-screen place-content-center bg-slate-700 text-slate-300">
+      <section class="grid h-screen place-content-center bg-slate-600 text-slate-300">
         <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
           <h1 class="text-4xl font-semibold mb-4">Registro proyecto</h1>
           <form onSubmit={handleSubmit}>

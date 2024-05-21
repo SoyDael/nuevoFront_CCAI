@@ -59,20 +59,20 @@ const ProyectoAlumnoInt = () => {
     return (
         <>
             <SlideBarPruebaAlumn />
-            <div class="flex min-h-screen items-center justify-center bg-slate-700 from-gray-700 via-gray-800 to-gray-900">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-800 shadow-lg shadow-blue-500/100">
+            <div class="flex min-h-screen items-center justify-center bg-slate-400  from-gray-700 via-gray-800 to-gray-900">
+                <div className="relative overflow-x-auto  sm:rounded-lg bg-slate-800 shadow-lg shadow-blue-500/100">
                     <div class="">
-                        <h3 className="border-blue-gray-100 bg-blue-gray-50/50 font-serif text-lg text-white text-center p-4">Bienvenido {Proyecto[0]?.nombres} tu proyecto asignado es: </h3>
+                        <h3 className="border-blue-gray-100 bg-blue-gray-50/50 font-bold text-lg text-white text-center p-4">Bienvenido {Proyecto[0]?.nombres} tu proyecto asignado es: </h3>
                         <table class="w-full min-w-max table-auto text-left">
                             <thead>
                                 <tr>
-                                    <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                                    <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 uppercase">
                                         <p class="block antialiased font-sans text-sm text-white font-normal leading-none opacity-70">Nombre del proyecto</p>
                                     </th>
-                                    <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                                    <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 uppercase">
                                         <p class="block antialiased font-sans text-sm text-white font-normal leading-none opacity-70">Servicio</p>
                                     </th>
-                                    <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                                    <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 uppercase">
                                         <p class="block antialiased font-sans text-sm text-white font-normal leading-none opacity-70">Detalles</p>
                                     </th>
                                 </tr>
@@ -83,7 +83,7 @@ const ProyectoAlumnoInt = () => {
                                         <td class="p-4 border-b border-blue-gray-50">
                                             <div class="flex items-center gap-3">
                                                 {/**  <img src="" alt="Spotify" class="inline-block relative object-center !rounded-full w-12 h-12 rounded-lg border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1" /> */}
-                                                <p class="block antialiased font-sans text-sm leading-normal text-white font-bold">{proyecto.titulo_esp}</p>
+                                                <p class="block antialiased font-sans text-sm leading-normal text-white ">{proyecto.titulo_esp}</p>
                                             </div>
                                         </td>
                                         <td class="p-4 border-b border-blue-gray-50">

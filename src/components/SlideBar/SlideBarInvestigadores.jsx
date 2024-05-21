@@ -1,40 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState,useRef, useEffect} from 'react';
+import './SlideBar.css'
+import {navbarInvestigador} from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
-import { navbarInvestigador } from '../../api/APIS'
+import EditarPerfil from '../AlumnosInternosComponent/EditarPerfil';
 
 const SlideBarInvestigadores = () => {
 
-    const { correo, correo_investigador, coordinador_correo } = useParams(); // Buscar El correo del investigador
-
-    const [perfilInvestigador, setPerfilInvestigador] = useState([]); // Estado para almacenar el perfil del investigador
-
-
+    const { correo, coordinador_correo, correo_investigador } = useParams();
+    const [perfilInvestigador, setPerfilInvestigador] = useState([]);
+    const navigate = useNavigate();
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
     const [isAsideVisible, setIsAsideVisible] = useState(true);
-
-
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isKanbanOpen, setIsKanbanOpen] = useState(false);
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-
-    const navigate = useNavigate();
-
-    const redireccionarRegistroProyectos = () => {
-        navigate(`/registroProyecto`);
-    }
-
-    const redireccionarProyectosAsignados = () => {
-        navigate(`/proyectos/${correo}`);
-    }
-
-    const redireccionarProyectos = () => {
-        navigate(`/verProyectos`);
-    }
 
     const cerrarSesion = () => {
         localStorage.removeItem('token');
         window.location.href = '/';
     }
+
+    const redireccionarEditar = () => {
+        navigate(`/EditarPerfilInvestigador/${correo || coordinador_correo ||  correo_investigador } `);
+    }
+
+    const verPerfil= () =>{
+        navigate(`/perfilInvestigador/${correo || coordinador_correo ||  correo_investigador}`);
+    }
+    {/**  const toggleUserMenu = () => {
+        setIsUserMenuOpen(!isUserMenuOpen);
+        console.log('hola', isUserMenuOpen);
+    }; */}
 
     const toggleUserMenu = () => {
         setUserMenuOpen(prevState => !prevState); // Cambia el estado de visibilidad del menú
@@ -44,15 +40,30 @@ const SlideBarInvestigadores = () => {
         setIsAsideVisible(!isAsideVisible);
     };
 
+    const redireccionarListadoAlumnos = () => {
+        navigate(`/listadoAlumnos/${correo || coordinador_correo ||  correo_investigador }`);
+    }
+
+    const redireccionarProyectos = () => {
+        navigate(`/proyectos/${correo || coordinador_correo ||  correo_investigador}`);
+    }
+
+    const redireccionar = () => {
+        navigate(`/usuario`);
+    }
+    const redireccionarAlumnoInterno = () => {
+        navigate(`/alumnoInterno`);
+    }
+
     useEffect(() => {
         const fetchPerfilInvestigador = async () => {
             try {
-                const perfil = await navbarInvestigador(correo || coordinador_correo || correo_investigador);
+                const perfil = await navbarInvestigador(correo);
                 console.log(perfil);
                 setPerfilInvestigador(perfil);
             } catch (error) {
-                //console.error('Error al obtener perfil:', error);
-                //alert('Error al obtener perfil. Por favor, inténtalo de nuevo.');
+                console.error('Error al obtener perfil:', error);
+                alert('Error al obtener perfil. Por favor, inténtalo de nuevo.');
             }
         };
         fetchPerfilInvestigador();
@@ -93,11 +104,11 @@ const SlideBarInvestigadores = () => {
                                 className="flex ms-2 md:me-24"
                             >
                                 <img src="../src/assets/logocai.jpg" className="h-8 me-3" alt="CCAI Logo" />
-                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">CCAI</span>
+                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">CCAI</span>
                             </button>
                         </div>
                         <div className="flex items-center">
-                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                            <div className="flex items-center ms-3">
                                 <div className="relative">
                                     <button
                                         type="button"
@@ -108,44 +119,46 @@ const SlideBarInvestigadores = () => {
                                     >
                                         <span className="sr-only">Open user menu</span>
                                         <img
-
-                                            className="w-12 h-12 rounded-full"
-                                            src="https://images7.memedroid.com/images/UPLOADED732/660233b39a8f0.webp"
+                                            className="w-8 h-8 rounded-full"
+                                            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                             alt="user photo"
-                                        ></img>
+                                        />
                                     </button>
                                 </div>
 
                                 {isUserMenuOpen && (
                                     <div
-                                        className="absolute right-0 mt-2 w-48 bg-slate-800 bg-opacity-30 rounded shadow-lg dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-800 rounded-lg shadow-lg dark:bg-gray-800 dark:divide-gray-700"
+                                        className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700"
                                         style={{ top: '100%' }}
                                     >
                                         <div className="px-4 py-3">
-                                            <p className="text-sm text-gray-600 dark:text">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</p>
-                                            {/**   <p className="text-sm  text-gray-900 dark:text-gray-300">{perfilEstudiante[0]?.correo}</p> */}
-                                            <p className="text-sm font-medium text-gray-900 text-gray-600">{perfilInvestigador[0]?.tipo}</p>
+                                        {perfilInvestigador.length > 0 && (
+                                        <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
+                                        )}
+                                        {perfilInvestigador.length > 0 && (
+                                        <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
+                                        )}
                                         </div>
-                                        <ul className="py-1 text-sm text-gray-700 text-gray-100" aria-labelledby="user-menu-button">
+                                        <ul className="py-1 text-sm text-gray-700 dark:text-gray-300" aria-labelledby="user-menu-button">
                                             <li>
-                                                <button className="block px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-600"
-
-                                                >
-                                                    Ver Perfil
+                                                <button  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                                onClick={verPerfil}>
+                                                    Ver perfil
                                                 </button>
                                             </li>
                                             <li>
-                                                <button className="block px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-600"
-
-                                                >
-                                                    Editar Perfil
+                                                <button className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                                onClick={redireccionarEditar}>
+                                                    Editar perfil
                                                 </button>
                                             </li>
                                             <li>
-                                                <button onClick={cerrarSesion} className="block px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                                    Cerrar Sesión
+                                                <button className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                                onClick={cerrarSesion}>
+                                                    Cerrar sesión
                                                 </button>
                                             </li>
+                                            
                                         </ul>
                                     </div>
                                 )}
@@ -159,15 +172,15 @@ const SlideBarInvestigadores = () => {
             <aside
                 id="logo-sidebar"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isAsideVisible ? "sm:translate-x-0" : "-translate-x-full"
-                    } bg-slate-950 bg-opacity-60 border-r border-slate-800 dark:bg-gray-800 dark:border-gray-700`}
+                    } bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-950 bg-opacity-0 ">
+                <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <button
                                 onClick={() => setIsDashboardOpen(!isDashboardOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg text-white hover:bg-gray-400 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
@@ -200,21 +213,14 @@ const SlideBarInvestigadores = () => {
                             {isDashboardOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 text-white hover:bg-gray-400 dark:hover:bg-gray-700"
-                                            onClick={redireccionarRegistroProyectos}
-                                        >
-                                            Registar Proyecto
+                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        onClick={redireccionarProyectos}>
+                                            Ver proyectos
                                         </button>
                                     </li>
-                                </ul>
-                            )}
-                            {isDashboardOpen && (
-                                <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 text-white hover:bg-gray-400 dark:hover:bg-gray-700"
-                                            onClick={redireccionarProyectosAsignados}
-                                        >
-                                            Ver Proyectos Asignados
+                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            Registrar nuevo proyecto
                                         </button>
                                     </li>
                                 </ul>
@@ -223,11 +229,11 @@ const SlideBarInvestigadores = () => {
                         <li>
                             <button
                                 onClick={() => setIsKanbanOpen(!isKanbanOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg text-white hover:bg-gray-400 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-800 transition duration-75 text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -235,7 +241,7 @@ const SlideBarInvestigadores = () => {
                                     >
                                         <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286C10 17.169 10.831 18 11.857 18h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                                     </svg>
-                                    <span className="ms-3">Actividades</span>
+                                    <span className="ms-3">Alumnos</span>
                                 </span>
                                 <svg
                                     className={`w-4 h-4 transition-transform ${isKanbanOpen ? 'rotate-180' : ''}`}
@@ -250,64 +256,65 @@ const SlideBarInvestigadores = () => {
                             {isKanbanOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 text-white hover:bg-gray-400 dark:hover:bg-gray-700"
-
-                                        >
-                                            Ver Actividades
+                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        onClick={redireccionarListadoAlumnos}>
+                                            Ver alumnos internos
+                                        </button>
+                                    </li>
+                                    
+                                </ul>
+                            )}
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                            >
+                                <span className="flex items-center">
+                                    <svg
+                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M19 1H5c-1.657 0-3 1.343-3 3v16c0 1.657 1.343 3 3 3h14c1.657 0 3-1.343 3-3V4c0-1.657-1.343-3-3-3zm-4.176 8.73h-1.603V15.5h1.816c.864 0 1.522-.206 1.973-.62.448-.413.673-.98.673-1.696 0-.719-.222-1.29-.666-1.717-.447-.423-1.104-.637-1.978-.637zm-1.603-1.467h2.229c1.063 0 1.838-.262 2.325-.783.491-.523.737-1.181.737-1.972 0-.776-.246-1.426-.737-1.948-.488-.523-1.262-.784-2.325-.784h-2.229v5.487zm-3.927 0V15.5h1.555V8.732h-1.555zm1.555-1.468h-1.555V5.23h1.555v2.034zm-3.556 8.235V8.732H7.42v5.996H5.176z" />
+                                    </svg>
+                                    <span className="ms-3">Registro</span>
+                                </span>
+                                <svg
+                                    className={`w-4 h-4 transition-transform ${isCalendarOpen ? 'rotate-180' : ''}`}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            {isCalendarOpen && (
+                                <ul className="pl-4 mt-2 space-y-2">
+                                    <li>
+                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        onClick={redireccionar}>
+                                            Registrar nuevo usuario
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        onClick={redireccionarAlumnoInterno}>
+                                            Registro alumno interno
                                         </button>
                                     </li>
                                 </ul>
                             )}
                         </li>
-                        {/**   <li>
-                    <button
-                        onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-                        className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                        <span className="flex items-center">
-                            <svg
-                                className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M19 1H5c-1.657 0-3 1.343-3 3v16c0 1.657 1.343 3 3 3h14c1.657 0 3-1.343 3-3V4c0-1.657-1.343-3-3-3zm-4.176 8.73h-1.603V15.5h1.816c.864 0 1.522-.206 1.973-.62.448-.413.673-.98.673-1.696 0-.719-.222-1.29-.666-1.717-.447-.423-1.104-.637-1.978-.637zm-1.603-1.467h2.229c1.063 0 1.838-.262 2.325-.783.491-.523.737-1.181.737-1.972 0-.776-.246-1.426-.737-1.948-.488-.523-1.262-.784-2.325-.784h-2.229v5.487zm-3.927 0V15.5h1.555V8.732h-1.555zm1.555-1.468h-1.555V5.23h1.555v2.034zm-3.556 8.235V8.732H7.42v5.996H5.176z" />
-                            </svg>
-                            <span className="ms-3">Calendar</span>
-                        </span>
-                        <svg
-                            className={`w-4 h-4 transition-transform ${isCalendarOpen ? 'rotate-180' : ''}`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    {isCalendarOpen && (
-                        <ul className="pl-4 mt-2 space-y-2">
-                            <li>
-                                <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Submenu 1
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Submenu 2
-                                </a>
-                            </li>
-                        </ul>
-                    )}
-                </li>
-                */}
                     </ul>
                 </div>
             </aside>
         </>
-
     )
 }
 
 export default SlideBarInvestigadores
+
