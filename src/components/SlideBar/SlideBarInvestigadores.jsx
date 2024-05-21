@@ -71,7 +71,7 @@ const SlideBarInvestigadores = () => {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
+         <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -128,7 +128,7 @@ const SlideBarInvestigadores = () => {
 
                                 {isUserMenuOpen && (
                                     <div
-                                        className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700"
+                                        className="absolute right-5 mt- w-48 bg-slate-800  divide-y divide-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:divide-gray-700"
                                         style={{ top: '100%' }}
                                     >
                                         <div className="px-4 py-3">
@@ -139,21 +139,21 @@ const SlideBarInvestigadores = () => {
                                         <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
                                         )}
                                         </div>
-                                        <ul className="py-1 text-sm text-gray-700 dark:text-gray-300" aria-labelledby="user-menu-button">
+                                        <ul className="py-1 text-sm text-slate-300 dark:text-gray-300" aria-labelledby="user-menu-button">
                                             <li>
-                                                <button  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                                <button  className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600"
                                                 onClick={verPerfil}>
                                                     Ver perfil
                                                 </button>
                                             </li>
                                             <li>
-                                                <button className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                                <button className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600 "
                                                 onClick={redireccionarEditar}>
                                                     Editar perfil
                                                 </button>
                                             </li>
                                             <li>
-                                                <button className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                                <button className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600"
                                                 onClick={cerrarSesion}>
                                                     Cerrar sesión
                                                 </button>
@@ -172,19 +172,19 @@ const SlideBarInvestigadores = () => {
             <aside
                 id="logo-sidebar"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isAsideVisible ? "sm:translate-x-0" : "-translate-x-full"
-                    } bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
+                    } bg-slate-950 bg-opacity-60 border-r border-slate-800 dark:bg-gray-800 dark:border-gray-700`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+                <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-950 bg-opacity-0 ">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <button
                                 onClick={() => setIsDashboardOpen(!isDashboardOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5 text-slate-300 transition duration-75 group-hover:bg-slate-800 dark:group-hover:text-white"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -213,13 +213,13 @@ const SlideBarInvestigadores = () => {
                             {isDashboardOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                         onClick={redireccionarProyectos}>
                                             Ver proyectos
                                         </button>
                                     </li>
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <button className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
                                             Registrar nuevo proyecto
                                         </button>
                                     </li>
@@ -229,11 +229,11 @@ const SlideBarInvestigadores = () => {
                         <li>
                             <button
                                 onClick={() => setIsKanbanOpen(!isKanbanOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5 transition duration-75 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -256,7 +256,7 @@ const SlideBarInvestigadores = () => {
                             {isKanbanOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                         onClick={redireccionarListadoAlumnos}>
                                             Ver alumnos internos
                                         </button>
@@ -268,11 +268,11 @@ const SlideBarInvestigadores = () => {
                         <li>
                             <button
                                 onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                             >
                                 <span className="flex items-center">
                                     <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                        className="w-5 h-5 transition duration-75 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -295,13 +295,13 @@ const SlideBarInvestigadores = () => {
                             {isCalendarOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                         onClick={redireccionar}>
                                             Registrar nuevo usuario
                                         </button>
                                     </li>
                                     <li>
-                                        <button className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                         onClick={redireccionarAlumnoInterno}>
                                             Registro alumno interno
                                         </button>
