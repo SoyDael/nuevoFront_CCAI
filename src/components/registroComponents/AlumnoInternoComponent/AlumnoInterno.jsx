@@ -33,19 +33,19 @@ const AlumnoInterno = () => {
     <>
       <NavbarSimple />
       <br /><br /><br /><br /><br />
-      <form class="max-w-xl mx-auto">
+      <form class="max-w-xl mx-auto" onSubmit={handleSubmit}>
         <div class="grid md:grid-cols-2 md:gap-6">
           <div class="relative z-0 w-full mb-5 group">
             <input
               type="text"
-              name="floating_first_name"
-              id="floating_first_name"
+              name="matricula"
+              id="matricula"
               class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_first_name"
+              htmlFor="matricula"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Matricula:
@@ -54,14 +54,14 @@ const AlumnoInterno = () => {
           <div class="relative z-0 w-full mb-5 group">
             <input
               type="text"
-              name="floating_last_name"
-              id="floating_last_name"
+              name="nombres"
+              id="nombres"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_last_name"
+              htmlFor="nombres"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Nombre(s):
@@ -72,14 +72,14 @@ const AlumnoInterno = () => {
           <div class="relative z-0 w-full mb-5 group">
             <input
               type="text"
-              name="floating_first_name"
-              id="floating_first_name"
+              name="apellido_p"
+              id="apellido_p"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_first_name"
+              htmlFor="apellido_p"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Apellido paterno:
@@ -88,14 +88,14 @@ const AlumnoInterno = () => {
           <div class="relative z-0 w-full mb-5 group">
             <input
               type="text"
-              name="floating_last_name"
-              id="floating_last_name"
+              name="apellido_m"
+              id="apellido_m"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_last_name"
+              htmlFor="apellido_m"
               class="peer-focus: font-bold absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Apellido materno:
@@ -106,14 +106,14 @@ const AlumnoInterno = () => {
           <div class="relative z-0 w-full mb-5 group">
             <input
               type="text"
-              name="floating_first_name"
-              id="floating_first_name"
+              name="correo"
+              id="correo"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_first_name"
+              htmlFor="correo"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Correo institucional:
@@ -121,15 +121,15 @@ const AlumnoInterno = () => {
           </div>
           <div class="relative z-0 w-full mb-5 group">
             <input
-              type="text"
-              name="floating_last_name"
-              id="floating_last_name"
+              type="email"
+              name="correo_adicional"
+              id="correo_adicional"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_last_name"
+              htmlFor="correo_adicional"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Correo adicional:
@@ -140,14 +140,14 @@ const AlumnoInterno = () => {
           <div class="relative z-0 w-full mb-5 group">
             <input
               type="tel"
-              name="floating_phone"
-              id="floating_phone"
+              name="telefono"
+              id="telefono"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              for="floating_phone"
+              htmlFor="telefono"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Telefóno:
@@ -155,27 +155,27 @@ const AlumnoInterno = () => {
           </div>
           <div class="relative z-0 w-full mb-5 group">
             <select  type="text"
-              name="floating_company"
-              id="floating_company"
+              name="division"
+              id="division"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required>
                 
-             <option value="division"  > Selecciona una opción </option>
-             <option value="division"  > Ingenería Informática </option>
-             <option value="division"> Ingenería en Sistemas Computacionales </option>
-             <option value="division"> Ingenería Electrónica </option>
-             <option value="division"> Ingenería Mecánica </option>
-             <option value="division"> Ingenería Bioquímica </option>
-             <option value="division"> Ingenería Química </option>
-             <option value="division"> Ingenería Industrial </option>
-             <option value="division"> Ingenería Mecatrónica </option>
-             <option value="division"> Ingenería en Gestión Empresarial </option>
-             <option value="division"> Ingenería Aeronáutica </option>
-             <option value="division"> Contador Público </option>
+             <option value="" > Selecciona una opción </option>
+             <option value="Ingenería Informática"  > Ingenería Informática </option>
+             <option value="Ingenería en Sistemas Computacionales"> Ingenería en Sistemas Computacionales </option>
+             <option value="Ingenería Electrónica"> Ingenería Electrónica </option>
+             <option value="Ingenería Mecánica"> Ingenería Mecánica </option>
+             <option value="Ingenería Bioquímica"> Ingenería Bioquímica </option>
+             <option value="Ingenería Química"> Ingenería Química </option>
+             <option value="Ingenería Industrial"> Ingenería Industrial </option>
+             <option value="Ingenería Mecatrónica"> Ingenería Mecatrónica </option>
+             <option value="Ingenería en Gestión Empresarial"> Ingenería en Gestión Empresarial </option>
+             <option value="Ingenería Aeronáutica"> Ingenería Aeronáutica </option>
+             <option value="Contador Público"> Contador Público </option>
               </select>
             <label
-              for="floating_company"
+              htmlFor="division"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               División:
@@ -186,7 +186,7 @@ const AlumnoInterno = () => {
           type="submit"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Submit
+          Registrar Alumno
         </button>
       </form>
     </>
