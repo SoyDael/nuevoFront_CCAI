@@ -89,7 +89,7 @@ const Proyectos = () => {
                   scope="col"
                   className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 uppercase"
                 >
-                  Fecha de registro
+                  Fecha de Inicio
                 </th>
                 
                 <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 uppercase px-12">

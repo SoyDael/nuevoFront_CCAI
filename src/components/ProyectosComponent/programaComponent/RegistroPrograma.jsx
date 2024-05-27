@@ -35,60 +35,79 @@ const RegistroPrograma = () => {
 
     return (
         <>
-            <div className='bg-gray-100 flex justify-center items-center h-screen'>
-                <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
-                    <h1 className='text-2xl font-semibold mb-4'>Asignar Programa </h1>
-                    <form action="" onSubmit={handleSubmit} >
-                        <div className='flex mb-4'>
-                            <label htmlFor="tipo" className='block text-gray-600 mr-2'>Tipo de Programa: </label>
-                            <input type="text" name="tipo" id="tipo" required
-                                className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
+            <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+                <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+                        <h1 className='text-2xl font-semibold mb-4 text-white'>Asignar Programa </h1>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <div class="relative inline-flex">
+                                <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero" /></svg>
+                                <select 
+                                name='tipo'
+                                id='tipo'
+                                class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                                    <option value="">Tipo de programa: </option>
+                                    <option value="Servicio Social">Servicio Social</option>
+                                    <option value="Residencias Profesionales">Residencias Profesionales</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className='flex mb-4'>
-                            <label htmlFor="estatus" className='block text-gray-600 mr-2'>Estatus: </label>
-                            <input type="text" name="estatus" id="estatus" required
-                                className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
+                        <div className="relative z-0 w-full mb-5 group">
+                            <div class="relative inline-flex">
+                                <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero" /></svg>
+                                <select 
+                                name='estatus'
+                                id='estatus'
+                                class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                                    <option value="">Estatus: </option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className='flex mb-4'>
-                            <label htmlFor="semestre" className='block text-gray-600 mr-2'>Semestre: </label>
-                            <input type="text" name="semestre" id="semestre" required
-                                className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
+                        <div className="relative z-0 w-full mb-5 group">
+                            <div class="relative inline-flex">
+                                <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero" /></svg>
+                                <select 
+                                name='semestre'
+                                id='semestre'
+                                class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                                    <option value="">Semestre: </option>
+                                    <option value="2024-1">2024-1</option>
+                                    <option value="2024-2">2024-2</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className='flex mb-4'>
-                            <label htmlFor="fecha_inicio" className='block text-gray-600 mr-2'>Fecha de inicio: </label>
-                            <input type="date" name="fecha_inicio" id="fecha_inicio" required
-                                className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
+
+                        <div date-rangepicker class="w-96 appearance-none p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                            <span class="mx-4 text-gray-500">Fecha de Inicio: </span>
+                            <div class="relative">
+                                <input 
+                                name="fecha_inicio"
+                                id='fecha_inicio'
+                                type="date" 
+                                class="border  text-sm rounded-lg  block w-full ps-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
+                                placeholder="Select date start"></input>
+                            </div>
+
                         </div>
-                        <div className='flex mb-4'>
-                            <label htmlFor="fecha_fin" className='block text-gray-600 mr-2'>Fecha de termino: </label>
-                            <input type="date" name="fecha_fin" id="fecha_fin" required
-                                className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                                autoComplete='off'
-                            />
+
+                        <div date-rangepicker class="w-96 appearance-none p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                            <span class="mx-4 text-gray-500">Fecha de Finalizacion: </span>
+                            <div class="relative">
+                                <input name="fecha_fin"
+                                id='fecha_fin'
+                                type="date" 
+                                class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
+                                placeholder="Select date end"></input>
+                            </div>
                         </div>
-                        <div className="flex gap-4">
-                            <button type="submit"
-                                className='flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4'>
-                                    Registrar programa
-                            </button>
+
+                        <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
+                            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white  rounded-md py-2 px-4">Registrar programa</button>
                         </div>
                     </form>
-                    <div className="flex justify-center mt-4">
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={redireccionarIntegrantes}
-                        >
-                            Regresar
-                        </button>
-                    </div>
+
                 </div>
             </div>
         </>

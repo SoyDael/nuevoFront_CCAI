@@ -93,6 +93,7 @@ export const proyectosInvestigador = async (correo) => {
     const response = await API.get(`proyectosInvestigador/${correo}`);
     response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
     response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
     console.log(response.data)
     return response.data;
 }
@@ -152,6 +153,9 @@ export const asignarProyecto = async (proyecto_id, id_estudiante, correo_estudia
 
 export const proyectos = async () => {
     const response = await API.get("consultaProyectos");
+    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
+    response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
     console.log(response.data);
     return response.data;
 }

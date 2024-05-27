@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { asignarProyecto, proyectos, consultaProgramasPorAlumno } from '../../../api/APIS';
+import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores';
 
 const AsigProyecto = () => {
 
@@ -78,44 +79,47 @@ const AsigProyecto = () => {
 
     return (
         <>
+        <SlideBarInvestigadores />
             <div className='bg-gray-100 flex justify-center items-center h-screen'>
-                <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
+                <div className=' p-8 bg-slate-700'>
                     <h1 className='text-2x1 font-semibold mb-4'>Asignacion de proyecto</h1>
-                    <form action="" onSubmit={handleSubmit} >
+                    <form action="" onSubmit={handleSubmit}>
                         <div className='mb-4'>
-                            <label htmlFor="id_proyecto" className='block text-gray-600'>Proyecto: </label>
+                            <label htmlFor="id_proyecto" className='block text-gray-400'>Proyecto: </label>
                             <select name="titulo_esp" id="titulo_esp" required
-                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-center'>
-                                <option value="">Seleccionar proyecto</option>
+                                className='w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 text-center text-white'>
+                                <option>Seleccionar proyecto</option>
                                 {proyecto.map(proyecto => (
                                     <option key={proyecto.proyecto_id} value={proyecto.proyecto_id}>{proyecto.titulo_esp}</option>
                                 ))}
                             </select>
                         </div>
                         <div className='mb-4'>
-                            <label htmlFor="id_programa" className='block text-gray-600'>Tipo de programa: </label>
+                            <label htmlFor="id_programa" className='block text-gray-400'>Tipo de programa: </label>
                             <input type="tipo" name="tipo" id="password" required
-                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                                className='w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2  text-center text-white'
                                 autoComplete='off'
                                 value={programa[0]?.tipo}
                             />
                         </div>
 
                         <button type="submit"
-                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'>
+                            className='mb-6 w-96 appearance-none rounded-full border-0 bg-blue-500 p-2 px-4 focus:bg-slate-800 focus:ring-2  text-center text-white'>
                             Añadir usuario
                         </button>
                     </form>
-                    <div class="mb-6 text-blue-500 text-center">
+                    <div class="text-blue-500 text-center">
                         <button type="submit"
-                            className='mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full'
+                            className='mb-6 w-40 appearance-none rounded-full border-0 bg-blue-500 p-2 px-4 focus:bg-slate-800 focus:ring-2 text-white items-center justify-center flex'
                             onClick={redireccionarListadoAlumnos}
                         >
-                            Regresar
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                            </svg>
+
                         </button>
                     </div>
                 </div>
-
             </div>
         </>
     )

@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './SlideBar.css'
-import { navbarInvestigador, createUsuario } from '../../api/APIS'
+import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
-import EditarPerfil from '../AlumnosInternosComponent/EditarPerfil';
 
 const SlideBarInvestigadores = () => {
 
@@ -48,12 +47,26 @@ const SlideBarInvestigadores = () => {
         navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
 
-    const redireccionar = () => {
-        navigate(`/usuario`);
-    }
-    const redireccionarAlumnoInterno = () => {
-        navigate(`/alumnoInterno`);
-    }
+
+    // api consultaInvestigadores
+
+    const [Investigador, setInvestigador] = useState([])
+    const [titulo, setTitulo] = useState('');
+
+
+    useEffect(() => {
+        const fetchInvestigador = async () => {
+            try {
+                const investigador = await consultaInvestigadores();
+                console.log(investigador);
+                setInvestigador(investigador); // Almacena los proyectos del investigador en el estado
+            } catch (error) {
+                console.error('Error al obtener proyectos:', error);
+                //alert('Error al obtener proyectos. Por favor, inténtalo de nuevo.');
+            }
+        };
+        fetchInvestigador();
+    }, []);
 
     useEffect(() => {
         const fetchPerfilInvestigador = async () => {
@@ -87,11 +100,57 @@ const SlideBarInvestigadores = () => {
             await createUsuario(usuario);
             console.log("dimos clic", usuario);
             alert('Usuario añadido correctamente');
+            formulario.reset();
         } catch (error) {
             console.error('Error al añadir usuario:', error);
             alert('Error al añadir usuario. Por favor, inténtelo de nuevo más tarde.');
         }
     };
+
+
+    {/** Funcion de menu despegable alumno interno */ }
+
+    const [showModal2, setShowModal2] = useState(false);
+
+    const toggleModal2 = () => {
+        setShowModal2(!showModal2);
+    };
+
+    // registro alumno interno
+    const handleUsuarioInterno = async (formulario) => {
+        const formData = new FormData(formulario);
+        const estudiante = Object.fromEntries(formData);
+        try {
+            await registroEstudiante(estudiante);
+            console.log("dimos clic", estudiante);
+            alert('Usuario añadido correctamente');
+            formulario.reset();
+        } catch (error) {
+            console.error('Error al añadir usuario:', error);
+            alert('Error al añadir usuario. Por favor, inténtelo de nuevo más tarde.');
+        }
+    };
+
+    const [showModal3, setShowModal3] = useState(false);
+
+    const toggleModal3 = () => {
+        setShowModal3(!showModal3);
+    };
+
+    const handleProyecto = async (formulario) => {
+        const formData = new FormData(formulario);
+        const data = Object.fromEntries(formData);
+        console.log("Datos del proyecto ", data);
+        try {
+          const response = await registroProyecto(data, {titulo_esp: titulo});
+          console.log(response);
+          alert('Proyecto registrado con éxito');
+        } catch (error) {
+          console.error('Error al registrar proyecto:', error);
+          alert('Error al registrar proyecto. Por favor, inténtalo de nuevo.');
+        }
+      }
+
 
     return (
         <>
@@ -243,7 +302,7 @@ const SlideBarInvestigadores = () => {
                                         </button>
                                     </li>
                                     <li>
-                                        <button className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
+                                        <button onClick={toggleModal3} className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
                                             Registrar nuevo proyecto
                                         </button>
                                     </li>
@@ -326,7 +385,7 @@ const SlideBarInvestigadores = () => {
                                     </li>
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                            onClick={redireccionarAlumnoInterno}>
+                                            onClick={toggleModal2}>
                                             Registro alumno interno
                                         </button>
                                     </li>
@@ -336,6 +395,8 @@ const SlideBarInvestigadores = () => {
                     </ul>
                 </div>
             </aside>
+
+            {/** Aqui inicia Registro Usuario */}
             {showModal && (
                 <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
                     <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
@@ -346,8 +407,8 @@ const SlideBarInvestigadores = () => {
                                     <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                                         <div className="sm:col-span-2">
                                             <div className="flex flex-col">
-                                                <label htmlFor="correo" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo: </label>
+                                                <label htmlFor="correo"
+                                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo: </label>
                                                 <div className="flex items-center">
                                                     <input
                                                         type="email"
@@ -383,8 +444,8 @@ const SlideBarInvestigadores = () => {
                                     </div>
                                 </form>
                                 <div className="flex justify-center">
-                                    <button type='submit'onClick={() => handleUsuario(document.getElementById('formulario'))}
-                                    className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar</button>
+                                    <button type='submit' onClick={() => handleUsuario(document.getElementById('formulario'))}
+                                        className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar</button>
                                     <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
                                 </div>
                             </div>
@@ -393,6 +454,244 @@ const SlideBarInvestigadores = () => {
                     </div>
                 </div>
             )}
+
+            {/** Aqui finaliza Registro Usuario */}
+
+            {/** Aqui inicia Registro Alumno Interno */}
+            {showModal2 && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
+                        <section className="bg-slate-200 dark:bg-gray-900">
+                            <div className="max-w-2xl px-4 py-1 mx-auto lg:py-16 ">
+                                <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Registro Alumno Interno</h2>
+                                <form class="max-w-xl mx-auto" id='formulario'>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="matricula"
+                                                id="matricula"
+                                                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="matricula"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Matricula:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="nombres"
+                                                id="nombres"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="nombres"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Nombre(s):
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="apellido_p"
+                                                id="apellido_p"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="apellido_p"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Apellido paterno:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="apellido_m"
+                                                id="apellido_m"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="apellido_m"
+                                                class="peer-focus: font-bold absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Apellido materno:
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="correo"
+                                                id="correo"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="correo"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Correo institucional:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="email"
+                                                name="correo_adicional"
+                                                id="correo_adicional"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="correo_adicional"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Correo adicional:
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="tel"
+                                                name="telefono"
+                                                id="telefono"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="telefono"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Telefóno:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <select type="text"
+                                                name="division"
+                                                id="division"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required>
+
+                                                <option value="" > Selecciona una opción </option>
+                                                <option value="Ingenería Informática"  > Ingenería Informática </option>
+                                                <option value="Ingenería en Sistemas Computacionales"> Ingenería en Sistemas Computacionales </option>
+                                                <option value="Ingenería Electrónica"> Ingenería Electrónica </option>
+                                                <option value="Ingenería Mecánica"> Ingenería Mecánica </option>
+                                                <option value="Ingenería Bioquímica"> Ingenería Bioquímica </option>
+                                                <option value="Ingenería Química"> Ingenería Química </option>
+                                                <option value="Ingenería Industrial"> Ingenería Industrial </option>
+                                                <option value="Ingenería Mecatrónica"> Ingenería Mecatrónica </option>
+                                                <option value="Ingenería en Gestión Empresarial"> Ingenería en Gestión Empresarial </option>
+                                                <option value="Ingenería Aeronáutica"> Ingenería Aeronáutica </option>
+                                                <option value="Contador Público"> Contador Público </option>
+                                            </select>
+                                            <label
+                                                htmlFor="division"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                División:
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div className="flex justify-center">
+                                    <button type='submit' onClick={() => handleUsuarioInterno(document.getElementById('formulario'))}
+                                        className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar Alumno</button>
+                                    <button onClick={toggleModal2} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            )}
+
+            {/** Aqui termina Registro Alumno interno */}
+
+            {/** Aqui inicia Registro Proyecto */}
+
+            {showModal3 && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                <h1 class="text-4xl font-semibold mb-4">Registro proyecto</h1>
+                                <form id='formulario' >
+                                    <div class="flex flex-col items-center justify-center space-y-6">
+                                        <input
+                                            type="text"
+                                            id="titulo_esp"
+                                            name="titulo_esp"
+                                            placeholder="Titulo"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
+                                        />
+                                        <textarea maxlength="1000" id="descripcion" name="descripcion" placeholder="Descripción" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <textarea maxlength="1000" id="objetivo" name="objetivo" placeholder="Objetivo" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+
+                                        <select
+                                            className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
+                                            id='coordinador_correo'
+                                            name="coordinador_correo"
+                                        >
+                                            <option value="">Selecciona un Investigador</option>
+                                            {Investigador.map((investigador) => (
+                                                <option key={investigador.id_investigador} value={investigador.correo}>
+                                                    {investigador.nombres} {investigador.apellido_p} {investigador.apellido_m}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        <select
+                                            className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
+                                            name="estatus"
+                                        >
+                                            <option value="">Selecciona un estatus</option>
+                                            <option value="Nuevo">Nuevo</option>
+                                            <option value="En progreso">En progreso</option>
+                                            <option value="Finalizado">Finalizado</option>
+                                        </select>
+
+                                        <input type="datetime-local" id="fecha_registro" name="fecha_registro" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <input type="date" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de inicio" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+
+                                        <button type='submit'
+                                        id="showPw" 
+                                        onClick={() => handleProyecto(document.getElementById('formulario'))}
+                                        class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                        <div className="flex justify-center">
+                            <button onClick={toggleModal3} className="text-sm font-medium text-white bg-indigo-700 rounded-lg py-2 px-4">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/** Aqui termina Registro Proyecto */}
         </>
     )
 }
