@@ -216,3 +216,9 @@ export const consultaInvestigadores = async () => {
     const response = await API.get('consultaInvestigadores')
     return response.data;
 }
+
+export const obtenerDocumentacionProgramaPorID = async (id_proyecto) => {
+    const response = await API.get(`obtenerDocumentacionPorID/${id_proyecto}`);
+    console.log(response.data);
+    return response.data;
+}

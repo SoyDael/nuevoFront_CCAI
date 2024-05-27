@@ -1,6 +1,6 @@
-import React, {useState,useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './SlideBar.css'
-import {navbarInvestigador} from '../../api/APIS'
+import { navbarInvestigador, createUsuario } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
 import EditarPerfil from '../AlumnosInternosComponent/EditarPerfil';
 
@@ -21,11 +21,11 @@ const SlideBarInvestigadores = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/EditarPerfilInvestigador/${correo || coordinador_correo ||  correo_investigador } `);
+        navigate(`/EditarPerfilInvestigador/${correo || coordinador_correo || correo_investigador} `);
     }
 
-    const verPerfil= () =>{
-        navigate(`/perfilInvestigador/${correo || coordinador_correo ||  correo_investigador}`);
+    const verPerfil = () => {
+        navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador}`);
     }
     {/**  const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
@@ -41,11 +41,11 @@ const SlideBarInvestigadores = () => {
     };
 
     const redireccionarListadoAlumnos = () => {
-        navigate(`/listadoAlumnos/${correo || coordinador_correo ||  correo_investigador }`);
+        navigate(`/listadoAlumnos/${correo || coordinador_correo || correo_investigador}`);
     }
 
     const redireccionarProyectos = () => {
-        navigate(`/proyectos/${correo || coordinador_correo ||  correo_investigador}`);
+        navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
 
     const redireccionar = () => {
@@ -69,9 +69,33 @@ const SlideBarInvestigadores = () => {
         fetchPerfilInvestigador();
     }, [correo]);
 
+
+    {/** Funcion de menu despegable */ }
+
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    // registro usuario
+    const handleUsuario = async (formulario) => {
+        const formData = new FormData(formulario);
+        const usuario = Object.fromEntries(formData);
+
+        try {
+            await createUsuario(usuario);
+            console.log("dimos clic", usuario);
+            alert('Usuario añadido correctamente');
+        } catch (error) {
+            console.error('Error al añadir usuario:', error);
+            alert('Error al añadir usuario. Por favor, inténtelo de nuevo más tarde.');
+        }
+    };
+
     return (
         <>
-         <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
+            <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -132,33 +156,33 @@ const SlideBarInvestigadores = () => {
                                         style={{ top: '100%' }}
                                     >
                                         <div className="px-4 py-3">
-                                        {perfilInvestigador.length > 0 && (
-                                        <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
-                                        )}
-                                        {perfilInvestigador.length > 0 && (
-                                        <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
-                                        )}
+                                            {perfilInvestigador.length > 0 && (
+                                                <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
+                                            )}
+                                            {perfilInvestigador.length > 0 && (
+                                                <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
+                                            )}
                                         </div>
                                         <ul className="py-1 text-sm text-slate-300 dark:text-gray-300" aria-labelledby="user-menu-button">
                                             <li>
-                                                <button  className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600"
-                                                onClick={verPerfil}>
+                                                <button className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600"
+                                                    onClick={verPerfil}>
                                                     Ver perfil
                                                 </button>
                                             </li>
                                             <li>
                                                 <button className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600 "
-                                                onClick={redireccionarEditar}>
+                                                    onClick={redireccionarEditar}>
                                                     Editar perfil
                                                 </button>
                                             </li>
                                             <li>
                                                 <button className="w-full block px-4 py-2 rounded-lg hover:bg-slate-700 dark:hover:bg-gray-600"
-                                                onClick={cerrarSesion}>
+                                                    onClick={cerrarSesion}>
                                                     Cerrar sesión
                                                 </button>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 )}
@@ -214,7 +238,7 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={redireccionarProyectos}>
+                                            onClick={redireccionarProyectos}>
                                             Ver proyectos
                                         </button>
                                     </li>
@@ -257,11 +281,11 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={redireccionarListadoAlumnos}>
+                                            onClick={redireccionarListadoAlumnos}>
                                             Ver alumnos internos
                                         </button>
                                     </li>
-                                    
+
                                 </ul>
                             )}
                         </li>
@@ -296,13 +320,13 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={redireccionar}>
+                                            onClick={toggleModal}>
                                             Registrar nuevo usuario
                                         </button>
                                     </li>
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={redireccionarAlumnoInterno}>
+                                            onClick={redireccionarAlumnoInterno}>
                                             Registro alumno interno
                                         </button>
                                     </li>
@@ -312,6 +336,63 @@ const SlideBarInvestigadores = () => {
                     </ul>
                 </div>
             </aside>
+            {showModal && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
+                        <section className="bg-slate-200 dark:bg-gray-900">
+                            <div className="max-w-2xl px-4 py-1 mx-auto lg:py-16 ">
+                                <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Registro Usuario</h2>
+                                <form id='formulario'>
+                                    <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+                                        <div className="sm:col-span-2">
+                                            <div className="flex flex-col">
+                                                <label htmlFor="correo" 
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo: </label>
+                                                <div className="flex items-center">
+                                                    <input
+                                                        type="email"
+                                                        name="correo"
+                                                        id="correo"
+                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        placeholder="Correo"
+                                                        required=""
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div className="sm:col-span-2">
+                                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password: </label>
+                                            <input type="password"
+                                                name="password"
+                                                id="password"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Password"
+                                                required="" />
+                                        </div>
+                                        <div className="sm:col-span-2">
+                                            <label htmlFor="tipo" className='block text-gray-600'>Tipo de usuario: </label>
+                                            <select name="tipo" id="tipo"
+                                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-center'>
+                                                <option value="Investigador">Investigador</option>
+                                                <option value="Alumno Interno">Alumno Interno</option>
+                                                <option value="Alumno Externo">Alumno Externo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div className="flex justify-center">
+                                    <button type='submit'onClick={() => handleUsuario(document.getElementById('formulario'))}
+                                    className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar</button>
+                                    <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            )}
         </>
     )
 }

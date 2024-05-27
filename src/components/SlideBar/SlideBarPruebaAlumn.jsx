@@ -5,7 +5,7 @@ import { navbarEstudiante, getPerfilEstudiante, getconsultaActividadesEstudiante
 
 const SlideBarPruebaAlumn = () => {
 
-    const { correo, correo_estudiante } = useParams();
+    const { correo, correo_estudiante , estudiante_correo} = useParams();
 
 
     const [perfilEstudiante, setPerfilEstudiante] = useState([]);
@@ -23,19 +23,19 @@ const SlideBarPruebaAlumn = () => {
     const navigate = useNavigate();
 
     const redireccionarPerfil = () => {
-        navigate(`/perfilAlumno/${correo || correo_estudiante}`);
+        navigate(`/perfilAlumno/${correo || correo_estudiante || estudiante_correo}`);
     }
 
     const redireccionarEditar = () => {
-        navigate(`/editarPerfil/${correo_estudiante || correo}`);
+        navigate(`/editarPerfil/${correo_estudiante || correo || estudiante_correo}`);
     }
 
     const redireccionarProyecto = () => {
-        navigate(`/proyectoAlumnoInt/${correo || correo_estudiante}`);
+        navigate(`/proyectoAlumnoInt/${correo || correo_estudiante || estudiante_correo }`);
     }
 
     const redireccionarActividades = () => {
-        navigate(`/perfilActividades/${correo || correo_estudiante}`);
+        navigate(`/perfilActividades/${correo || correo_estudiante || estudiante_correo}`);
     }
 
     const obtenerActividades = async (e) => {
@@ -77,7 +77,7 @@ const SlideBarPruebaAlumn = () => {
     useEffect(() => {
         const fetchPerfilEstudiante = async () => {
             try {
-                const perfil = await navbarEstudiante(correo || correo_estudiante);
+                const perfil = await navbarEstudiante(correo || correo_estudiante || estudiante_correo);
                 console.log(perfil);
                 setPerfilEstudiante(perfil);
             } catch (error) {
@@ -277,49 +277,6 @@ const SlideBarPruebaAlumn = () => {
                                 </ul>
                             )}
                         </li>
-                      {/**   <li>
-                            <button
-                                onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-                                className="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                            >
-                                <span className="flex items-center">
-                                    <svg
-                                        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M19 1H5c-1.657 0-3 1.343-3 3v16c0 1.657 1.343 3 3 3h14c1.657 0 3-1.343 3-3V4c0-1.657-1.343-3-3-3zm-4.176 8.73h-1.603V15.5h1.816c.864 0 1.522-.206 1.973-.62.448-.413.673-.98.673-1.696 0-.719-.222-1.29-.666-1.717-.447-.423-1.104-.637-1.978-.637zm-1.603-1.467h2.229c1.063 0 1.838-.262 2.325-.783.491-.523.737-1.181.737-1.972 0-.776-.246-1.426-.737-1.948-.488-.523-1.262-.784-2.325-.784h-2.229v5.487zm-3.927 0V15.5h1.555V8.732h-1.555zm1.555-1.468h-1.555V5.23h1.555v2.034zm-3.556 8.235V8.732H7.42v5.996H5.176z" />
-                                    </svg>
-                                    <span className="ms-3">Calendar</span>
-                                </span>
-                                <svg
-                                    className={`w-4 h-4 transition-transform ${isCalendarOpen ? 'rotate-180' : ''}`}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            {isCalendarOpen && (
-                                <ul className="pl-4 mt-2 space-y-2">
-                                    <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                            Submenu 1
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="block p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                            Submenu 2
-                                        </a>
-                                    </li>
-                                </ul>
-                            )}
-                        </li>
-                        */}
                     </ul>
                 </div>
             </aside>
