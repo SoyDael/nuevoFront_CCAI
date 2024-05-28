@@ -226,3 +226,9 @@ export const obtenerDocumentacionProgramaPorID = async (id_proyecto) => {
     console.log(response.data);
     return response.data;
 }
+
+export const registroDocumentacion = async (documentacion) => {
+    const response = await API.post('registroDocumentacionPrograma', documentacion);
+    console.log(response.data);
+    return response.data;
+}
