@@ -33,9 +33,9 @@ const AlumnoInterno = () => {
     <>
       <NavbarSimple />
       <br /><br /><br /><br /><br />
-      <form class="max-w-xl mx-auto" onSubmit={handleSubmit}>
-        <div class="grid md:grid-cols-2 md:gap-6">
-          <div class="relative z-0 w-full mb-5 group">
+      <form class="max-w-xl mx-auto bg-slate-400" onSubmit={handleSubmit}>
+        <div class="grid md:grid-cols-2 md:gap-6 ">
+          <div class="relative z-0 w-full mb-5 group bg-slate-400">
             <input
               type="text"
               name="matricula"

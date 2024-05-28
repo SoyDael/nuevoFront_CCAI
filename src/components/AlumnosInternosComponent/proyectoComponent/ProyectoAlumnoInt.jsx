@@ -76,7 +76,7 @@ const ProyectoAlumnoInt = () => {
                                         <p class="block antialiased font-sans text-sm text-white font-normal leading-none opacity-70">Detalles</p>
                                     </th>
                                 </tr>
-                            </thead>
+                            </thead> 
                             <tbody>
                                 {Proyecto.map((proyecto) => (
                                     <tr key={proyecto.correo_estudiante}>
