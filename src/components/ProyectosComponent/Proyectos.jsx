@@ -134,7 +134,7 @@ const Proyectos = () => {
                   </td>
                   <td
                     scope="row"
-                    className="px-10 py-4 font-medium  text-blue-500"
+                    className="px-10 py-4 font-medium text-indigo-700 hover:text-indigo-900"
                   >
                     <button
                       onClick={() =>

@@ -85,7 +85,7 @@ const RegistroProyecto = () => {
               <input type="date" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de inicio" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
               <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
 
-              <button t id="showPw" class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
+              <button t id="showPw" class="rounded-full bg-indigo-700 p-2 px-4 text-white hover:bg-indigo-900"><span id="showHide">Añadir</span> Proyecto</button>
 
             </div>
           </form>

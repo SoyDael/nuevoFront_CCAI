@@ -9,7 +9,7 @@ const DetallesProyecto = () => {
 
     const navigate = useNavigate();
     const { id_proyecto } = useParams();
-    const { correo, proyecto_id } = useParams();
+    const { correo, proyecto_id, coordinador_correo, correo_investigador } = useParams();
 
     const [Proyecto, setProyecto] = useState([]); // Estado para almacenar el perfil del investigador
 
@@ -19,6 +19,10 @@ const DetallesProyecto = () => {
 
     const redireccionarIntegrantes = () => {
         navigate(`/integrantes/${id_proyecto}/${correo}`);
+    }
+
+    const redireccionarProyectos = () => {
+        navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
 
     useEffect(() => {
@@ -46,7 +50,7 @@ const DetallesProyecto = () => {
     return (
         <>
             <SlideBarInvestigadores />
-            <div className="flex justify-center items-center h-screen bg-slate-400">
+            <div className="flex justify-center items-center h-screen bg-slate-700">
                 {showModal && (
                     <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
                         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
@@ -56,7 +60,7 @@ const DetallesProyecto = () => {
                         </div>
                     </div>
                 )}
-                <div className="max-w-lg border border-slate-900 rounded-lg bg-slate-700 dark:border-slate-700 flex justify-center items-center">
+                <div className="max-w-lg border border-slate-900 rounded-lg bg-slate-900 dark:border-slate-700 flex justify-center items-center">
                     <div className="p-5 text-center">
                         <h1 className="mb-2 text-2xl font-bold tracking-tight text-slate-300">Detalles del Proyecto</h1>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-slate-300">Titulo: {Proyecto[0]?.titulo_esp}</h5>
@@ -80,18 +84,13 @@ const DetallesProyecto = () => {
                             <button
                                 class="flex-1 rounded-full bg-indigo-700 text-white dark:text-white antialiased font-bold hover:bg-indigo-800 dark:hover:bg-indigo-900 px-4 py-2"
                             >
-                                Agregar Integrante
-                            </button>
-                            <button
-                                class="flex-1 rounded-full bg-indigo-700 text-white dark:text-white antialiased font-bold hover:bg-indigo-800 dark:hover:bg-indigo-900 px-4 py-2"
-                            >
                                 Editar
                             </button>
                             <button
                                 class="flex-1 rounded-full bg-indigo-700 text-white dark:text-white antialiased font-bold hover:bg-indigo-800 dark:hover:bg-indigo-900 px-4 py-2"
-                            onClick={redireccionarPerfil}
+                            onClick={redireccionarProyectos}
                             >
-                                Regresar Perfil
+                                Regresar
                             </button>
                         </div>
                     </div>

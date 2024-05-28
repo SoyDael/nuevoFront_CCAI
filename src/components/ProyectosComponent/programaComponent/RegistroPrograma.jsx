@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { registroPrograma } from '../../../api/APIS';
+import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores';
 
 const RegistroPrograma = () => {
 
@@ -35,6 +36,7 @@ const RegistroPrograma = () => {
 
     return (
         <>
+        <SlideBarInvestigadores/>
             <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
                 <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
@@ -104,7 +106,11 @@ const RegistroPrograma = () => {
                         </div>
 
                         <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
-                            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white  rounded-md py-2 px-4">Registrar programa</button>
+                            <button type="submit" className="bg-indigo-700 hover:bg-indigo-900 text-white  rounded-md py-2 px-4">Registrar programa</button>
+                        </div>
+
+                        <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
+                            <button onClick={redireccionarIntegrantes} className="bg-indigo-700 hover:bg-indigo-900 text-white  rounded-md py-2 px-4">Regresar</button>
                         </div>
                     </form>
 

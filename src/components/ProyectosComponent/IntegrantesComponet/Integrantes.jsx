@@ -34,13 +34,13 @@ const Integrantes = () => {
 
     return (
         <>
-            <div className="flex justify-center items-center h-screen">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-                    <h1 className="font-serif text-lg text-gray-2500 text-center p-6">Bienvenido { } { } { } los integrantes del proyecto son: </h1>
+            <div className="flex justify-center items-center h-screen bg-slate-700 ">
+                <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50 ">
+                    <h1 className="font-serif text-lg text-gray-200 text-center p-6">Bienvenido { } { } { } los integrantes del proyecto son: </h1>
                     <section>
                         <div>
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase dark:bg-indigo-50 bg-opacity-20 dark:text-gray-400">
+                                <thead className="text-xs text-gray-400 uppercase dark:bg-indigo-50 bg-opacity-20 dark:text-gray-400">
                                     <tr className=''>
                                         <th scope='col' className="px-6 py-3">Nombres</th>
                                         <th scope='col' className="px-6 py-3">Apellido Paterno</th>
@@ -52,11 +52,11 @@ const Integrantes = () => {
                                 <tbody>
                                     {Participante.map((participante) => (
                                         <tr key={participante.id_estudiante} className=" dark:bg-indigo-50 border-b dark:border-gray-700">
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase ">{participante.nombres}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_p}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_m}</td>
-                                            <td scope='row' className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text text-transform: uppercase">{participante.tipo}</td>
-                                            <td scope='row' className="px-10 py-4 font-medium text-blue-600 dark:text-blue-500">
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase ">{participante.nombres}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_p}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_m}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">{participante.tipo}</td>
+                                            <td scope='row' className="px-10 py-4 font-medium text-indigo-700 dark:text-blue-500">
                                                 <button onClick={() => redireccionarAsignarActividad(participante.id_estudiante, participante.correo_estudiante)}>Asignar Actividad</button>
                                             </td>
                                         </tr>
@@ -67,7 +67,7 @@ const Integrantes = () => {
                     </section>
                     <div className="flex justify-center mt-4">
                         <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            className="bg-indigo-700 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded"
                             onClick={redireccionarDetallesProyecto}
                         >
                             Regresar

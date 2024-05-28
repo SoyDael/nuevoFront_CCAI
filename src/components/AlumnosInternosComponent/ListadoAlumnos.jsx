@@ -111,7 +111,7 @@ const ListadoAlumnos = () => {
                                 <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.division}</td>
                                 <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.telefono}</td>
 
-                                <td scope='row' className="px-10 py-4 font-medium  text-blue-500">
+                                <td scope='row' className="px-10 py-4 font-medium  text-indigo-700 hover:text-indigo-900">
                                     <button
                                         onClick={() => redireccionarAsignarPrograma(alumno.id_estudiante, alumno.correo)}
                                     >Registrar programa</button>

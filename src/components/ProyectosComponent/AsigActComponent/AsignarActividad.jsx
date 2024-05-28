@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { asignarActividad } from '../../../api/APIS';
+import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores';
 
 
 const AsignarActividad = () => {
@@ -31,49 +32,60 @@ const AsignarActividad = () => {
 
     return (
         <>
-        <div className='bg-gray-100 flex justify-center items-center h-screen'>
-            <div className='lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2'>
-                <h1 className='text-2xl font-semibold mb-4'>Asignar actividad </h1>
-                <form action="" onSubmit={handleSubmit}>
-                    <div className='flex mb-4'>
-                        <label htmlFor="actividad" className='block text-gray-600 mr-2'>Nombre de la Actividad: </label>
-                        <input type="text" name="actividad" id="actividad" required
-                            className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className='flex mb-4'>
-                        <label htmlFor="fecha_inicio" className='block text-gray-600 mr-2'>Fecha de inicio: </label>
-                        <input type="datetime-local" name="fecha_inicio" id="fecha_inicio" required
-                            className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className='flex mb-4'>
-                        <label htmlFor="fecha_fin" className='block text-gray-600 mr-2'>Fecha de termino: </label>
-                        <input type="date" name="fecha_fin" id="fecha_fin" required
-                            className='border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className="flex gap-4">
-                        <button type="submit"
-                            className='flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4'>
-                            Asignar Actividad
+        <SlideBarInvestigadores/>
+            <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+                <div className='rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50'>
+                    <h1 className='text-2xl font-semibold mb-4 text-white'>Asignar actividad </h1>
+                    <form action="" onSubmit={handleSubmit}>
+                        <div className='flex mb-4'>
+                            <input
+                                type="text"
+                                id="actividad"
+                                name="actividad"
+                                placeholder="Nombre de la Actividad"
+                                class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
+                            />
+                        </div>
+                        <div date-rangepicker class="w-96 appearance-none p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                            <span class="mx-4 text-gray-500">Fecha de Inicio: </span>
+                            <div class="relative">
+                                <input
+                                    name="fecha_inicio"
+                                    id='fecha_inicio'
+                                    type="date"
+                                    class="border  text-sm rounded-lg  block w-full ps-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Select date start"></input>
+                            </div>
+
+                        </div>
+                        <div date-rangepicker class="w-96 appearance-none p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                            <span class="mx-4 text-gray-500">Fecha de Finalizacion: </span>
+                            <div class="relative">
+                                <input name="fecha_fin"
+                                    id='fecha_fin'
+                                    type="date"
+                                    class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Select date end"></input>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <button type="submit"
+                                className='flex-1 bg-indigo-700 hover:bg-indigo-900 text-white font-semibold rounded-md py-2 px-4'>
+                                Asignar Actividad
+                            </button>
+                        </div>
+                    </form>
+                    <div className="flex justify-center mt-4">
+                        <button
+                            className="bg-indigo-700 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded"
+                            onClick={redireccionarIntegrantes}
+                        >
+                            Regresar
                         </button>
                     </div>
-                </form>
-                <div className="flex justify-center mt-4">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={redireccionarIntegrantes}
-                    >
-                        Regresar
-                    </button>
                 </div>
             </div>
-        </div>
-    </>
+        </>
 
 
     )
