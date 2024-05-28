@@ -44,6 +44,10 @@ const SlideBarInvestigadores = () => {
         navigate(`/listadoAlumnos/${correo || coordinador_correo || correo_investigador}`);
     }
 
+    const redireccionarPogramas = () => {
+        navigate(`/programas/${correo || coordinador_correo || correo_investigador}`);
+    }
+
     const redireccionarProyectos = () => {
         navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
@@ -423,7 +427,8 @@ const SlideBarInvestigadores = () => {
                             {isProgramaOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                        onClick={redireccionarPogramas}>
                                             Ver programas
                                         </button>
                                     </li>

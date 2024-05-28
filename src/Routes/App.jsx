@@ -25,6 +25,7 @@ import DocumentacionProyecto from '../components/AlumnosInternosComponent/proyec
 import Recuperarcomponent from '../components/loginComponent/Recuperar.component.jsx';
 import RegistroProyecto from '../components/ProyectosComponent/RegistroProyecto.jsx';
 import ProyectosGenerales from '../components/ProyectosComponent/ProyectosGenerales.jsx';
+import Programas from '../components/ProyectosComponent/programaComponent/Programas.jsx';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path='/asignarActividad/:id_proyecto/:correo/:id_estudiante/:correo_estudiante' element={<AsignarActividad />} /> /// Ruta Asignar Actividad
         <Route path='/alumnoInterno' element={<AlumnoInterno />} /> /// Ruta Alumno Interno
         <Route path='/listadoAlumnos/:correo' element={<ListadoAlumnos />} /> /// Ruta Listado Alumnos
+        <Route path='/programas/:correo' element={<Programas />} />
         <Route path='/asignarProyecto/:coordinador_correo/:id_estudiante/:correo_estudiante' element={<AsigProyecto />} /> /// Ruta Asignar Proyecto
         <Route path='/registroPrograma/:correo/:id_estudiante/:estudiante_correo' element={<RegistroPrograma />} /> /// Ruta Registro Programa
 

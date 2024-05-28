@@ -54,6 +54,11 @@ export const getPerfilEstudiante = async (correo) => {
     return response.data;
 }
 
+export const getProgramas = async (correo) => {
+    const response = await API.get(`/consultaProgramas`);
+    return response.data;
+}
+
 export const actualizarPerfil = async (correo, datos) => {
     try {
         // Realiza la solicitud PATCH con los datos actualizados

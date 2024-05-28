@@ -7,20 +7,15 @@ const ListadoAlumnos = () => {
 
 
 
-    const { id_estudiante, correo_estudiante } = useParams(); 
     const { correo, id_proyecto } = useParams(); // Buscar El correo del investigador y el id del proyecto
     const [alumnos, setAlumnos] = useState([]); // Estado para almacenar el perfil del investigador
     const [programa, setPrograma] = useState([]); // Estado para almacenar los programas del alumno
 
     const navigate = useNavigate();
 
-    const redireccionarPerfilInvestigador = () => {
-        navigate(`/perfilInvestigador/${correo}`);
-    }
+    
 
-    const redireccionarAsignarProyecto = (id_estudiante, correo_estudiante) => {
-        navigate(`/asignarProyecto/${correo}/${id_estudiante}/${correo_estudiante}`);
-    }
+    
 
     const redireccionarAsignarPrograma = (id_estudiante, estudiante_correo) => {
         navigate(`/registroPrograma/${correo}/${id_estudiante}/${estudiante_correo}`);
