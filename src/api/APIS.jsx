@@ -232,3 +232,9 @@ export const registroDocumentacion = async (documentacion) => {
     console.log(response.data);
     return response.data;
 }
+
+export const obtenerDocumentacionProgramaPorCorreo = async (correo_estudiante) => {
+    const response = await API.get(`obtenerDocumentacionPorCorreoEstudiante/${correo_estudiante}`);
+    console.log(response.data);
+    return response.data;
+}

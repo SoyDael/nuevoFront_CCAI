@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SlideBarPruebaAlumn from '../../../SlideBar/SlideBarPruebaAlumn'
-import { getProyecto, obtenerDocumentacionProgramaPorID, registroDocumentacion, navbarEstudiante } from '../../../../api/APIS'
+import { getProyecto, registroDocumentacion, navbarEstudiante, obtenerDocumentacionProgramaPorCorreo } from '../../../../api/APIS'
 import { useParams, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
@@ -11,12 +11,13 @@ const DetallesProyectoAlumno = () => {
     const [documentacion, setDocumentacion] = useState([]);
     const [proyectos, setProyectos] = useState([])
     const [navbar, setNavbar] = useState([])
+    
 
 
     const navigate = useNavigate();
 
     const redireccionarDocumentacionproyecto = () => {
-        navigate(`/documentacionProyecto/${id_proyecto}`);
+        navigate(`/documentacionProyecto/${correo_estudiante}/${id_proyecto}`);
     }
 
     useEffect(() => {
@@ -33,18 +34,18 @@ const DetallesProyectoAlumno = () => {
     ObtenerAlumno(); 
 }, []);
 
-    const obtenerDocumentacionProyecto = async (id_proyecto) => {
+    const obtenerDocumentacionProyecto = async (id_proyecto, correo_estudiante) => {
         try {
-            const res = await getProyecto({ id_proyecto: id_proyecto })
+            const res = await getProyecto({correo_estudiante: correo_estudiante, id_proyecto: id_proyecto})
             const token = res.token;
             console.log(token);
             localStorage.setItem('token', token);
 
-            const proyecto = await obtenerDocumentacionProgramaPorID(id_proyecto)
+            const proyecto = await obtenerDocumentacionProgramaPorCorreo(correo_estudiante, id_proyecto)
             console.log(proyecto)
             setProyecto(proyecto);
 
-            redireccionarDocumentacionproyecto(id_proyecto)
+            redireccionarDocumentacionproyecto(correo_estudiante, id_proyecto)
         } catch (error) {
             console.error('Error al obtener proyecto:', error);
             Swal.fire({
@@ -83,25 +84,20 @@ const DetallesProyectoAlumno = () => {
         setShowModal2(!showModal2);
     };
 
+    
     const handleDocumentacion = async (formulario) => {
         const formData = new FormData(formulario);
-        const documentacion = Object.fromEntries(formData)
-            ;
+        const documentacion = Object.fromEntries(formData);
+        console.log('Documentación del proyecto:', documentacion);
+
         try {
-            await registroDocumentacion(formulario);
-            Swal.fire({
-                icon: "success",
-                title: "¡Éxito!",
-                text: "Documentación registrada exitosamente."
-            });
-            toggleModal2();
+            const resp = await registroDocumentacion(documentacion);
+            console.log('Documentación registrada exitosamente:', resp);
+            alert('Documentación registrada exitosamente');
+            formulario.reset();
         } catch (error) {
             console.error('Error al registrar documentación:', error);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Error al registrar documentación. Por favor, inténtalo de nuevo."
-            });
+            alert('Error al registrar documentación. Por favor, inténtalo de nuevo.');
         }
     }
 
@@ -125,7 +121,7 @@ const DetallesProyectoAlumno = () => {
                             <section className="bg-slate-700 dark:bg-gray-900 w-full f-96">
                                 <div className="max-w-2xl px-4 py-8 mx-auto lg:py-16">
                                     <h2 className="mb-4 text-xl font-bold text-white text-center">Documentación</h2>
-                                    <form >
+                                    <form id='formulario' >
                                         <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                                             <div className="sm:col-span-2">
                                                 <div className="flex flex-col">
@@ -134,31 +130,56 @@ const DetallesProyectoAlumno = () => {
                                                         id="nombre"
                                                         name="nombre"
                                                         placeholder="Nombre"
-                                                        class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
+                                                        class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="sm:col-span-2">
+                                            <input
+                                                type="number"
+                                                id="id_estudiante"
+                                                name="id_estudiante"
+                                                placeholder=""
+                                                class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
+                                                value={navbar[0]?.id_estudiante}
+                                                readOnly
+                                            />
+                                        </div>
+
+                                            <div className="sm:col-span-2">
                                                 <input
                                                     type="email"
-                                                    id="correo"
-                                                    name="correo"
+                                                    id="correo_estudiante"
+                                                    name="correo_estudiante"
                                                     placeholder=""
                                                     class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
                                                     value={navbar[0]?.correo_estudiante}
                                                     readOnly
                                                 />
                                             </div>
+
+                                            <div className="sm:col-span-2">
+                                            <input
+                                                type="text"
+                                                id="id_programa"
+                                                name="id_programa"
+                                                placeholder=""
+                                                class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
+                                                value={navbar[0]?.id_programa}
+                                                readOnly
+                                            />
+                                        </div>
                                             
                                             <div className="sm:col-span-2">
                                                 <input
-                                                    type="email"
+                                                    type="number"
                                                     id="id_proyecto"
                                                     name="id_proyecto"
                                                     placeholder=""
                                                     class="w-96 rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
                                                     value={proyecto[0]?.id_proyecto}
+                                                    readOnly
                                                 />
                                             </div>
                                             <div className="sm:col-span-2">
@@ -167,7 +188,7 @@ const DetallesProyectoAlumno = () => {
                                                     id="descripcion"
                                                     name="descripcion"
                                                     placeholder="Tu descripcion va aqui"
-                                                    class="w-96 border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
+                                                    class="w-96 border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
                                                 />
                                             </div>
 
@@ -193,7 +214,7 @@ const DetallesProyectoAlumno = () => {
                                        
                                         </div>
                                         <div className="flex justify-center">
-                                            <button className="mb-4 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-900 rounded-lg py-2 px-3">Registrar Documentación</button>
+                                            <button onClick={() => handleDocumentacion(document.getElementById('formulario'))} className="mb-4 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-900 rounded-lg py-2 px-3">Registrar Documentación</button>
                                         </div>
                                         <div className="flex justify-center">
                                             <button onClick={toggleModal2} className="text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-900 rounded-lg py-2 px-3">Cerrar</button>

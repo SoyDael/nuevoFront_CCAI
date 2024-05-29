@@ -41,7 +41,7 @@ function App() {
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
         <Route path='/detallesProyectoAlumno/:correo_estudiante/:id_proyecto' element={<DetallesProyectoAlumno />} />
-        <Route path='/documentacionProyecto/:id_proyecto' element={<DocumentacionProyecto />} />
+        <Route path='/documentacionProyecto/:correo_estudiante/:id_proyecto' element={<DocumentacionProyecto />} />
         <Route path='/recuperarContraseña' element={<Recuperarcomponent />} />
 
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador

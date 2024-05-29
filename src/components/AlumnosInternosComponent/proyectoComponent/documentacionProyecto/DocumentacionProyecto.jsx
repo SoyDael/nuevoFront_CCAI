@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { obtenerDocumentacionPrograma, actualizarDocumentacion, obtenerDocumentacionProgramaPorID } from '../../../../api/APIS';
+import { actualizarDocumentacion, obtenerDocumentacionProgramaPorCorreo, registroDocumentacion } from '../../../../api/APIS';
 import { useParams } from 'react-router-dom';
 import SlideBarPruebaAlumn from '../../../SlideBar/SlideBarPruebaAlumn';
 
 const DocumentacionProyecto = () => {
 
-    const { id_documento, id_proyecto } = useParams();
+    const { id_documento, id_proyecto, correo_estudiante } = useParams();
 
     const [documentacion, setDocumentacion] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -70,7 +70,7 @@ const DocumentacionProyecto = () => {
     useEffect(() => {
         const fetchDocumentacion = async () => {
             try {
-                const documentacion = await obtenerDocumentacionProgramaPorID(id_proyecto);
+                const documentacion = await obtenerDocumentacionProgramaPorCorreo(correo_estudiante);
                 console.log(documentacion);
                 setDocumentacion(documentacion);
                 if (documentacion.length > 0 && documentacion[0].archivo) {
@@ -84,7 +84,7 @@ const DocumentacionProyecto = () => {
         };
 
         fetchDocumentacion();
-    }, [id_proyecto]);
+    }, [correo_estudiante]);
 
 
 
@@ -145,7 +145,7 @@ const DocumentacionProyecto = () => {
                                             type="text"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             value={documentacion[0]?.nombre}
-                                            placeholder="Type product name"
+                                            placeholder="Nombre del documento"
                                             required=""
                                             readOnly />
                                         <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-5 ml-2" type="button">Modificar</button>
@@ -157,7 +157,13 @@ const DocumentacionProyecto = () => {
 
                             <div className="sm:col-span-2">
                                 <label htmlFor="correo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
-                                <input type="email" name="correo" id="correo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={documentacion[0]?.correo_estudiante} placeholder="Type email address" required="" />
+                                <input type="email" 
+                                name="correo" 
+                                id="correo" 
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                                value={documentacion[0]?.correo_estudiante} 
+                                placeholder="Correo electronico" 
+                                required="" />
                             </div>
                             <div className="sm:col-span-2">
                                 <label htmlFor="descripcion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripcion</label>
