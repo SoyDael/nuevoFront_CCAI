@@ -91,18 +91,22 @@ export const PerfilInvestigador = async (correo) => {
 
 export const proyectosInvestigador = async (correo) => {
     const response = await API.get(`proyectosInvestigador/${correo}`);
-    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
-    response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
-    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
+    response.data.forEach(programa => {
+        programa.fecha_inicio = programa.fecha_inicio.split('T')[0];
+        programa.fecha_fin = programa.fecha_fin.split('T')[0];
+        programa.fecha_registro = programa.fecha_registro.split('T')[0];
+    })
     console.log(response.data)
     return response.data;
 }
 
 export const getProyecto = async (id_proyecto) => {
     const response = await API.get(`proyectoPorId/${id_proyecto}`);
-    response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
-    response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
-    response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
+    response.data.forEach(programa => {
+        programa.fecha_inicio = programa.fecha_inicio.split('T')[0];
+        programa.fecha_fin = programa.fecha_fin.split('T')[0];
+        programa.fecha_registro = programa.fecha_registro.split('T')[0];
+    })
     console.log(response.data);
     return response.data;
 }
@@ -178,6 +182,8 @@ export const consultaProgramasPorAlumno = async (estudiante_correo) => {
 
 export const obtenerDocumentacionPrograma = async () => {
     const response = await API.get(`obtenerDocumentacionPrograma`);
+    response.data[0].fecha_inicio = response.data[0].fecha.split('T')[0];
+
     console.log(response.data);
     return response.data;
 }
@@ -235,6 +241,7 @@ export const registroDocumentacion = async (documentacion) => {
 
 export const obtenerDocumentacionProgramaPorCorreo = async (correo_estudiante) => {
     const response = await API.get(`obtenerDocumentacionPorCorreoEstudiante/${correo_estudiante}`);
+    response.data[0].fecha = response.data[0].fecha.split('T')[0];
     console.log(response.data);
     return response.data;
 }
