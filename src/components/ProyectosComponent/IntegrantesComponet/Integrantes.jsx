@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { participanteProyecto } from '../../../api/APIS'
+import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores'
+
 
 const Integrantes = () => {
 
@@ -16,6 +18,10 @@ const Integrantes = () => {
 
     const redireccionarAsignarActividad = (id_estudiante, correo_estudiante) => {
         navigate(`/asignarActividad/${id_proyecto}/${correo}/${id_estudiante}/${correo_estudiante}`);
+    }
+
+    const redireccionarAlumnos = () => {
+        navigate(`/listadoAlumnos/${correo}`);
     }
 
     useEffect(() => {
@@ -34,6 +40,7 @@ const Integrantes = () => {
 
     return (
         <>
+            <SlideBarInvestigadores />
             <div className="flex justify-center items-center h-screen bg-slate-700 ">
                 <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50 ">
                     <h1 className="font-serif text-lg text-gray-200 text-center p-6">Bienvenido { } { } { } los integrantes del proyecto son: </h1>
@@ -47,6 +54,7 @@ const Integrantes = () => {
                                         <th scope='col' className="px-6 py-3">Apellido Paterno</th>
                                         <th scope='col' className="px-6 py-3">Tipo de Programa</th>
                                         <th scope='col' className="px-10 py-3">Detalles</th>
+                                        <th scope='col' className="px-10 py-3">Operacion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,8 +64,13 @@ const Integrantes = () => {
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_p}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">{participante.apellido_m}</td>
                                             <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">{participante.tipo}</td>
+                                            <td scope='row' className="px-6 py-4 font-medium text-gray-200 whitespace-nowrap dark:text text-transform: uppercase">
+                                                <button onClick={() => redireccionarAsignarActividad(participante.id_estudiante, participante.correo_estudiante)}
+                                                className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
+                                                >Asignar Actividad</button>
+                                            </td>
                                             <td scope='row' className="px-10 py-4 font-medium text-indigo-700 dark:text-blue-500">
-                                                <button onClick={() => redireccionarAsignarActividad(participante.id_estudiante, participante.correo_estudiante)}>Asignar Actividad</button>
+                                                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Dar baja</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -67,7 +80,13 @@ const Integrantes = () => {
                     </section>
                     <div className="flex justify-center mt-4">
                         <button
-                            className="bg-indigo-700 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded"
+                            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            onClick={redireccionarAlumnos}
+                        >
+                            Agregar Integrante
+                        </button>
+                        <button
+                            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                             onClick={redireccionarDetallesProyecto}
                         >
                             Regresar

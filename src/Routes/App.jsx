@@ -25,6 +25,7 @@ import DocumentacionProyecto from '../components/AlumnosInternosComponent/proyec
 import Recuperarcomponent from '../components/loginComponent/Recuperar.component.jsx';
 import RegistroProyecto from '../components/ProyectosComponent/RegistroProyecto.jsx';
 import ProyectosGenerales from '../components/ProyectosComponent/ProyectosGenerales.jsx';
+import VerPrograma from '../components/ProyectosComponent/programaComponent/Programa.jsx';
 
 function App() {
   return (
@@ -58,6 +59,8 @@ function App() {
 
         <Route path='/registroProyecto' element={<RegistroProyecto />} /> /// Ruta Registro Proyecto
         <Route path='/verProyectos' element={<ProyectosGenerales />} /> /// Ruta Proyectos Generales
+        <Route path='/verProgramas' element={<VerPrograma />} />
+
 
 
 

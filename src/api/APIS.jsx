@@ -245,3 +245,14 @@ export const obtenerDocumentacionProgramaPorCorreo = async (correo_estudiante) =
     console.log(response.data);
     return response.data;
 }
+
+export const consultaProgramas = async () => {
+    const response = await API.get('/consultaProgramas');
+       // Iteramos sobre todos los datos devueltos por la API
+       response.data.forEach(programa => {
+        programa.fecha_inicio = programa.fecha_inicio.split('T')[0];
+        programa.fecha_fin = programa.fecha_fin.split('T')[0];
+    });
+    console.log(response.data);
+    return response.data;
+}

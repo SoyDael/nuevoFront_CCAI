@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './SlideBar.css'
-import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto } from '../../api/APIS'
+import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto, consultaProgramas } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
+
 
 const SlideBarInvestigadores = () => {
 
@@ -26,6 +28,10 @@ const SlideBarInvestigadores = () => {
 
     const verPerfil = () => {
         navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador}`);
+    }
+
+    const redireccionarVerPrograma = () => {
+        navigate(`/verProgramas`);
     }
     {/**  const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
@@ -138,19 +144,56 @@ const SlideBarInvestigadores = () => {
         setShowModal3(!showModal3);
     };
 
+    const [showModal4, setShowModal4] = useState(false);
+
+    const toggleModal4 = () => {
+        setShowModal4(!showModal4);
+    };
+
+
     const handleProyecto = async (formulario) => {
         const formData = new FormData(formulario);
         const data = Object.fromEntries(formData);
         console.log("Datos del proyecto ", data);
         try {
-          const response = await registroProyecto(data, {titulo_esp: titulo});
-          console.log(response);
-          alert('Proyecto registrado con éxito');
+            const response = await registroProyecto(data, { titulo_esp: titulo });
+            console.log(response);
+            alert('Proyecto registrado con éxito');
         } catch (error) {
-          console.error('Error al registrar proyecto:', error);
-          alert('Error al registrar proyecto. Por favor, inténtalo de nuevo.');
+            console.error('Error al registrar proyecto:', error);
+            alert('Error al registrar proyecto. Por favor, inténtalo de nuevo.');
         }
-      }
+    }
+
+    {/** ver programas */ }
+
+    const [alumnos, setAlumnos] = useState([]);
+    const [programa, setPrograma] = useState([]);
+
+    useEffect(() => {
+        const obtenerPrograma = async () => {
+            try {
+                const response = await consultaProgramas();
+                console.log("datos", response);
+                setPrograma(response);
+            } catch (error) {
+                console.log("error al obtener datos", error);
+            }
+        };
+
+        obtenerPrograma();
+    }, []);
+
+    const [currentPage, setCurrentPage] = useState(0);
+
+
+    const handlePageChange = ({ selected }) => {
+        setCurrentPage(selected);
+    };
+
+    const alumnosPerPage = 6;
+    const offset = currentPage * alumnosPerPage;
+    const pageCount = Math.ceil(programa.length / alumnosPerPage);
 
 
     return (
@@ -188,7 +231,7 @@ const SlideBarInvestigadores = () => {
                                 className="flex ms-2 md:me-24"
                             >
                                 <img src="../src/assets/logocai.jpg" className="h-8 me-3" alt="CCAI Logo" />
-                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">CCAI</span>
+                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">CCAI</span>
                             </button>
                         </div>
                         <div className="flex items-center">
@@ -217,10 +260,10 @@ const SlideBarInvestigadores = () => {
                                     >
                                         <div className="px-4 py-3">
                                             {perfilInvestigador.length > 0 && (
-                                                <span className="block text-sm text-gray-900 dark:text-gray-500">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
+                                                <span className="block text-sm text-gray-200 dark:text-gray-800">{perfilInvestigador[0]?.nombres} {perfilInvestigador[0]?.apellido_p} {perfilInvestigador[0]?.apellido_m}</span>
                                             )}
                                             {perfilInvestigador.length > 0 && (
-                                                <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
+                                                <span className="block text-sm text-gray-200 truncate dark:text-gray-400">{perfilInvestigador[0]?.tipo}</span>
                                             )}
                                         </div>
                                         <ul className="py-1 text-sm text-slate-300 dark:text-gray-300" aria-labelledby="user-menu-button">
@@ -423,7 +466,9 @@ const SlideBarInvestigadores = () => {
                             {isProgramaOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
-                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                            onClick={toggleModal4}
+                                        >
                                             Ver programas
                                         </button>
                                     </li>
@@ -714,9 +759,9 @@ const SlideBarInvestigadores = () => {
                                         <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
 
                                         <button type='submit'
-                                        id="showPw" 
-                                        onClick={() => handleProyecto(document.getElementById('formulario'))}
-                                        class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
+                                            id="showPw"
+                                            onClick={() => handleProyecto(document.getElementById('formulario'))}
+                                            class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
 
                                     </div>
                                 </form>
@@ -730,6 +775,154 @@ const SlideBarInvestigadores = () => {
             )}
 
             {/** Aqui termina Registro Proyecto */}
+
+
+            {/** Aqui inicia ver programa */}
+            {showModal4 && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <div className='bg-slate-700 flex items-center justify-center  from-gray-700 via-gray-800 to-gray-900'>
+                            <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                <div className="px-4 py-2 flex justify-between items-center">
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar por correo..."
+                                        className="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        onChange={(e) => {
+                                            const searchTerm = e.target.value.toLowerCase();
+                                            const filteredProgramas = programa.filter((programa) => programa.estudiante_correo.toLowerCase().includes(searchTerm));
+                                            setPrograma(filteredProgramas);
+                                        }}
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            setPrograma(programa);
+                                            document.querySelector('input[type="text"]').value = '';
+                                        }}
+                                        className="ml-2 bg-gray-800 text-white px-3 py-2 rounded-md focus:outline-none hover:bg-gray-700"
+                                    >
+                                        Limpiar
+                                    </button>
+                                </div>
+                                <table className=" text-sm text-left rtl:text-right  text-gray-400 ">
+                                    <caption className="px-6 py-4 text-lg font-semibold   text-white bg-gray-800 min-w-8 ">
+                                        Ver programas
+                                        <p className="mt-1 text-sm font-normal  text-gray-400">
+                                            Bienvenido, { } { } los programas registrados son:
+                                        </p>
+                                    </caption>
+                                    <thead className="text-xs  uppercase  bg-gray-700 text-gray-400 ">
+                                        <tr>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Nombres
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Apellidos
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Correo
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Tipo
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Estatus
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Semestre
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Fecha de inicio
+                                            </th>
+                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
+                                                Fecha de fin
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {programa.slice(offset, offset + alumnosPerPage).map((programa) => (
+
+                                            <tr className=" border-b bg-gray-800 border-gray-700">
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.nombres}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.apellido_p} {programa.apellido_m}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.estudiante_correo}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium whitespace-nowrap text-white"
+                                                >
+                                                    {programa.tipo}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.estatus}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.semestre}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.fecha_inicio}
+                                                </td>
+                                                <td
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
+                                                >
+                                                    {programa.fecha_fin}
+                                                </td>
+
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <div className='flex justify-center mt-4'>
+                                    <ReactPaginate
+                                        previousLabel={<i className="fas fa-chevron-left"></i>} // Icono de flecha izquierda
+                                        nextLabel={<i className="fas fa-chevron-right"></i>} // Icono de flecha derecha
+                                        breakLabel={'...'}
+                                        pageCount={pageCount}
+                                        marginPagesDisplayed={1}
+                                        pageRangeDisplayed={2}
+                                        onPageChange={handlePageChange}
+                                        containerClassName={'pagination flex'} // Agregado flex para alineación horizontal
+                                        activeClassName={'active'}
+                                        disabledClassName={'bg-gray-500 text-gray-300 cursor-not-allowed'} // Clase para los botones deshabilitados
+                                        pageClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'} // Clase para los números de página
+                                        pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'} // Clase para los enlaces de número de página
+                                    />
+                                    <div className="flex justify-center">
+                                        <button onClick={toggleModal4} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/** Aqui finaliza consulta programa */}
         </>
     )
 }

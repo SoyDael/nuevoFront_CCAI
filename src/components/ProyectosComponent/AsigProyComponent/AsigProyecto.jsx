@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { asignarProyecto, proyectos, consultaProgramasPorAlumno } from '../../../api/APIS';
 import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores';
+import Swal from 'sweetalert2';
 
 const AsigProyecto = () => {
 
@@ -70,10 +71,22 @@ const AsigProyecto = () => {
 
             await asignarProyecto(proyectoSeleccionado.id_proyecto, id_estudiante, correo_estudiante, idPrograma);
             alert('Proyecto asignado correctamente');
-            navigate(`/integrantes/${id_proyecto}/${correo}`);
+            navigate(`/integrantes/${id_proyecto}/${correo || coordinador_correo || correo_investigador}`);
         } catch (error) {
             console.error('Error al asignar proyecto:', error);
-            alert('Error al asignar proyecto. Por favor, inténtelo de nuevo más tarde.');
+            if (error.response && error.response.data && error.response.data.error === 'El alumno ya está registrado en un proyecto.') {
+                // Si el alumno ya está registrado en un programa, muestra ese mensaje específico
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'El alumno ya está registrado en un proyecto.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                });
+            } else {
+                // Si no hay un mensaje de error específico, muestra un mensaje genérico
+                console.error('Error al asignar programa:', error);
+                alert('Ocurrió un error al asignar el programa. Por favor, inténtalo de nuevo.');
+            }
         }
     }
 

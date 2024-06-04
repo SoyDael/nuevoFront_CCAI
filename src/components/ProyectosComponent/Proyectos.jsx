@@ -2,12 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { proyectosInvestigador, getProyecto } from "../../api/APIS";
 import SlideBarInvestigadores from "../SlideBar/SlideBarInvestigadores";
+import ReactPaginate from 'react-paginate';
+
 
 const Proyectos = () => {
   const { correo, id_proyecto } = useParams(); // Buscar El correo del investigador y el id del proyecto
   const [Proyecto, setProyecto] = useState([]); // Estado para almacenar el perfil del investigador
+  const [currentPage, setCurrentPage] = useState(0);
 
   const navigate = useNavigate();
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const alumnosPerPage = 6;
+  const offset = currentPage * alumnosPerPage;
+  const pageCount = Math.ceil(Proyecto.length / alumnosPerPage);
 
   const redireccionarPerfil = () => {
     navigate(`/perfilInvestigador/${correo}`);
@@ -91,7 +102,7 @@ const Proyectos = () => {
                 >
                   Fecha de Inicio
                 </th>
-                
+
                 <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 uppercase px-12">
                   <p class="block antialiased font-sans text-sm text-white font-normal leading-none opacity-70">
                     Detalles
@@ -106,7 +117,8 @@ const Proyectos = () => {
               </tr>
             </thead>
             <tbody>
-              {Proyecto.map((proyecto) => (
+              {Proyecto.slice(offset, offset + alumnosPerPage).map((proyecto) => (
+
                 <tr className=" border-b bg-gray-800 border-gray-700">
                   <td
                     scope="row"
@@ -134,12 +146,13 @@ const Proyectos = () => {
                   </td>
                   <td
                     scope="row"
-                    className="px-10 py-4 font-medium text-indigo-700 hover:text-indigo-900"
+                    className="px-9 py-4 font-medium  whitespace-nowrap text-white"
                   >
                     <button
                       onClick={() =>
                         redireccionarDetallesProyecto(proyecto.id_proyecto)
                       }
+                      className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     >
                       Ver Detalles
                     </button>
@@ -148,6 +161,22 @@ const Proyectos = () => {
               ))}
             </tbody>
           </table>
+          <div className='flex justify-center mt-4'>
+            <ReactPaginate
+              previousLabel={<i className="fas fa-chevron-left"></i>} // Icono de flecha izquierda
+              nextLabel={<i className="fas fa-chevron-right"></i>} // Icono de flecha derecha
+              breakLabel={'...'}
+              pageCount={pageCount}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={2}
+              onPageChange={handlePageChange}
+              containerClassName={'pagination flex'} // Agregado flex para alineación horizontal
+              activeClassName={'active'}
+              disabledClassName={'bg-gray-500 text-gray-300 cursor-not-allowed'} // Clase para los botones deshabilitados
+              pageClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'} // Clase para los números de página
+              pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'} // Clase para los enlaces de número de página
+            />
+          </div>
         </div>
       </div>
     </>
