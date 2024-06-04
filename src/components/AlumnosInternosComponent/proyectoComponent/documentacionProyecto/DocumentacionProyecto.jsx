@@ -50,6 +50,19 @@ const DocumentacionProyecto = () => {
         return new Blob([bytes], { type: 'application/pdf' });
     }
 
+    const descargarArchivo = (base64, fileName) => {
+        const blob = decodeBase64(base64);
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName.endsWith('.docx, .doc') ? fileName : `${fileName}.docx, .doc`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }
+
+
     const actualizarDocumentacionLocal = (field, value, fecha) => {
         const documento = documentacion[0]?.id_documento;
         console.log('documento Org->', documentacion);
@@ -317,7 +330,7 @@ const DocumentacionProyecto = () => {
                                         <label className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600 ml-4 ">
                                             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 100-4 2 2 0 000 4zM3 21a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-4l-3-3-3 3H5a2 2 0 00-2 2v12zm5-10a3 3 0 110 6 3 3 0 010-6z"></path></svg>
                                             <span>Descargar</span>
-                                            <input name="image" className="sr-only" />
+                                            <input onClick={() => descargarArchivo(documentacion[0]?.archivo, fileName)} name="image" className="sr-only" />
                                         </label>
                                         {/**   <span className="text-gray-500 dark:text-gray-400">{fileName}</span> */}
                                     </div>
