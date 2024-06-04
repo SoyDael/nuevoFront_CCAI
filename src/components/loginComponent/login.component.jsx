@@ -119,7 +119,7 @@ const Login = () => {
                                 type='submit'
                                 className='dark:bg-slate-500 text-center hover:bg-gray-500 text-white font-semibold rounded-full py-2 px-4 w-middle'
                                 >
-                                Iniciar Sesión
+                                Iniciar Sesaaaión
                             </button>
                         </div>
                     </form>
