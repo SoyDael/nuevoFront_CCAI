@@ -147,14 +147,14 @@ const SlideBarInvestigadores = () => {
         const data = Object.fromEntries(formData);
         console.log("Datos del proyecto ", data);
         try {
-          const response = await registroProyecto(data, {titulo_esp: titulo});
-          console.log(response);
-          alert('Proyecto registrado con éxito');
+            const response = await registroProyecto(data, { titulo_esp: titulo });
+            console.log(response);
+            alert('Proyecto registrado con éxito');
         } catch (error) {
-          console.error('Error al registrar proyecto:', error);
-          alert('Error al registrar proyecto. Por favor, inténtalo de nuevo.');
+            console.error('Error al registrar proyecto:', error);
+            alert('Error al registrar proyecto. Por favor, inténtalo de nuevo.');
         }
-      }
+    }
 
 
     return (
@@ -428,7 +428,7 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={redireccionarPogramas}>
+                                            onClick={redireccionarPogramas}>
                                             Ver programas
                                         </button>
                                     </li>
@@ -689,6 +689,7 @@ const SlideBarInvestigadores = () => {
                                             class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
                                         />
                                         <textarea maxlength="1000" id="descripcion" name="descripcion" placeholder="Descripción" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        
                                         <textarea maxlength="1000" id="objetivo" name="objetivo" placeholder="Objetivo" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
 
                                         <select
@@ -719,9 +720,9 @@ const SlideBarInvestigadores = () => {
                                         <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
 
                                         <button type='submit'
-                                        id="showPw" 
-                                        onClick={() => handleProyecto(document.getElementById('formulario'))}
-                                        class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
+                                            id="showPw"
+                                            onClick={() => handleProyecto(document.getElementById('formulario'))}
+                                            className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Registrar</span> Proyecto</button>
 
                                     </div>
                                 </form>

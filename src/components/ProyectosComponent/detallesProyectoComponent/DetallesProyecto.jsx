@@ -125,16 +125,42 @@ const DetallesProyecto = () => {
                                 <h1 class="text-4xl font-semibold mb-4">Editar proyecto</h1>
                                 <form id='formulario' >
                                     <div class="flex flex-col  justify-center space-y-4">
-                                        <input
-                                            type="text"
-                                            id="titulo_esp"
-                                            name="titulo_esp"
-                                            placeholder="Titulo"
-                                            class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
-                                        />
-                                        <textarea maxlength="1000" id="objetivo" name="objetivo" placeholder="Objetivo" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
-                                        <textarea maxlength="1000" id="descripcion" name="descripcion" placeholder="Descripción" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <div className="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                id="titulo_esp"
+                                                name="titulo_esp"
+                                                placeholder="Titulo"
+                                                class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
 
+                                            />
+                                            <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                >
+                                                Modificar
+                                            </button>
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+                                            <textarea maxlength="1000" id="objetivo" name="objetivo" placeholder="Objetivo" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                            <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                >
+                                                Modificar
+                                            </button>
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+                                            <textarea maxlength="1000" id="descripcion" name="descripcion" placeholder="Descripción" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                            <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                >
+                                                Modificar
+                                            </button>
+
+                                        </div>
                                         {/* <select
                                             className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
                                             id='coordinador_correo'
@@ -147,6 +173,8 @@ const DetallesProyecto = () => {
                                                 </option>
                                             ))}
                                         </select> */}
+                                        <div className="relative z-0 w-full mb-5 group">
+
 
                                         <select
                                             className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
@@ -157,19 +185,52 @@ const DetallesProyecto = () => {
                                             <option value="En progreso">En progreso</option>
                                             <option value="Finalizado">Finalizado</option>
                                         </select>
+                                        <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                >
+                                                Modificar
+                                            </button>
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
                                         <p class="text-lg font-semibold mb-1">Fecha de registro</p>
                                         <input type="datetime-local" id="fecha_registro" name="fecha_registro" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                >
+                                                Modificar
+                                            </button>
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
                                         <p class="text-lg font-semibold mb-1">Fecha de inicio</p>
                                         <input type="date" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de inicio" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                >
+                                                Modificar
+                                            </button>
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
                                         <p class="text-lg font-semibold mb-1">Fecha de fin</p>
                                         <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <button
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                            >
+                                                Modificar
+                                            </button>
 
+                                        </div>
                                         <button type='submit'
                                             id="showPw"
                                             onClick={() => handleProyecto(document.getElementById('formulario'))}
-                                            class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
+                                            class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900"><span id="showHide">Editar</span> Proyecto</button>
                                         <div className="flex justify-center">
-                                            <button onClick={toggleModal3} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700">Cerrar</button>
+                                            <button onClick={toggleModal3} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Cerrar</button>
                                         </div>
                                     </div>
 
