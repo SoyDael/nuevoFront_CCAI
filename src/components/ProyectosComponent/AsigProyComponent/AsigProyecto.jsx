@@ -93,8 +93,8 @@ const AsigProyecto = () => {
     return (
         <>
         <SlideBarInvestigadores />
-            <div className='bg-slate-400 flex justify-center items-center h-screen'>
-                <div className=' p-8 bg-slate-700'>
+            <div className='bg-slate-700 flex justify-center items-center h-screen'>
+                <div className=' p-8 bg-slate-900'>
                     <h1 className='text-2x1 font-semibold mb-4 text-white text-center'>Asignacion de proyecto</h1>
                     <form action="" onSubmit={handleSubmit}>
                         <div className='mb-4'>
@@ -117,18 +117,16 @@ const AsigProyecto = () => {
                         </div>
 
                         <button type="submit"
-                            className='mb-6 w-96 appearance-none rounded-full border-0 bg-indigo-700 hover:bg-indigo-800 dark:hover:bg-indigo-900 p-2 px-4 focus:bg-slate-800 focus:ring-2  text-center text-white'>
+                            className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-96'>
                             Añadir usuario
                         </button>
                     </form>
                     <div class="flex justify-center items-center text-blue-500">
                         <button type="submit"
-                            className='mb-6 w-40 appearance-none rounded-full border-0 bg-indigo-700 hover:bg-indigo-800 p-2 px-4 focus:bg-slate-800 focus:ring-2 text-white items-center justify-center flex'
+                            className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 '
                             onClick={redireccionarListadoAlumnos}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                            </svg>
+                            Regresar
 
                         </button>
                     </div>

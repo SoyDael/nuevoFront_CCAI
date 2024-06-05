@@ -37,7 +37,6 @@ const ListadoAlumnos = () => {
 
             const programas = await consultaProgramasPorAlumno(estudiante_correo);
             setPrograma(programas);
-
             redireccionarAsignarPrograma();
         } catch (error) {
             console.log('Error al obtener programas:', error);
@@ -51,6 +50,7 @@ const ListadoAlumnos = () => {
                 const alumnos = await listadoAlumnos(correo); // Obtener los alumnos del investigador
                 console.log(alumnos);
                 setAlumnos(alumnos); // Almacena los alumnos del investigador en el estado
+                setFilteredAlumnos(alumnos); // Almacena los alumnos del investigador en el estado
             } catch (error) {
                 console.error('Error al obtener alumnos:', error);
                 alert('Error al obtener alumnos. Por favor, inténtalo de nuevo.');
@@ -63,11 +63,44 @@ const ListadoAlumnos = () => {
     const offset = currentPage * alumnosPerPage;
     const pageCount = Math.ceil(alumnos.length / alumnosPerPage);
 
+    const [filteredAlumnos, setFilteredAlumnos] = useState([]); // Copia de la lista original
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        const term = e.target.value.toLowerCase();
+        setSearchTerm(term);
+        const filtered = alumnos.filter((alum) =>
+            alum.matricula.toString().toLowerCase().includes(term)
+        );
+        setFilteredAlumnos(filtered);
+    };
+
+
+    const handleClearSearch = () => {
+        setSearchTerm('');
+        setFilteredAlumnos(alumnos); // Restaurar la lista original
+    };
+
     return (
         <>
             <SlideBarInvestigadores />
             <div className='relative flex justify-center w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900 p-20'>
                 <div className='rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50 '>
+                    <div className="px-4 py-2 flex justify-between items-center">
+                        <input
+                            type="text"
+                            placeholder="Buscar por matricula..."
+                            value={searchTerm}
+                            className="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onChange={handleSearch}
+                        />
+                        <button
+                            onClick={handleClearSearch}
+                            className="ml-4 bg-blue-500 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            Limpiar búsqueda
+                        </button>
+                    </div>
                     <table className='text-sm text-left rtl:text-right text-gray-400' style={{ overflowY: 'auto', maxHeight: '80vh' }}>
                         <caption className='px-6 py-4 text-lg font-semibold text-left rtl:text-right text-white bg-gray-800'>
                             Alumnos internos
@@ -95,7 +128,7 @@ const ListadoAlumnos = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {alumnos.slice(offset, offset + alumnosPerPage).map((alumno) => (
+                            {filteredAlumnos.slice(offset, offset + alumnosPerPage).map((alumno) => (
                                 <tr key={alumno.id} className=' border-b bg-gray-800 border-gray-700'>
                                     <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.matricula}</td>
                                     <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.nombres}</td>

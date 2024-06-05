@@ -56,7 +56,7 @@ const DetallesProyecto = () => {
                         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
                             <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Descripcion</h1>
                             <p className="mb-3 font-normal text-gray-700">{Proyecto[0]?.descripcion}</p>
-                            <button onClick={toggleModal} className="text-sm font-medium text-white bg-indigo-700 rounded-lg py-1 px-3">Cerrar</button>
+                            <button onClick={toggleModal} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2">Cerrar</button>
                         </div>
                     </div>
                 )}
@@ -67,7 +67,7 @@ const DetallesProyecto = () => {
                         <p className="mb-3 font-normal  text-gray-200">Objetivo: {Proyecto[0]?.objetivo}</p>
                         <p className="mb-3 font-normal  text-gray-200"> Descripcion: {Proyecto[0]?.descripcion.substring(0, 100)}...</p>
                         <div className="flex justify-center">
-                            <button onClick={toggleModal} className="text-sm font-medium text-white bg-indigo-700 rounded-lg py-1 px-5 hover:bg-indigo-800 dark:hover:bg-indigo-900 ">Leer más</button>
+                            <button onClick={toggleModal} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2">Leer más</button>
                         </div>
                         <p className="mb-3 font-normal  text-gray-200 mt-2">Fecha de Registro: {Proyecto[0]?.fecha_registro}</p>
                         <p className="mb-3 font-normal  text-gray-200">Fecha de Inicio: {Proyecto[0]?.fecha_inicio}</p>
@@ -76,18 +76,18 @@ const DetallesProyecto = () => {
 
                         <div class="flex gap-2 px-2">
                             <button
-                                class="flex-1 rounded-full bg-indigo-700 text-white dark:text-white antialiased font-bold hover:bg-indigo-800 dark:hover:bg-indigo-900 px-4 py-2"
+                                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 mb-2 ml-10"
                              onClick={redireccionarIntegrantes}
                             >
                                 Ver Integrantes
                             </button>
                             <button
-                                class="flex-1 rounded-full bg-indigo-700 text-white dark:text-white antialiased font-bold hover:bg-indigo-800 dark:hover:bg-indigo-900 px-4 py-2"
+                                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 mb-2 ml-2"
                             >
                                 Editar
                             </button>
                             <button
-                                class="flex-1 rounded-full bg-indigo-700 text-white dark:text-white antialiased font-bold hover:bg-indigo-800 dark:hover:bg-indigo-900 px-4 py-2"
+                                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 mb-2 ml-2"
                             onClick={redireccionarProyectos}
                             >
                                 Regresar

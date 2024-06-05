@@ -176,6 +176,7 @@ const SlideBarInvestigadores = () => {
                 const response = await consultaProgramas();
                 console.log("datos", response);
                 setPrograma(response);
+                setFilteredProgramas(response); // Inicializa la lista filtrada con todos los programas
             } catch (error) {
                 console.log("error al obtener datos", error);
             }
@@ -195,6 +196,23 @@ const SlideBarInvestigadores = () => {
     const offset = currentPage * alumnosPerPage;
     const pageCount = Math.ceil(programa.length / alumnosPerPage);
 
+    const [filteredProgramas, setFilteredProgramas] = useState([]); // Copia de la lista original
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        const term = e.target.value.toLowerCase();
+        setSearchTerm(term);
+        const filtered = programa.filter((prog) =>
+            prog.estudiante_correo.toLowerCase().includes(term)
+        );
+        setFilteredProgramas(filtered);
+    };
+
+
+    const handleClearSearch = () => {
+        setSearchTerm('');
+        setFilteredProgramas(programa); // Restaurar la lista original
+    };
 
     return (
         <>
@@ -482,22 +500,22 @@ const SlideBarInvestigadores = () => {
             {/** Aqui inicia Registro Usuario */}
             {showModal && (
                 <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
-                        <section className="bg-slate-200 dark:bg-gray-900">
-                            <div className="max-w-2xl px-4 py-1 mx-auto lg:py-16 ">
-                                <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Registro Usuario</h2>
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className="w-96 rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
+                                <h2 className="mb-4 text-xl font-bold text-gray-900 text-white">Registro Usuario</h2>
                                 <form id='formulario'>
                                     <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                                         <div className="sm:col-span-2">
                                             <div className="flex flex-col">
                                                 <label htmlFor="correo"
-                                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo: </label>
+                                                    className="block mb-2 text-sm font-medium text-gray-900 text-white">Correo: </label>
                                                 <div className="flex items-center">
                                                     <input
                                                         type="email"
                                                         name="correo"
                                                         id="correo"
-                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        className="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                         placeholder="Correo"
                                                         required=""
                                                     />
@@ -507,18 +525,18 @@ const SlideBarInvestigadores = () => {
 
 
                                         <div className="sm:col-span-2">
-                                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password: </label>
+                                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 text-white">Password: </label>
                                             <input type="password"
                                                 name="password"
                                                 id="password"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                className="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder="Password"
                                                 required="" />
                                         </div>
                                         <div className="sm:col-span-2">
-                                            <label htmlFor="tipo" className='block text-gray-600'>Tipo de usuario: </label>
+                                            <label htmlFor="tipo" className='block mb-2 text-sm font-medium text-gray-900 text-white'>Tipo de usuario: </label>
                                             <select name="tipo" id="tipo"
-                                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-center'>
+                                                className='block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-black'>
                                                 <option value="Investigador">Investigador</option>
                                                 <option value="Alumno Interno">Alumno Interno</option>
                                                 <option value="Alumno Externo">Alumno Externo</option>
@@ -528,8 +546,8 @@ const SlideBarInvestigadores = () => {
                                 </form>
                                 <div className="flex justify-center">
                                     <button type='submit' onClick={() => handleUsuario(document.getElementById('formulario'))}
-                                        className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar</button>
-                                    <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
+                                        className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrar</button>
+                                    <button onClick={toggleModal} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
                                 </div>
                             </div>
                         </section>
@@ -543,10 +561,10 @@ const SlideBarInvestigadores = () => {
             {/** Aqui inicia Registro Alumno Interno */}
             {showModal2 && (
                 <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
-                        <section className="bg-slate-200 dark:bg-gray-900">
-                            <div className="max-w-2xl px-4 py-1 mx-auto lg:py-16 ">
-                                <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Registro Alumno Interno</h2>
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
+                                <h2 className="mb-4 text-xl font-bold text-gray-900 text-white">Registro Alumno Interno</h2>
                                 <form class="max-w-xl mx-auto" id='formulario'>
                                     <div class="grid md:grid-cols-2 md:gap-6">
                                         <div class="relative z-0 w-full mb-5 group">
@@ -554,7 +572,7 @@ const SlideBarInvestigadores = () => {
                                                 type="text"
                                                 name="matricula"
                                                 id="matricula"
-                                                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -570,7 +588,7 @@ const SlideBarInvestigadores = () => {
                                                 type="text"
                                                 name="nombres"
                                                 id="nombres"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -588,7 +606,7 @@ const SlideBarInvestigadores = () => {
                                                 type="text"
                                                 name="apellido_p"
                                                 id="apellido_p"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -604,7 +622,7 @@ const SlideBarInvestigadores = () => {
                                                 type="text"
                                                 name="apellido_m"
                                                 id="apellido_m"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -622,7 +640,7 @@ const SlideBarInvestigadores = () => {
                                                 type="text"
                                                 name="correo"
                                                 id="correo"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -638,7 +656,7 @@ const SlideBarInvestigadores = () => {
                                                 type="email"
                                                 name="correo_adicional"
                                                 id="correo_adicional"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -656,7 +674,7 @@ const SlideBarInvestigadores = () => {
                                                 type="tel"
                                                 name="telefono"
                                                 id="telefono"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                                 placeholder=" "
                                                 required
                                             />
@@ -699,8 +717,8 @@ const SlideBarInvestigadores = () => {
                                 </form>
                                 <div className="flex justify-center">
                                     <button type='submit' onClick={() => handleUsuarioInterno(document.getElementById('formulario'))}
-                                        className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar Alumno</button>
-                                    <button onClick={toggleModal2} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
+                                        className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrar Alumno</button>
+                                    <button onClick={toggleModal2} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
                                 </div>
                             </div>
                         </section>
@@ -719,7 +737,7 @@ const SlideBarInvestigadores = () => {
                         <section class="grid  place-content-center bg-slate-600 text-slate-300">
                             <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
                                 <h1 class="text-4xl font-semibold mb-4">Registro proyecto</h1>
-                                <form id='formulario' >
+                                <form id='formulario' className='mb-5' >
                                     <div class="flex flex-col items-center justify-center space-y-6">
                                         <input
                                             type="text"
@@ -761,15 +779,17 @@ const SlideBarInvestigadores = () => {
                                         <button type='submit'
                                             id="showPw"
                                             onClick={() => handleProyecto(document.getElementById('formulario'))}
-                                            class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Añadir</span> Proyecto</button>
+                                            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><span id="showHide">Añadir</span> Proyecto</button>
 
                                     </div>
                                 </form>
+                                <div className="flex justify-center">
+                                    <button onClick={toggleModal3} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                </div>
                             </div>
+
                         </section>
-                        <div className="flex justify-center">
-                            <button onClick={toggleModal3} className="text-sm font-medium text-white bg-indigo-700 rounded-lg py-2 px-4">Cerrar</button>
-                        </div>
+
                     </div>
                 </div>
             )}
@@ -780,38 +800,32 @@ const SlideBarInvestigadores = () => {
             {/** Aqui inicia ver programa */}
             {showModal4 && (
                 <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
-                        <div className='bg-slate-700 flex items-center justify-center  from-gray-700 via-gray-800 to-gray-900'>
-                            <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                    <div className="border border-gray-200 rounded-lg shadow-lg p-5">
+                        <div className='bg-slate-700 flex items-center justify-center from-gray-700 via-gray-800 to-gray-900'>
+                            <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
                                 <div className="px-4 py-2 flex justify-between items-center">
                                     <input
                                         type="text"
                                         placeholder="Buscar por correo..."
+                                        value={searchTerm}
                                         className="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        onChange={(e) => {
-                                            const searchTerm = e.target.value.toLowerCase();
-                                            const filteredProgramas = programa.filter((programa) => programa.estudiante_correo.toLowerCase().includes(searchTerm));
-                                            setPrograma(filteredProgramas);
-                                        }}
+                                        onChange={handleSearch}
                                     />
                                     <button
-                                        onClick={() => {
-                                            setPrograma(programa);
-                                            document.querySelector('input[type="text"]').value = '';
-                                        }}
-                                        className="ml-2 bg-gray-800 text-white px-3 py-2 rounded-md focus:outline-none hover:bg-gray-700"
+                                        onClick={handleClearSearch}
+                                        className="ml-4 bg-blue-500 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
-                                        Limpiar
+                                        Limpiar búsqueda
                                     </button>
                                 </div>
-                                <table className=" text-sm text-left rtl:text-right  text-gray-400 ">
-                                    <caption className="px-6 py-4 text-lg font-semibold   text-white bg-gray-800 min-w-8 ">
-                                        Ver programas
-                                        <p className="mt-1 text-sm font-normal  text-gray-400">
+                                <table className="text-sm text-left rtl:text-right text-gray-400">
+                                    <caption className="px-6 py-4 text-lg font-semibold text-white bg-gray-800 min-w-8">
+                                        Los alumnos registrado en programas son
+                                        <p className="mt-1 text-sm font-normal text-gray-400">
                                             Bienvenido, { } { } los programas registrados son:
                                         </p>
                                     </caption>
-                                    <thead className="text-xs  uppercase  bg-gray-700 text-gray-400 ">
+                                    <thead className="text-xs uppercase bg-gray-700 text-gray-400">
                                         <tr>
                                             <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
                                                 Nombres
@@ -837,83 +851,56 @@ const SlideBarInvestigadores = () => {
                                             <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
                                                 Fecha de fin
                                             </th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {programa.slice(offset, offset + alumnosPerPage).map((programa) => (
-
-                                            <tr className=" border-b bg-gray-800 border-gray-700">
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                        {filteredProgramas.slice(offset, offset + alumnosPerPage).map((programa) => (
+                                            <tr className="border-b bg-gray-800 border-gray-700" key={programa.id}>
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.nombres}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.apellido_p} {programa.apellido_m}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.estudiante_correo}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.tipo}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.estatus}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.semestre}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.fecha_inicio}
                                                 </td>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium  whitespace-nowrap text-white"
-                                                >
+                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                                                     {programa.fecha_fin}
                                                 </td>
-
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                                 <div className='flex justify-center mt-4'>
                                     <ReactPaginate
-                                        previousLabel={<i className="fas fa-chevron-left"></i>} // Icono de flecha izquierda
-                                        nextLabel={<i className="fas fa-chevron-right"></i>} // Icono de flecha derecha
+                                        previousLabel={<i className="fas fa-chevron-left"></i>}
+                                        nextLabel={<i className="fas fa-chevron-right"></i>}
                                         breakLabel={'...'}
                                         pageCount={pageCount}
                                         marginPagesDisplayed={1}
                                         pageRangeDisplayed={2}
                                         onPageChange={handlePageChange}
-                                        containerClassName={'pagination flex'} // Agregado flex para alineación horizontal
+                                        containerClassName={'pagination flex'}
                                         activeClassName={'active'}
-                                        disabledClassName={'bg-gray-500 text-gray-300 cursor-not-allowed'} // Clase para los botones deshabilitados
-                                        pageClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'} // Clase para los números de página
-                                        pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'} // Clase para los enlaces de número de página
+                                        disabledClassName={'bg-gray-500 text-gray-300 cursor-not-allowed'}
+                                        pageClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
+                                        pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
                                     />
                                     <div className="flex justify-center">
-                                        <button onClick={toggleModal4} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                        <button onClick={toggleModal4 } className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -921,8 +908,6 @@ const SlideBarInvestigadores = () => {
                     </div>
                 </div>
             )}
-
-            {/** Aqui finaliza consulta programa */}
         </>
     )
 }

@@ -21,6 +21,10 @@ const Login = () => {
         navigate(`/perfilInvestigador/${correo}`);
     }
 
+    const redireccionarAlumnoExterno = (correo) => {
+        navigate(`/perfilAlumnoExterno/${correo}`);
+    }
+
     const redireccionarRecuperarContraseña = () => {
       navigate(`/recuperarContraseña`);
     }
@@ -44,7 +48,7 @@ const Login = () => {
             } else if (userType === 'investigador' && localStorage.getItem('token')) {
                 RedireccionarInvetigador(email);
             } else if (userType === 'alumno externo' && localStorage.getItem('token')) {
-                window.location.href = '/perfilActividades/id';
+                redireccionarAlumnoExterno(email)
             }
             Swal.fire({
                 title: 'Bienvenido',

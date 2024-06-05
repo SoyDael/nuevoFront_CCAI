@@ -71,10 +71,322 @@ const EditarPerfil = () => {
 
 
 
+    {/** menu desplegable*/ }
+
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+        console.log('showModal', showModal);
+    };
+
+
+    const [showModal2, setShowModal2] = useState(false);
+
+    const toggleModal2 = () => {
+        setShowModal2(!showModal2);
+        console.log('showModal', showModal);
+    };
+
+    const [showModal3, setShowModal3] = useState(false);
+
+    const toggleModal3 = () => {
+        setShowModal3(!showModal3);
+        console.log('showModal', showModal);
+    };
+
+    const [showModal4, setShowModal4] = useState(false);
+
+    const toggleModal4 = () => {
+        setShowModal4(!showModal4);
+        console.log('showModal', showModal);
+    };
+
+    const [showModal5, setShowModal5] = useState(false);
+
+    const toggleModal5 = () => {
+        setShowModal5(!showModal5);
+        console.log('showModal', showModal);
+    };
+
     return (
-        <>
+        <div>
             <SlideBarPruebaAlumn />
-            <br /><br /><br /><br /><br />
+            <div className="flex justify-center items-center h-screen bg-slate-400">
+
+
+                <div className="max-w-lg border border-slate-900 rounded-lg bg-slate-700 dark:border-slate-700 flex justify-center items-center">
+                    <div className="p-5 text-center">
+                        <h1 className="mb-2 text-2xl font-bold tracking-tight text-slate-300 mb-6">Edita tu perfil</h1>
+                        <form>
+                            <div className="grid mb-6 sm:grid-cols-2 sm:gap-10 sm:mb-30 w-full">
+                                <div className="sm:col-span-2">
+                                    <div className="flex flex-col">
+                                        <div className="flex items-center">
+                                            <input
+                                                type="text"
+                                                id="nombre"
+                                                name="nombre"
+                                                placeholder="Correo"
+                                                class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                                value={perfilEstudiante[0]?.matricula}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                {showModal && (
+                                    <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
+                                        <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
+                                            <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                                                <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 text-white">Nombres</label>
+                                                    <input
+                                                        type="text"
+                                                        name="nombres"
+                                                        id="nombres"
+                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        value={perfilEstudiante.nombres}
+                                                        placeholder="Nombres"
+                                                        required=""
+                                                        onChange={(e) => handleModificar('nombres', e.target.value)} />
+                                                    <div className='flex justify-between mt-4'>
+                                                        <button onClick={() => actualizarInfo('nombres', nuevoValor)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                        <button onClick={() => { toggleModal(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="nombre"
+                                            name="nombre"
+                                            placeholder="Titulo"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.nombres}
+                                        />
+                                        <button onClick={toggleModal} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2" type="button">Modificar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {showModal2 && (
+                                <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
+                                    <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
+                                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 text-white">Apellido Paterno</label>
+                                                <input
+                                                    type="text"
+                                                    name="apellido_p"
+                                                    id="apellido_p"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                    value={perfilEstudiante.apellido_p}
+                                                    placeholder="Apellido Paterno"
+                                                    required=""
+                                                    onChange={(e) => handleModificar('apellido_p', e.target.value)} />
+                                                <div className='flex justify-between mt-4'>
+                                                    <button onClick={() => actualizarInfo('apellido_p', nuevoValor)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                    <button onClick={() => { toggleModal2(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="apellido_p"
+                                            name="apellido_p"
+                                            placeholder="Apellido Paterno"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.apellido_p}
+                                        />
+                                        <button onClick={toggleModal2} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2" type="button">Modificar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {showModal3 && (
+                                <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
+                                    <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
+                                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 text-white">Apellido Materno</label>
+                                                <input
+                                                    type="text"
+                                                    name="apellido_m"
+                                                    id="apellido_m"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                    value={perfilEstudiante.apellido_m}
+                                                    placeholder="Apellido Paterno"
+                                                    required=""
+                                                    onChange={(e) => handleModificar('apellido_m', e.target.value)} />
+                                                <div className='flex justify-between mt-4'>
+                                                    <button onClick={() => actualizarInfo('apellido_m', nuevoValor)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                    <button onClick={() => { toggleModal3(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="apellido_p"
+                                            name="apellido_p"
+                                            placeholder="Apellido Paterno"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.apellido_m}
+                                        />
+                                        <button onClick={toggleModal3} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2" type="button">Modificar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="correo"
+                                            name="correo"
+                                            placeholder="Correo"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.correo}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {showModal4 && (
+                                <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
+                                    <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
+                                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 text-white">Correo Adicional</label>
+                                                <input
+                                                    type="email"
+                                                    name="correo_adicional"
+                                                    id="correo_adicional"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                    value={perfilEstudiante.correo_adicional}
+                                                    placeholder="Correo Adicional"
+                                                    required=""
+                                                    onChange={(e) => handleModificar('correo_adicional', e.target.value)} />
+                                                <div className='flex justify-between mt-4'>
+                                                    <button onClick={() => actualizarInfo('correo_adicional', nuevoValor)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                    <button onClick={() => { toggleModal4(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="correo_adicional"
+                                            name="correo_adicional"
+                                            placeholder="Correo Adicional"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.correo_adicional}
+                                        />
+                                        <button onClick={toggleModal4} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2" type="button">Modificar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {showModal5 && (
+                                <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
+                                    <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
+                                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 text-white">Telefono</label>
+                                                <input
+                                                    type="text"
+                                                    name="telefono"
+                                                    id="telefono"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                    value={perfilEstudiante.telefono}
+                                                    placeholder="Telefono"
+                                                    required=""
+                                                    onChange={(e) => handleModificar('telefono', e.target.value)} />
+                                                <div className='flex justify-between mt-4'>
+                                                    <button onClick={() => actualizarInfo('telefono', nuevoValor)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                    <button onClick={() => { toggleModal5(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="telefono"
+                                            name="telefono"
+                                            placeholder="Telefono"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.telefono}
+                                        />
+                                        <button onClick={toggleModal5} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2" type="button">Modificar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="sm:col-span-2 mb-5">
+                                <div className="flex flex-col">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="correo"
+                                            name="correo"
+                                            placeholder="Correo"
+                                            class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white text-center"
+                                            value={perfilEstudiante[0]?.division}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='flex justify-between mt-4'>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default EditarPerfil;
+
+{/** 
+             <br /><br /><br /><br /><br />
+            
             <form className="max-w-md mx-auto">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="relative z-0 w-full mb-5 group">
@@ -280,189 +592,5 @@ const EditarPerfil = () => {
                     </button>
                 </div>
             </form>
-
-
-
-        </>
-    )
-}
-
-export default EditarPerfil;
-
-{/**
-       <div className="flex justify-center items-center min-h-screen">
-            <div className="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
-                <div className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 flex flex-col justify-center">
-                    <div className="p-2 md:p-4">
-                        <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
-                            <h2 className="pl-6 text-2xl font-bold sm:text-xl">Bienvenido {perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m} <br />
-                            Solo puedes editar los datos en blanco los demas los asigna el CCAI
-                            </h2>
-                            <div className="grid max-w-2xl mx-auto mt-8">
-                                <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
-                                    <input type="file" accept="image/*" className="hidden" id="inputFoto" onChange={handleFotoChange}
-                                    />
-                                    <label htmlFor="inputFoto" className="cursor-pointer">
-                                        <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500" src={perfilEstudiante.foto} alt="Foto" />
-                                    </label>
-                                    <div className="flex flex-col space-y-5 sm:ml-8">
-                                        <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200">
-                                            Cambiar Foto
-                                        </button>
-                                        <button type="button" className="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200">
-                                            Eliminar Foto
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="items-center mt-8 sm:mt-14 text-[#202142]">
-
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="matricula" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Matricula</label>
-                                        <div className="relative">
-                                            <input type="text" id="matricula"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Matricula" autoComplete='off' required
-                                                readOnly
-                                                value={perfilEstudiante[0]?.matricula}
-                                                onChange={e => handleModificar('matricula', e.target.value)}
-                                            />
-
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-2 sm:mb-6">
-
-                                        <label htmlFor="nombres" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Nombre(s)</label>
-                                        <div className='relative'>
-                                            <input type="text" id="nombres"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Nombres" autoComplete='off' required
-                                                value={perfilEstudiante.nombres}
-                                                onChange={e => handleModificar('nombres', e.target.value)}
-                                            />
-                                            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                                onClick={() => actualizarInfo('nombres', nuevoValor)}
-                                            >
-                                                Modificar
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="apellido_p" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Apellido Paterno</label>
-                                        <div className='relative'>
-                                            <input type="text" id="apellido_p"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Apellido Paterno" autoComplete='off' required
-                                                value={perfilEstudiante.apellido_p}
-                                                onChange={e => handleModificar('apellido_p', e.target.value)}
-                                            />
-                                            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                                onClick={() => actualizarInfo('apellido_p', nuevoValor)}
-                                            >
-                                                Modificar
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="apellido_m" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Apellido Materno</label>
-                                        <div className='relative'>
-                                            <input type="text" id="apellido_m"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Apellido Materno" autoComplete='off' required
-                                                value={perfilEstudiante.apellido_m}
-                                                onChange={e => handleModificar('apellido_m', e.target.value)}
-
-                                            />
-                                            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                                onClick={() => actualizarInfo('apellido_m', nuevoValor)}
-
-                                            >
-                                                Modificar
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="correo" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Correo</label>
-                                        <div className='relative'>
-                                            <input type="email" id="correo"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Correo" autoComplete='off' required
-                                                value={perfilEstudiante[0]?.correo}
-                                                readOnly
-                                                onChange={e => handleModificar('', e.target.value)}
-
-                                            />
-
-                                        </div>
-                                    </div>
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="correo" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Correo Adicional</label>
-                                        <div className='relative'>
-                                            <input type="email" id="correo"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Correo" autoComplete='off' required
-                                                value={perfilEstudiante.correo_adicional}
-                                                onChange={e => handleModificar('correo_adicional', e.target.value)}
-                                            />
-                                            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                                onClick={() => actualizarInfo('correo_adicional', nuevoValor)}
-                                            >
-                                                Modificar
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Telefono</label>
-                                        <div className='relative'>
-                                            <input type="cellphone" id="telefono"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="Telefono" autoComplete='off' required
-                                                value={perfilEstudiante.telefono}
-                                                onChange={e => handleModificar('telefono', e.target.value)}
-
-                                            />
-                                            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 px-2 py-1 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200"
-                                                onClick={() => actualizarInfo('telefono', nuevoValor)}
-
-                                            >
-                                                Modificar
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mb-2 sm:mb-6">
-                                        <label htmlFor="division" className="block mb-2 text-sm font-medium text-indigo-900 dark:text">Division</label>
-                                        <div className='relative'>
-                                            <input type="text" id="division"
-                                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                                                placeholder="division" autoComplete='off' required
-                                                readOnly
-                                                value={perfilEstudiante[0]?.division}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-center space-x-40 mt-8 sm:mt-14">
-                                        <button
-                                            type="submit"
-                                            className="text-indigo-100 bg-[#202142] hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                            onClick={redireccionarPerfil}
-                                        >
-                                            Regresar
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            className="text-white bg-[#202142] hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                            onClick={actualizarInfo}
-                                        >
-                                            Guardar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-*/}
+    
+    */}

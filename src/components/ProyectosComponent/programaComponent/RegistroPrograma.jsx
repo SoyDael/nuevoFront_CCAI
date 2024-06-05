@@ -75,7 +75,7 @@ const RegistroPrograma = () => {
                                 <select
                                     name='tipo'
                                     id='tipo'
-                                    class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                                    class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 text-white">
                                     <option value="">Tipo de programa: </option>
                                     <option value="Servicio Social">Servicio Social</option>
                                     <option value="Residencias Profesionales">Residencias Profesionales</option>
@@ -88,7 +88,7 @@ const RegistroPrograma = () => {
                                 <select
                                     name='estatus'
                                     id='estatus'
-                                    class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                                    class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 text-white">
                                     <option value="">Estatus: </option>
                                     <option value="Activo">Activo</option>
                                     <option value="Inactivo">Inactivo</option>
@@ -101,7 +101,7 @@ const RegistroPrograma = () => {
                                 <select
                                     name='semestre'
                                     id='semestre'
-                                    class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2">
+                                    class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 text-white">
                                     <option value="">Semestre: </option>
                                     <option value="2024-1">2024-1</option>
                                     <option value="2024-2">2024-2</option>
@@ -134,11 +134,11 @@ const RegistroPrograma = () => {
                         </div>
 
                         <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
-                            <button type="submit" className="bg-indigo-700 hover:bg-indigo-900 text-white  rounded-md py-2 px-4">Registrar programa</button>
+                            <button type="submit" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrar programa</button>
                         </div>
 
                         <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
-                            <button onClick={redireccionarIntegrantes} className="bg-indigo-700 hover:bg-indigo-900 text-white  rounded-md py-2 px-4">Regresar</button>
+                            <button onClick={redireccionarIntegrantes} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Regresar</button>
                         </div>
                     </form>
 
