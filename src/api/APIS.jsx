@@ -256,3 +256,9 @@ export const consultaProgramas = async () => {
     console.log(response.data);
     return response.data;
 }
+
+export const eliminarParticipante = async (correo_estudiante) => {
+    const response = await API.delete(`eliminarParticipante/${correo_estudiante}`);
+    console.log(response.data);
+    return response.data;
+}
