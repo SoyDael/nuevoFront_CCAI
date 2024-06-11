@@ -262,3 +262,17 @@ export const eliminarParticipante = async (correo_estudiante) => {
     console.log(response.data);
     return response.data;
 }
+
+export const actualizarProyecto = async (id_proyecto, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`actualizarProyecto/${id_proyecto}`, datos);
+        response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
+        response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
+        response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+        console.log(response.data);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
