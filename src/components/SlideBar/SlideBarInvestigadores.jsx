@@ -23,7 +23,7 @@ const SlideBarInvestigadores = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/EditarPerfilInvestigador/${correo || coordinador_correo || correo_investigador} `);
+        navigate(`/editarPerfilInvestigador/${correo || coordinador_correo || correo_investigador} `);
     }
 
     const verPerfil = () => {

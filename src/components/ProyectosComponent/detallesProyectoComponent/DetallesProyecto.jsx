@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { consultaInvestigadores, getProyecto, navbarInvestigador, actualizarProyecto } from '../../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
-import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
 import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores';
+import Swal from 'sweetalert2'
 
 
 const DetallesProyecto = () => {
@@ -25,32 +25,35 @@ const DetallesProyecto = () => {
         navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
 
-    const handleModificar = (field, value) => {
-        setCampoAEditar(field);
-        setNuevoValor(value);
+    const redireccionarEditarProyecto = () => {
+        navigate(`/editarProyecto/${id_proyecto}`);
     }
 
-    const actualizar = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const proyecto = Object.fromEntries(formData);
+
+    const handleUpdateProyecto = async () => {
         try {
-            await actualizarProyecto(proyecto, id_proyecto);
-            alert('Proyecto actualizado correctamente');
-            e.target.reset();
+            const updatedProyecto = { ...Proyecto, [campoAEditar]: nuevoValor };
+            await actualizarProyecto(id_proyecto, updatedProyecto);
+            setProyecto(updatedProyecto);
+            Swal.fire({
+                title: 'Actualizado',
+                text: 'Proyecto Actualizado correctamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })
         } catch (error) {
-            console.error('Error al actualizar proyecto:', error);
-            alert('Error al actualizar proyecto. Por favor, inténtalo de nuevo.');
-        }
-    
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Evitar el envío del formulario por defecto
-        // Llamar a la función de actualización con los datos relevantes
-        actualizar(campoAEditar, nuevoValor);
-        event.target.reset();
+            console.error('Error al actualizar el proyecto:', error);
+            Swal.fire({
+                title: 'Actualizado',
+                text: 'Proyecto Actualizado correctamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })        }
     };
+    const actualizar = (campo, valor) => {
+        handleUpdateProyecto(campo, valor);
+    };
+
 
     useEffect(() => {
         const fetchProyecto = async () => {
@@ -65,6 +68,8 @@ const DetallesProyecto = () => {
         };
         fetchProyecto();
     }, [id_proyecto])
+
+
 
     const [showModal, setShowModal] = useState(false);
 
@@ -208,7 +213,7 @@ const DetallesProyecto = () => {
                                     <section class=" grid place-content-center bg-slate-600 text-slate-300">
                                         <div className="rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
                                             <h1 class="text-4xl font-semibold mb-4">Editar proyecto</h1>
-                                            <form onSubmit={handleSubmit} className='mb-5' >
+                                            <form className='mb-5' >
                                                 <div class="flex flex-col items-center justify-center space-y-6">
                                                     {showModal && (
                                                         <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
@@ -221,13 +226,14 @@ const DetallesProyecto = () => {
                                                                             name="titulo_esp"
                                                                             id="titulo_esp"
                                                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                            value={Proyecto.titulo_esp}
+                                                                            value={Proyecto.titulo_esp || ''}
+                                                                            onChange={(e) => setProyecto({ ...Proyecto, titulo_esp: e.target.value })}
                                                                             placeholder="Titulo"
                                                                             required=""
 
                                                                         />
                                                                         <div className='flex justify-between mt-4'>
-                                                                            <button onClick={() => actualizar('titulo_esp', e.target.value)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                            <button onClick={() => actualizar('titulo_esp', Proyecto.titulo_esp)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                             <button onClick={() => { toggleModal(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                         </div>
                                                                     </div>
@@ -263,12 +269,13 @@ const DetallesProyecto = () => {
                                                                                 name="descripcion"
                                                                                 id="descripcion"
                                                                                 className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                                value={Proyecto.descripcion}
+                                                                                value={Proyecto.descripcion || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, descripcion: e.target.value })}
                                                                                 placeholder="Descripcion"
                                                                                 required=""
                                                                             />
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('descripcion', Proyecto.descripcion)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal3(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>
@@ -298,12 +305,13 @@ const DetallesProyecto = () => {
                                                                                 name="objetivo"
                                                                                 id="objetivo"
                                                                                 className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                                value={Proyecto.objetivo}
+                                                                                value={Proyecto.objetivo || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, objetivo: e.target.value })}
                                                                                 placeholder="Objetivo"
                                                                                 required=""
                                                                             />
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('objetivo', Proyecto.objetivo)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal4(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>
@@ -333,6 +341,8 @@ const DetallesProyecto = () => {
                                                                                 className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
                                                                                 id='coordinador_correo'
                                                                                 name="coordinador_correo"
+                                                                                value={Proyecto.coordinador_correo || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, coordinador_correo: e.target.value })}
                                                                             >
 
                                                                                 {Investigador.map((investigador) => (
@@ -342,7 +352,7 @@ const DetallesProyecto = () => {
                                                                                 ))}
                                                                             </select>
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('coordinador_correo', Proyecto.coordinador_correo)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal5(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>
@@ -379,7 +389,8 @@ const DetallesProyecto = () => {
                                                                             <select
                                                                                 className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
                                                                                 name="estatus"
-                                                                                value={Proyecto.estatus}
+                                                                                value={Proyecto.estatus || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, estatus: e.target.value })}
                                                                             >
                                                                                 <option >Selecciona un estatus</option>
                                                                                 <option value="Nuevo">Nuevo</option>
@@ -387,7 +398,7 @@ const DetallesProyecto = () => {
                                                                                 <option value="Finalizado">Finalizado</option>
                                                                             </select>
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('estatus', Proyecto.estatus)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal6(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>
@@ -416,11 +427,12 @@ const DetallesProyecto = () => {
                                                                         <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
                                                                             <label htmlFor="fecha_registro" className="block mb-2 text-sm font-medium text-gray-900 text-white">Fecha de Registro</label>
                                                                             <input type="datetime-local" id="fecha_registro" name="fecha_registro" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
-                                                                            value={Proyecto.fecha_registro}
+                                                                                value={Proyecto.fecha_registro || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, fecha_registro: e.target.value })}
                                                                             />
 
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('fecha_registro', Proyecto.fecha_registro)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal7(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>
@@ -445,10 +457,10 @@ const DetallesProyecto = () => {
                                                                         <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
                                                                             <label htmlFor="fecha_inicio" className="block mb-2 text-sm font-medium text-gray-900 text-white">Fecha de Inicio</label>
                                                                             <input id="fecha_inicio" type='date' name="fecha_inicio" placeholder="Fecha de inicio" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-center"
-                                                                            value={Proyecto.fecha_inicio}
-                                                                            />
+                                                                                value={Proyecto.fecha_inicio || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, fecha_inicio: e.target.value })} />
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('fecha_inicio', Proyecto.fecha_inicio)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal8(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>
@@ -467,17 +479,17 @@ const DetallesProyecto = () => {
                                                     </div>
 
                                                     <div className="sm:col-span-2 mb-5">
-                                                    {showModal9 && (
+                                                        {showModal9 && (
                                                             <div className="fixed inset-0 z-50 overflow-auto bg-slate-400 bg-opacity-50 flex justify-center items-center">
                                                                 <div className="bg-dark border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
                                                                     <section class="grid  place-content-center bg-slate-600 text-slate-300">
                                                                         <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
                                                                             <label htmlFor="fecha_fin" className="block mb-2 text-sm font-medium text-gray-900 text-white">Fecha de Fin</label>
                                                                             <input id="fecha_fin" type='date' name="fecha_fin" placeholder="Fecha de Fin" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-center"
-                                                                            value={Proyecto.fecha_fin}
-                                                                            />
+                                                                                value={Proyecto.fecha_fin || ''}
+                                                                                onChange={(e) => setProyecto({ ...Proyecto, fecha_fin: e.target.value })} />
                                                                             <div className='flex justify-between mt-4'>
-                                                                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
+                                                                                <button onClick={() => actualizar('fecha_fin', Proyecto.fecha_fin)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Guardar</button>
                                                                                 <button onClick={() => { toggleModal9(); window.location.reload(); }} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                                                             </div>
                                                                         </div>

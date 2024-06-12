@@ -26,6 +26,10 @@ import Recuperarcomponent from '../components/loginComponent/Recuperar.component
 import RegistroProyecto from '../components/ProyectosComponent/RegistroProyecto.jsx';
 import ProyectosGenerales from '../components/ProyectosComponent/ProyectosGenerales.jsx';
 import VerPrograma from '../components/ProyectosComponent/programaComponent/Programa.jsx';
+import EditarProyecto from '../components/ProyectosComponent/EditarProyecto.jsx';
+import EditarPerfilInvestigador from '../components/investigadorComponent/EditarPerfilInvestigador.jsx';
+import PerfilAlumnoExterno from '../components/AlumnosExternos/PerfilAlumnoExterno.jsx';
+import SlideBarAlumExt from '../components/SlideBar/SlideBarAlumExt.jsx';
 
 function App() {
   return (
@@ -46,6 +50,7 @@ function App() {
         <Route path='/recuperarContraseña' element={<Recuperarcomponent />} />
 
         <Route path='/perfilInvestigador/:correo' element={<PerfilComponent />} /> /// Ruta Investigador
+        <Route path='/editarPerfilInvestigador/:correo' element={<EditarPerfilInvestigador />} /> /// Ruta Editar Perfil Investigador
         <Route path='/proyectos/:correo' element={<Proyectos />} /> /// Ruta Proyectos
         <Route path='/detallesProyecto/:id_proyecto/:correo' element={<DetallesProyecto />} /> /// Ruta Detalles Proyecto
         <Route path='/integrantes/:id_proyecto/:correo' element={<Integrantes />} /> /// Ruta Integrantes
@@ -60,8 +65,10 @@ function App() {
         <Route path='/registroProyecto' element={<RegistroProyecto />} /> /// Ruta Registro Proyecto
         <Route path='/verProyectos' element={<ProyectosGenerales />} /> /// Ruta Proyectos Generales
         <Route path='/verProgramas' element={<VerPrograma />} />
+        <Route path='/editarProyecto/:id_proyecto' element={<EditarProyecto />} />
 
-
+        <Route path='/perfilAlumnoExterno/:correo' element={<PerfilAlumnoExterno />} />
+        <Route path='/slideBarAlumExt' element={<SlideBarAlumExt />} />
 
 
       </Routes>

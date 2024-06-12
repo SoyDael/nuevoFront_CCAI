@@ -89,6 +89,16 @@ export const PerfilInvestigador = async (correo) => {
 }
 
 
+export const actualizarPerfilInvestigador = async (correo, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`editarInvestigador/${correo}`, datos);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
+
 export const proyectosInvestigador = async (correo) => {
     const response = await API.get(`proyectosInvestigador/${correo}`);
     response.data.forEach(programa => {
@@ -275,4 +285,10 @@ export const actualizarProyecto = async (id_proyecto, datos) => {
     } catch (error) {
         throw error; // Propaga el error para manejarlo en el componente
     }
+}
+
+export const perfilExterno = async (correo) => {
+    const response = await API.get(`perfilEstancia/${correo}`);
+    console.log(response.data);
+    return response.data;
 }
