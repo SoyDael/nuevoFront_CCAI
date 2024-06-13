@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getProyecto } from '../../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
-import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
 import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores';
 
 
@@ -161,18 +160,7 @@ const DetallesProyecto = () => {
                                             </button>
 
                                         </div>
-                                        {/* <select
-                                            className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
-                                            id='coordinador_correo'
-                                            name="coordinador_correo"
-                                        >
-                                            <option value="">Selecciona un Investigador</option>
-                                            {Investigador.map((investigador) => (
-                                                <option key={investigador.id_investigador} value={investigador.correo}>
-                                                    {investigador.nombres} {investigador.apellido_p} {investigador.apellido_m}
-                                                </option>
-                                            ))}
-                                        </select> */}
+                                       
                                         <div className="relative z-0 w-full mb-5 group">
 
 
@@ -195,9 +183,9 @@ const DetallesProyecto = () => {
                                         <div className="relative z-0 w-full mb-5 group">
 
                                         <p class="text-lg font-semibold mb-1">Fecha de registro</p>
-                                        <input type="datetime-local" id="fecha_registro" name="fecha_registro" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+                                        <input type="date" id="fecha_registro" name="fecha_registro" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
                                         <button
-                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                className="absolute top-1/2 right-2 transform -translate-y-5 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
                                                 >
                                                 Modificar
                                             </button>
@@ -208,7 +196,7 @@ const DetallesProyecto = () => {
                                         <p class="text-lg font-semibold mb-1">Fecha de inicio</p>
                                         <input type="date" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de inicio" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
                                         <button
-                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                className="absolute top-1/2 right-2 transform -translate-y-5 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
                                                 >
                                                 Modificar
                                             </button>
@@ -219,16 +207,13 @@ const DetallesProyecto = () => {
                                         <p class="text-lg font-semibold mb-1">Fecha de fin</p>
                                         <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
                                         <button
-                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
+                                                className="absolute top-1/2 right-2 transform -translate-y-5 px-1 py-0 text-base font-medium text-indigo-100 focus:outline-none bg-indigo-900 rounded-lg border border-indigo-500 hover:bg-indigo-500 focus:z-10 focus:ring-4"
                                             >
                                                 Modificar
                                             </button>
 
                                         </div>
-                                        <button type='submit'
-                                            id="showPw"
-                                            onClick={() => handleProyecto(document.getElementById('formulario'))}
-                                            class="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900"><span id="showHide">Editar</span> Proyecto</button>
+                               
                                         <div className="flex justify-center">
                                             <button onClick={toggleModal3} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Cerrar</button>
                                         </div>

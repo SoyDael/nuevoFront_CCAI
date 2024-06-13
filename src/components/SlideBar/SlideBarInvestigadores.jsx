@@ -21,7 +21,7 @@ const SlideBarInvestigadores = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/EditarPerfilInvestigador/${correo || coordinador_correo || correo_investigador} `);
+        navigate(`/editarPerfilInvestigador/${correo || coordinador_correo || correo_investigador} `);
     }
 
     const verPerfil = () => {
@@ -441,56 +441,80 @@ const SlideBarInvestigadores = () => {
 
             {/** Aqui inicia Registro Usuario */}
             {showModal && (
+
                 <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
-                        <section className="bg-slate-200 dark:bg-gray-900">
-                            <div className="max-w-2xl px-4 py-1 mx-auto lg:py-16 ">
-                                <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Registro Usuario</h2>
-                                <form id='formulario'>
-                                    <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-                                        <div className="sm:col-span-2">
-                                            <div className="flex flex-col">
-                                                <label htmlFor="correo"
-                                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo: </label>
-                                                <div className="flex items-center">
-                                                    <input
-                                                        type="email"
-                                                        name="correo"
-                                                        id="correo"
-                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                        placeholder="Correo"
-                                                        required=""
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                <h1 class="text-4xl font-semibold mb-4">Registro Usuario</h1>
+                                <form id='formulario' >
+                                    <div class="flex flex-col  justify-center space-y-4">
 
 
-                                        <div className="sm:col-span-2">
-                                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password: </label>
-                                            <input type="password"
-                                                name="password"
-                                                id="password"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Password"
-                                                required="" />
+
+
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                type='email'
+                                                placeholder='Correo'
+
+                                            >
+
+                                            </input>
+
+
                                         </div>
-                                        <div className="sm:col-span-2">
-                                            <label htmlFor="tipo" className='block text-gray-600'>Tipo de usuario: </label>
-                                            <select name="tipo" id="tipo"
-                                                className='w-full border boder-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-center'>
-                                                <option value="Investigador">Investigador</option>
-                                                <option value="Alumno Interno">Alumno Interno</option>
-                                                <option value="Alumno Externo">Alumno Externo</option>
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                type='password'
+                                                placeholder='Password'
+
+                                            >
+
+                                            </input>
+
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <select
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                            >
+                                                <option value="">Tipo de usuario:</option>
+                                                <option value="Servicio Social">Investigador</option>
+                                                <option value="Residencias Profesionales">Alumno</option>
                                             </select>
+
+
                                         </div>
+
+
+
+
+
+
+                                        <div className="flex justify-center space-x-2">
+                                            <button className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Registrar</button>
+                                            <button onClick={toggleModal} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Cerrar</button>
+
+                                        </div>
+
                                     </div>
+
                                 </form>
-                                <div className="flex justify-center">
-                                    <button type='submit' onClick={() => handleUsuario(document.getElementById('formulario'))}
-                                        className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar</button>
-                                    <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
-                                </div>
                             </div>
                         </section>
 
@@ -502,173 +526,141 @@ const SlideBarInvestigadores = () => {
 
             {/** Aqui inicia Registro Alumno Interno */}
             {showModal2 && (
-                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-slate-200 border border-gray-200 rounded-lg shadow-lg p-1 max-w-lg">
-                        <section className="bg-slate-200 dark:bg-gray-900">
-                            <div className="max-w-2xl px-4 py-1 mx-auto lg:py-16 ">
-                                <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Registro Alumno Interno</h2>
-                                <form class="max-w-xl mx-auto" id='formulario'>
-                                    <div class="grid md:grid-cols-2 md:gap-6">
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="text"
-                                                name="matricula"
-                                                id="matricula"
-                                                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="matricula"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Matricula:
-                                            </label>
-                                        </div>
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="text"
-                                                name="nombres"
-                                                id="nombres"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="nombres"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Nombre(s):
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="grid md:grid-cols-2 md:gap-6">
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="text"
-                                                name="apellido_p"
-                                                id="apellido_p"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="apellido_p"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Apellido paterno:
-                                            </label>
-                                        </div>
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="text"
-                                                name="apellido_m"
-                                                id="apellido_m"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="apellido_m"
-                                                class="peer-focus: font-bold absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Apellido materno:
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="grid md:grid-cols-2 md:gap-6">
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="text"
-                                                name="correo"
-                                                id="correo"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="correo"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Correo institucional:
-                                            </label>
-                                        </div>
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="email"
-                                                name="correo_adicional"
-                                                id="correo_adicional"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="correo_adicional"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Correo adicional:
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="grid md:grid-cols-2 md:gap-6">
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <input
-                                                type="tel"
-                                                name="telefono"
-                                                id="telefono"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required
-                                            />
-                                            <label
-                                                htmlFor="telefono"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >
-                                                Telefóno:
-                                            </label>
-                                        </div>
-                                        <div class="relative z-0 w-full mb-5 group">
-                                            <select type="text"
-                                                name="division"
-                                                id="division"
-                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                placeholder=" "
-                                                required>
 
-                                                <option value="" > Selecciona una opción </option>
-                                                <option value="Ingenería Informática"  > Ingenería Informática </option>
-                                                <option value="Ingenería en Sistemas Computacionales"> Ingenería en Sistemas Computacionales </option>
-                                                <option value="Ingenería Electrónica"> Ingenería Electrónica </option>
-                                                <option value="Ingenería Mecánica"> Ingenería Mecánica </option>
-                                                <option value="Ingenería Bioquímica"> Ingenería Bioquímica </option>
-                                                <option value="Ingenería Química"> Ingenería Química </option>
-                                                <option value="Ingenería Industrial"> Ingenería Industrial </option>
-                                                <option value="Ingenería Mecatrónica"> Ingenería Mecatrónica </option>
-                                                <option value="Ingenería en Gestión Empresarial"> Ingenería en Gestión Empresarial </option>
-                                                <option value="Ingenería Aeronáutica"> Ingenería Aeronáutica </option>
-                                                <option value="Contador Público"> Contador Público </option>
-                                            </select>
-                                            <label
-                                                htmlFor="division"
-                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                <h1 class="text-4xl font-semibold mb-4">Registrar Alumno Interno</h1>
+                                <form id='formulario' >
+                                    <div class="flex flex-col  justify-center space-y-4">
+
+
+
+
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                placeholder='Matricula'
+                                                type='number'
                                             >
-                                                División:
-                                            </label>
+
+                                            </input>
+
+
+                                        </div>
+
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                placeholder='Nombre(s)'
+                                                type='text'
+                                            >
+
+                                            </input>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                placeholder='Apellido paterno'
+                                                type='text'
+                                            >
+
+                                            </input>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                placeholder='Apellido materno'
+                                                type='text'
+                                            >
+
+                                            </input>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                placeholder='Correo institucional'
+                                                type='email'
+                                            >
+
+                                            </input>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+
+                                            <input
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                                placeholder='Telefono'
+                                                type='number'
+                                            >
+
+                                            </input>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <select
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                            >
+                                                <option value="">División:</option>
+                                                <option value="Servicio Social">Ingeniería en Sistemas Computacionales</option>
+                                                <option value="Servicio Social">Ingeniería en Informatica</option>
+
+                                                <option value="Servicio Social">Ingeniería en Bioquimica</option>
+
+                                                <option value="Servicio Social">Ingeniería en Mecatronica</option>
+
+                                            </select>
+
+
+                                        </div>
+
+
+
+                                        <div className="flex justify-center">
+                                            <button className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Registrar Alumno</button>
+                                        </div>
+
+                                        <div className="flex justify-center">
+                                            <button onClick={toggleModal2} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Cerrar</button>
                                         </div>
                                     </div>
+
                                 </form>
-                                <div className="flex justify-center">
-                                    <button type='submit' onClick={() => handleUsuarioInterno(document.getElementById('formulario'))}
-                                        className="text-sm font-medium text-white bg-blue-700 rounded-lg py-3 px-5 mr-4">Registrar Alumno</button>
-                                    <button onClick={toggleModal2} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
-                                </div>
                             </div>
                         </section>
 
                     </div>
                 </div>
             )}
-
             {/** Aqui termina Registro Alumno interno */}
 
             {/** Aqui inicia Registro Proyecto */}
@@ -689,7 +681,7 @@ const SlideBarInvestigadores = () => {
                                             class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
                                         />
                                         <textarea maxlength="1000" id="descripcion" name="descripcion" placeholder="Descripción" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
-                                        
+
                                         <textarea maxlength="1000" id="objetivo" name="objetivo" placeholder="Objetivo" class="w-96 appearance-none  border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
 
                                         <select
@@ -724,13 +716,13 @@ const SlideBarInvestigadores = () => {
                                             onClick={() => handleProyecto(document.getElementById('formulario'))}
                                             className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700"><span id="showHide">Registrar</span> Proyecto</button>
 
+                                        <button onClick={toggleModal3} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-700">Cerrar</button>
+
                                     </div>
                                 </form>
                             </div>
                         </section>
-                        <div className="flex justify-center">
-                            <button onClick={toggleModal3} className="text-sm font-medium text-white bg-indigo-700 rounded-lg py-2 px-4">Cerrar</button>
-                        </div>
+
                     </div>
                 </div>
             )}

@@ -13,9 +13,9 @@ const ListadoAlumnos = () => {
 
     const navigate = useNavigate();
 
-    
 
-    
+
+
 
     const redireccionarAsignarPrograma = (id_estudiante, estudiante_correo) => {
         navigate(`/registroPrograma/${correo}/${id_estudiante}/${estudiante_correo}`);
@@ -24,7 +24,7 @@ const ListadoAlumnos = () => {
     const obtenerProgramas = async (e) => {
         e.preventDefault();
         try {
-            const response = await listadoAlumnos({correo: correo});
+            const response = await listadoAlumnos({ correo: correo });
             const token = response.token;
             console.log(token);
             localStorage.setItem('token', token);
@@ -36,7 +36,7 @@ const ListadoAlumnos = () => {
         } catch (error) {
             console.log('Error al obtener programas:', error);
         }
-    
+
     }
 
     useEffect(() => {
@@ -53,80 +53,181 @@ const ListadoAlumnos = () => {
         fetchAlumnos();
     }, [correo]);
 
+    const [showModal3, setShowModal3] = useState(false);
+
+    const toggleModal3 = () => {
+        setShowModal3(!showModal3);
+    };
+
     return (
         <>
-        <SlideBarInvestigadores />
+            <SlideBarInvestigadores />
 
 
 
-        <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
-            <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+            <div className='relative w-full bg-slate-700 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900'>
+                <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
 
 
-                <table className=" text-sm text-left rtl:text-right  text-gray-400 ">
-                    <caption className="px-6 py-4 text-lg font-semibold text-left rtl:text-right   text-white bg-gray-800">
-                        Alumnos internos
+                    <table className=" text-sm text-left rtl:text-right  text-gray-400 ">
+                        <caption className="px-6 py-4 text-lg font-semibold text-left rtl:text-right   text-white bg-gray-800">
+                            Alumnos internos
 
-                        <p className="mt-1 text-sm font-normal  text-gray-400">Bienvenido { } { } { } los alumnos aceptados son:
-                        </p>
+                            <p className="mt-1 text-sm font-normal  text-gray-400">Bienvenido { } { } { } los alumnos aceptados son:
+                            </p>
 
 
 
-                    </caption>
-                    <thead className="text-xs  uppercase  bg-gray-700 text-gray-400 ">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Matricula
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Nombres
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Correo
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                División
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Telefono
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                            </th>
+                        </caption>
+                        <thead className="text-xs  uppercase  bg-gray-700 text-gray-400 ">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Matricula
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Nombres
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Correo
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    División
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Telefono
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                </th>
 
-                        </tr>
-                    </thead>
-                    <tbody >
-                        {alumnos.map((alumno) => (
-                            <tr className=" border-b bg-gray-800 border-gray-700">
-                                <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.matricula}</td>
-                                <td scope='row' className="px-6 py-4 font-medium whitespace-nowrap text-white">{alumno.nombres}</td>
-                                <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.correo}</td>
-                                <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.division}</td>
-                                <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.telefono}</td>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {alumnos.map((alumno) => (
+                                <tr className=" border-b bg-gray-800 border-gray-700">
+                                    <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.matricula}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium whitespace-nowrap text-white">{alumno.nombres}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.correo}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.division}</td>
+                                    <td scope='row' className="px-6 py-4 font-medium  whitespace-nowrap text-white">{alumno.telefono}</td>
 
-                                <td scope='row' className="px-10 py-4 font-medium  text-indigo-700 hover:text-indigo-900">
-                                    <button
-                                        onClick={() => redireccionarAsignarPrograma(alumno.id_estudiante, alumno.correo)}
-                                    >Registrar programa</button>
-                                </td>
-                                {/* <td scope='row' className="px-10 py-4 font-medium text-blue-600 text-blue-500">
+                                    <td scope='row' className="px-10 py-4 font-medium  text-indigo-700 hover:text-indigo-900">
+                                        <button
+                                            onClick={toggleModal3}
+                                        >Registrar programa</button>
+                                    </td>
+                                    {/* <td scope='row' className="px-10 py-4 font-medium text-blue-600 text-blue-500">
                                             <button
                                                 onClick={() => redireccionarAsignarProyecto(alumno.id_estudiante, alumno.correo)}
                                             >Asignar proyecto</button>
                                         </td> */}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
 
+                </div>
             </div>
-        </div>
 
 
-    </>
+            {showModal3 && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700   shadow-blue-500/50  ">
+                                <h1 class="text-4xl font-semibold mb-4">Asignar programa</h1>
+                                <form id='formulario' >
+                                    <div class="flex flex-col  justify-center space-y-4">
+
+
+
+
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <select
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 "
+                                                name="estatus"
+                                            >
+                                                <option value="">Tipo de programa:</option>
+                                                <option value="Servicio Social">Servicio Social</option>
+                                                <option value="Residencias Profesionales">Residencias Profesionales</option>
+                                            </select>
+
+
+                                        </div>
+
+                                        <div className="relative z-0 w-full mb-5 group ">
+
+
+                                            <select
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
+                                                name="estatus"
+                                            >
+                                                <option value="">Estatus: </option>
+                                                <option value="Activo">Activo</option>
+                                                <option value="Inactivo">Inactivo</option>
+                                            </select>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+
+                                            <select
+                                                className="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2"
+                                                name="estatus"
+                                            >
+                                                <option value="">Semestre: </option>
+                                                <option value="2024-1">2024-1</option>
+                                                <option value="2024-2">2024-2</option>
+                                            </select>
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+                                            <p class="text-lg font-semibold mb-1">Fecha de inicio</p>
+                                            <input type="date" id="fecha_inicio" name="fecha_registro" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+                                            <p class="text-lg font-semibold mb-1">Fecha de finalización</p>
+                                            <input type="date" id="fecha_finzalizacion" name="fecha_inicio" placeholder="Fecha de inicio" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+
+
+                                        </div>
+                                        <div className="relative z-0 w-full mb-5 group">
+
+                                            <p class="text-lg font-semibold mb-1">Fecha de fin</p>
+                                            <input type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de finalización" class="w-96 appearance-none rounded-full border-0 bg-slate-700 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500" />
+
+
+                                        </div>
+
+                                        <div className="flex justify-center">
+                                            <button className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Registrar programa</button>
+                                        </div>
+
+                                        <div className="flex justify-center">
+                                            <button onClick={toggleModal3} className="rounded-full bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-900">Cerrar</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            )}
+
+
+        </>
     )
 }
 
