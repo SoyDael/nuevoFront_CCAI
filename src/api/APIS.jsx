@@ -292,3 +292,13 @@ export const perfilExterno = async (correo) => {
     console.log(response.data);
     return response.data;
 }
+
+export const listadoEstancias = async () =>{
+    const response = await API.get('listadoEstancias');
+    response.data.forEach(listadoestancias => {
+        listadoestancias.fecha_inicio = listadoestancias.fecha_inicio.split('T')[0];
+        listadoestancias.fecha_fin = listadoestancias.fecha_fin.split('T')[0];
+    });
+    console.log(response.data);
+    return response.data;
+}
