@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './SlideBar.css'
-import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto, consultaProgramas, listadoEstancias } from '../../api/APIS'
+import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto, consultaProgramas, listadoEstancias, listadoAlumnos } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 
@@ -255,6 +255,45 @@ const SlideBarInvestigadores = () => {
         setFilteredEstancias(Estancias); // Restaurar la lista original
     };
 
+
+    const [showModal6, setShowModal6] = useState(false);
+
+    const toggleModal6 = () => {
+        setShowModal6(!showModal6);
+    };
+    const [filteredAlumnos, setFilteredAlumnos] = useState([]); // Copia de la lista original
+
+    const handleSearchInternos = (e) => {
+        const term = e.target.value.toLowerCase();
+        setSearchTerm(term);
+        const filtered = alumnos.filter((alum) =>
+            alum.matricula.toString().toLowerCase().includes(term)
+        );
+        setFilteredAlumnos(filtered);
+    };
+
+
+    const handleClearSearchInternos = () => {
+        setSearchTerm('');
+        setFilteredAlumnos(alumnos); // Restaurar la lista original
+    };
+    
+
+    useEffect(() => {
+        const fetchAlumnos = async () => {
+            try {
+                const alumnos = await listadoAlumnos(correo); // Obtener los alumnos del investigador
+                console.log(alumnos);
+                setAlumnos(alumnos); // Almacena los alumnos del investigador en el estado
+                setFilteredAlumnos(alumnos); // Almacena los alumnos del investigador en el estado
+            } catch (error) {
+                console.error('Error al obtener alumnos:', error);
+                alert('Error al obtener alumnos. Por favor, inténtalo de nuevo.');
+            }
+        };
+        fetchAlumnos();
+    }, [correo]);
+
     return (
         <>
             <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
@@ -443,19 +482,19 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                            onClick={redireccionarListadoAlumnos}>
+                                            onClick={toggleModal6}>
                                             Ver alumnos internos
                                         </button>
                                     </li>
 
                                 </ul>
                             )}
-                              {isKanbanOpen && (
+                            {isKanbanOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={toggleModal5}>
-                                        
+                                            onClick={toggleModal5}>
+
                                             Ver alumnos Externos
                                         </button>
                                     </li>
@@ -953,7 +992,7 @@ const SlideBarInvestigadores = () => {
                                         pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
                                     />
                                     <div className="flex justify-center">
-                                        <button onClick={toggleModal4 } className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                        <button onClick={toggleModal4} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -966,8 +1005,8 @@ const SlideBarInvestigadores = () => {
 
             {/** Aqui inicia ver alumnos internos */}
 
-             {/** Aqui inicia ver programa */}
-             {showModal5 && (
+            {/** Aqui inicia ver programa */}
+            {showModal5 && (
                 <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
                     <div className="border border-gray-200 rounded-lg shadow-lg p-5">
                         <div className='bg-slate-700 flex items-center justify-center from-gray-700 via-gray-800 to-gray-900'>
@@ -1063,7 +1102,7 @@ const SlideBarInvestigadores = () => {
                                         pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
                                     />
                                     <div className="flex justify-center">
-                                        <button onClick={toggleModal5 } className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                        <button onClick={toggleModal5} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -1073,6 +1112,106 @@ const SlideBarInvestigadores = () => {
             )}
 
             {/** Aqui termina ver programa */}
+
+
+            {/** Aqui inicia ver programa */}
+            {showModal6 && (
+
+
+
+
+
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className="border border-gray-200 rounded-lg shadow-lg p-5">
+                        <div className='bg-slate-700 flex items-center justify-center from-gray-700 via-gray-800 to-gray-900'>
+                            <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
+                                <div className="px-4 py-2 flex justify-between items-center">
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar por correo..."
+                                        value={searchTerm}
+                                        className="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        onChange={handleSearchInternos}
+                                    />
+                                    <button
+                                        onClick={handleClearSearchInternos}
+                                        className="ml-4 bg-blue-500 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        Limpiar búsqueda
+                                    </button>
+                                </div>
+                                <table className="text-sm text-left rtl:text-right text-gray-400">
+                                    <caption className="px-6 py-4 text-lg font-semibold text-white bg-gray-800 min-w-8">
+                                        Alumnos internos
+                                        <p className="mt-1 text-sm font-normal text-gray-400">
+                                            Bienvenido, { } { } los alumnos aceptados son:
+                                        </p>
+                                    </caption>
+                                    <thead className="text-xs uppercase bg-gray-700 text-gray-400">
+                                        <tr>
+                                            <th scope='col' className='px-6 py-3'>
+                                                Matricula
+                                            </th>
+                                            <th scope='col' className='px-6 py-3'>
+                                                Nombres
+                                            </th>
+                                            <th scope='col' className='px-6 py-3'>
+                                                Correo
+                                            </th>
+                                            <th scope='col' className='px-6 py-3'>
+                                                División
+                                            </th>
+                                            <th scope='col' className='px-6 py-3'>
+                                                Telefono
+                                            </th>
+                                            <th scope='col' className='px-6 py-3'></th>
+                                            <th scope='col' className='px-6 py-3'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {filteredAlumnos.slice(offset, offset + alumnosPerPage).map((alumno) => (
+                                <tr key={alumno.id} className=' border-b bg-gray-800 border-gray-700'>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.matricula}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.nombres}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.correo}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.division}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{alumno.telefono}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>
+                                        <button
+                                            onClick={() => redireccionarAsignarPrograma(alumno.id_estudiante, alumno.correo)}
+                                            className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
+                                        >
+                                            Registrar programa
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                                    </tbody>
+                                </table>
+                                <div className='flex justify-center mt-4'>
+                                    <ReactPaginate
+                                        previousLabel={<i className="fas fa-chevron-left"></i>}
+                                        nextLabel={<i className="fas fa-chevron-right"></i>}
+                                        breakLabel={'...'}
+                                        pageCount={pageCount}
+                                        marginPagesDisplayed={1}
+                                        pageRangeDisplayed={2}
+                                        onPageChange={handlePageChange}
+                                        containerClassName={'pagination flex'}
+                                        activeClassName={'active'}
+                                        disabledClassName={'bg-gray-500 text-gray-300 cursor-not-allowed'}
+                                        pageClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
+                                        pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
+                                    />
+                                    <div className="flex justify-center">
+                                        <button onClick={toggleModal6} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </>
     )
