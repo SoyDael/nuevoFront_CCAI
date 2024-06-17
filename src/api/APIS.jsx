@@ -302,3 +302,9 @@ export const listadoEstancias = async () =>{
     console.log(response.data);
     return response.data;
 }
+
+export const actividadesEstanciasPorCorreo = async (correo) => {
+    const response = await API.get(`consultarActividadEstanciaPorCorreo/${correo}`);
+    console.log(response.data);
+    return response.data;
+}

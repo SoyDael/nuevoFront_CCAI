@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { perfilExterno } from '../../api/APIS';
+import { perfilExterno, actividadesEstanciasPorCorreo } from '../../api/APIS';
 
 
 const SlideBarAlumnoExt = () => {
@@ -9,6 +9,8 @@ const SlideBarAlumnoExt = () => {
 
 
     const [perfilEstudiante, setPerfilEstudiante] = useState([]);
+    const [actividadEstudiante, setActividadEstudiante] = useState(null);
+
 
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
     const [isAsideVisible, setIsAsideVisible] = useState(true);
@@ -26,6 +28,10 @@ const SlideBarAlumnoExt = () => {
 
     const redireccionarEditar = () => {
         navigate(`/editarPerfilExterno/${correo || residente_correo || correo_estancia_residente}`);
+    }
+
+    const redireccionarActividades = () => {
+        navigate(`/actividadesEstancia/${correo || residente_correo || correo_estancia_residente}`);
     }
 
 
@@ -61,6 +67,27 @@ const SlideBarAlumnoExt = () => {
         };
         fetchPerfilEstudiante();
     }, [correo]);
+
+
+    /// rediccionar a la pagina de actividades de estancia
+
+    const obtenerActividades = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await perfilExterno({ correo: correo }); // Pasar solo el correo del estudiante
+            const token = response.token;
+            console.log(token);
+            localStorage.setItem('token', token);
+
+            const actividades = await actividadesEstanciasPorCorreo(correo);
+            console.log(actividades);
+            setActividadEstudiante(actividades);
+
+            redireccionarActividades();
+        } catch (error) {
+            console.log('Error al obtener actividades:', error);
+        }
+    }
 
     return (
         <>
@@ -243,7 +270,7 @@ const SlideBarAlumnoExt = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        
+                                        onClick={obtenerActividades}
                                         >
                                             Ver Actividades
                                         </button>

@@ -30,6 +30,7 @@ import EditarProyecto from '../components/ProyectosComponent/EditarProyecto.jsx'
 import EditarPerfilInvestigador from '../components/investigadorComponent/EditarPerfilInvestigador.jsx';
 import PerfilAlumnoExterno from '../components/AlumnosExternos/PerfilAlumnoExterno.jsx';
 import SlideBarAlumExt from '../components/SlideBar/SlideBarAlumExt.jsx';
+import ActividadesEstancia from '../components/AlumnosExternos/actividadEstancia/ActividadesEstancia.jsx';
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
 
         <Route path='/perfilAlumnoExterno/:correo' element={<PerfilAlumnoExterno />} />
         <Route path='/slideBarAlumExt' element={<SlideBarAlumExt />} />
+        <Route path='/actividadesEstancia/:correo' element={<ActividadesEstancia />} />
 
 
       </Routes>
