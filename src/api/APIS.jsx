@@ -305,6 +305,26 @@ export const listadoEstancias = async () =>{
 
 export const actividadesEstanciasPorCorreo = async (correo) => {
     const response = await API.get(`consultarActividadEstanciaPorCorreo/${correo}`);
+    response.data.forEach(listadoestancias => {
+        listadoestancias.fecha_inicio = listadoestancias.fecha_inicio.split('T')[0];
+        listadoestancias.fecha_fin = listadoestancias.fecha_fin.split('T')[0];
+    });
     console.log(response.data);
     return response.data;
+}
+
+export const proyectosEstancia = async (correo) => {
+    const response = await API.get(`participanteEstanciaPorProyecto/${correo}`);
+    console.log(response.data);
+    return response.data;
+}
+
+export const actualizarPerfilExterno = async (correo, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`actualizarPerfilEstancia/${correo}`, datos);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
 }

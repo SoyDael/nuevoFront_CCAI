@@ -6,7 +6,6 @@ import PerfilAlumno from '../components/AlumnosInternosComponent/perfilesCompone
 import EditarPerfil from '../components/AlumnosInternosComponent/EditarPerfil.jsx';
 import PerfilActividades from '../components/AlumnosInternosComponent/actividades.component/perfilActiviades.component.jsx';
 import UsuarioForm from '../components/usuarioComponent/usuarioComponent.jsx';
-import Navbar from '../components/navbarComponents/Navbar.jsx';
 import NavbarSimple from '../components/navbarComponents/NavbarSimple.jsx';
 import DetallesActividades from '../components/AlumnosInternosComponent/actividades.component/ActividadesDetallesComponents/detallesActividades.jsx';
 import ProyectoAlumnoInt from '../components/AlumnosInternosComponent/proyectoComponent/ProyectoAlumnoInt.jsx';
@@ -31,6 +30,10 @@ import EditarPerfilInvestigador from '../components/investigadorComponent/Editar
 import PerfilAlumnoExterno from '../components/AlumnosExternos/PerfilAlumnoExterno.jsx';
 import SlideBarAlumExt from '../components/SlideBar/SlideBarAlumExt.jsx';
 import ActividadesEstancia from '../components/AlumnosExternos/actividadEstancia/ActividadesEstancia.jsx';
+import DetallesActividadEstancia from '../components/AlumnosExternos/actividadEstancia/DetallesActividad/DetallesActividadEstancia.jsx';
+import ProyectoEstancia from '../components/AlumnosExternos/ProyectoAlumnoExterno/ProyectoAlumnoExterno.jsx';
+import ProyectoDetallesExt from '../components/AlumnosExternos/ProyectoAlumnoExterno/detallesProyecto/ProyectoDetallesExt.jsx';
+import EditarPerfilExt from '../components/AlumnosExternos/EditarPerfilExt.jsx';
 
 function App() {
   return (
@@ -41,7 +44,6 @@ function App() {
         <Route path="/usuario" element={<UsuarioForm />} />
         <Route path="/perfilAlumno/:correo" element={<PerfilAlumno />} />
         <Route path="/editarPerfil/:correo" element={<EditarPerfil />} />
-        <Route path='/*' element={<Navbar/>} />
         <Route path='/navbarSimple' element={<NavbarSimple/>}/>
         <Route path='/perfilActividades/:correo_estudiante' element={<PerfilActividades />} />
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
@@ -71,7 +73,10 @@ function App() {
         <Route path='/perfilAlumnoExterno/:correo' element={<PerfilAlumnoExterno />} />
         <Route path='/slideBarAlumExt' element={<SlideBarAlumExt />} />
         <Route path='/actividadesEstancia/:correo' element={<ActividadesEstancia />} />
-
+        <Route path='/detallesActividadEstancia/:correo' element={<DetallesActividadEstancia />} />
+        <Route path='/proyectoEstancia/:correo' element={<ProyectoEstancia />} />
+        <Route path='/detallesProyectoEstancia/:correo/:id_proyecto' element={<ProyectoDetallesExt />} />
+        <Route path='/editarPerfilExt/:correo' element={<EditarPerfilExt />} />
 
       </Routes>
     </BrowserRouter>

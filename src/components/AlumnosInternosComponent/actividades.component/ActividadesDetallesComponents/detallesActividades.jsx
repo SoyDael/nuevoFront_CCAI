@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../../navbarComponents/Navbar'
 import { getconsultaActividadesEstudiantesPorId } from '../../../../api/APIS'
 import { useParams, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'

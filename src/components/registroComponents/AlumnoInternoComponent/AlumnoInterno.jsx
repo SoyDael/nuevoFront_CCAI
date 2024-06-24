@@ -1,5 +1,4 @@
 import React from "react";
-import NavbarSimple from "../../navbarComponents/NavbarSimple";
 import { registroEstudiante } from "../../../api/APIS";
 import Swal from "sweetalert2";
 

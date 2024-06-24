@@ -13,4 +13,4 @@ const NavbarSimple = () => {
   )
 }
 
-export default NavbarSimple
+export default NavbarSimple;

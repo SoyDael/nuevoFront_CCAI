@@ -2,8 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../../navbarComponents/Navbar'
-
 import { PerfilInvestigador } from '../../../api/APIS'
 import SlideBarInvestigadores from '../../SlideBar/SlideBarInvestigadores'
 
@@ -33,8 +31,6 @@ const PerfilComponent = () => {
     return (
         <>
         <SlideBarInvestigadores />
-
-
             <div className='  bg-slate-400 flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900 '>
                 <div className="relative w-full group max-w-md min-w-0 mx-auto mt-6 mb-6 break-word border shadow-2xl bg-gray-800 border-gray-700 md:max-w-sm rounded-xl  shadow-blue-500/50">
                     <div className="pb-6">

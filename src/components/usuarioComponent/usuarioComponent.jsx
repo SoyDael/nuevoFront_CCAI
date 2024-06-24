@@ -1,7 +1,5 @@
 import React from 'react';
 import { createUsuario } from '../../api/APIS';
-import NavbarSimple from '../navbarComponents/NavbarSimple';
-
 const UsuarioForm = () => {
 
     const RedireccionarInvetigador = (correo) => {

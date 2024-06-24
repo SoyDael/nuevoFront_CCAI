@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { perfilExterno, actividadesEstanciasPorCorreo } from '../../api/APIS';
+import { perfilExterno, actividadesEstanciasPorCorreo, proyectosEstancia } from '../../api/APIS';
 
 
 const SlideBarAlumnoExt = () => {
@@ -10,6 +10,7 @@ const SlideBarAlumnoExt = () => {
 
     const [perfilEstudiante, setPerfilEstudiante] = useState([]);
     const [actividadEstudiante, setActividadEstudiante] = useState(null);
+    const [proyectoEstudiante, setProyectoEstudiante] = useState(null);
 
 
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -27,11 +28,15 @@ const SlideBarAlumnoExt = () => {
     }
 
     const redireccionarEditar = () => {
-        navigate(`/editarPerfilExterno/${correo || residente_correo || correo_estancia_residente}`);
+        navigate(`/editarPerfilExt/${correo || residente_correo || correo_estancia_residente}`);
     }
 
     const redireccionarActividades = () => {
         navigate(`/actividadesEstancia/${correo || residente_correo || correo_estancia_residente}`);
+    }
+
+    const redireccionarProyectos = () => {
+        navigate(`/proyectoEstancia/${correo || residente_correo || correo_estancia_residente}`);
     }
 
 
@@ -86,6 +91,24 @@ const SlideBarAlumnoExt = () => {
             redireccionarActividades();
         } catch (error) {
             console.log('Error al obtener actividades:', error);
+        }
+    }
+
+    const obtenerProyectos = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await perfilExterno({ correo: correo }); // Pasar solo el correo del estudiante
+            const token = response.token;
+            console.log(token);
+            localStorage.setItem('token', token);
+
+            const proyectos = await proyectosEstancia(correo);
+            console.log(proyectos);
+            setProyectoEstudiante(proyectos);
+
+            redireccionarProyectos();
+        } catch (error) {
+            console.log('Error al obtener proyectos:', error);
         }
     }
 
@@ -231,7 +254,7 @@ const SlideBarAlumnoExt = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                       
+                                       onClick={obtenerProyectos}
                                         >
                                             Ver Proyecto
                                         </button>

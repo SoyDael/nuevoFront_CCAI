@@ -2,7 +2,6 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { ParticipantePorProyecto, getProyecto } from '../../../api/APIS';
 import { useParams, useNavigate } from 'react-router-dom'
-import Navbar from '../../navbarComponents/Navbar'
 import SlideBarPruebaAlumn from '../../SlideBar/SlideBarPruebaAlumn';
 import Swal from 'sweetalert2'
 

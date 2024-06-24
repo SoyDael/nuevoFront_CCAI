@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { login, getPerfilEstudiante } from '../../api/APIS';
-import NavbarSimple from '../navbarComponents/NavbarSimple';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import NavbarSimple from '../../components/navbarComponents/NavbarSimple';
 
 const Login = () => {
     const [email, setEmail] = useState('');
