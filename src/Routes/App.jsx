@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import  Login  from '../components/loginComponent/login.component.jsx';
+import Login from '../components/loginComponent/login.component.jsx';
 import PerfilAlumno from '../components/AlumnosInternosComponent/perfilesComponents/perfilAlumno.jsx';
 import EditarPerfil from '../components/AlumnosInternosComponent/EditarPerfil.jsx';
 import PerfilActividades from '../components/AlumnosInternosComponent/actividades.component/perfilActiviades.component.jsx';
@@ -34,6 +34,9 @@ import DetallesActividadEstancia from '../components/AlumnosExternos/actividadEs
 import ProyectoEstancia from '../components/AlumnosExternos/ProyectoAlumnoExterno/ProyectoAlumnoExterno.jsx';
 import ProyectoDetallesExt from '../components/AlumnosExternos/ProyectoAlumnoExterno/detallesProyecto/ProyectoDetallesExt.jsx';
 import EditarPerfilExt from '../components/AlumnosExternos/EditarPerfilExt.jsx';
+import ListadoAlumnosExternos from '../components/AlumnosExternos/ListadoAlumnosExternos.jsx';
+import AsigActExterno from '../components/ProyectosComponent/AsigActComponent/AsigActExterno.jsx';
+import ProgramaExternos from '../components/ProyectosComponent/programaComponent/ProgramaExternos.jsx';
 
 function App() {
   return (
@@ -44,7 +47,7 @@ function App() {
         <Route path="/usuario" element={<UsuarioForm />} />
         <Route path="/perfilAlumno/:correo" element={<PerfilAlumno />} />
         <Route path="/editarPerfil/:correo" element={<EditarPerfil />} />
-        <Route path='/navbarSimple' element={<NavbarSimple/>}/>
+        <Route path='/navbarSimple' element={<NavbarSimple />} />
         <Route path='/perfilActividades/:correo_estudiante' element={<PerfilActividades />} />
         <Route path='/detallesActividad/:correo_estudiante' element={<DetallesActividades />} />
         <Route path='/proyectoAlumnoInt/:correo_estudiante' element={<ProyectoAlumnoInt />} />
@@ -77,11 +80,14 @@ function App() {
         <Route path='/proyectoEstancia/:correo' element={<ProyectoEstancia />} />
         <Route path='/detallesProyectoEstancia/:correo/:id_proyecto' element={<ProyectoDetallesExt />} />
         <Route path='/editarPerfilExt/:correo' element={<EditarPerfilExt />} />
+        <Route path='/listadoAlumnosExternos/:correo' element={<ListadoAlumnosExternos />} />
+        <Route path='/asignarActividadExterno/:id_proyecto/:correo/:id_estancia/:id_estancia_residente/:correo_residente_estancia' element={<AsigActExterno />} />
+        <Route path='/programaExternos/:correo/:id_estancia_residente/:residente_correo' element={<ProgramaExternos />} />
 
       </Routes>
     </BrowserRouter>
   );
-          
+
 }
 
 export default App;

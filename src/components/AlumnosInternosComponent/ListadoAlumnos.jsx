@@ -102,7 +102,7 @@ const ListadoAlumnos = () => {
                         </button>
                     </div>
                     <table className='text-sm text-left rtl:text-right text-gray-400' style={{ overflowY: 'auto', maxHeight: '80vh' }}>
-                        <caption className='px-6 py-4 text-lg font-semibold text-left rtl:text-right text-white bg-gray-800'>
+                        <caption className='px-6 py-4 text-lg font-semibold text-left rtl:text-right text-white bg-gray-800 text-center'>
                             Alumnos internos
                             <p className='mt-1 text-sm font-normal text-gray-400'>Bienvenido. Los alumnos aceptados son:</p>
                         </caption>

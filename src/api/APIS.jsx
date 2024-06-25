@@ -328,3 +328,34 @@ export const actualizarPerfilExterno = async (correo, datos) => {
         throw error; // Propaga el error para manejarlo en el componente
     }
 }
+
+export const estanciaParticipante = async (id_proyecto) => {
+    const response = await API.get(`participanteEstanciaProyecto/${id_proyecto}`);
+    console.log(response.data);
+    return response.data;
+}
+
+
+export const asignarActividadExterno = async (actividad, id_proyecto, id_estancia ,id_estancia_residente, correo_residente_estancia) => {
+    // Agregar el id_proyecto al objeto de actividad
+    actividad.id_proyecto = id_proyecto;
+    // Agregar el id_estudiante al objeto de actividad
+    actividad.id_estancia_residente = id_estancia_residente;
+    // Agregar el correo_estudiante al objeto de actividad
+    actividad.correo_residente_estancia = correo_residente_estancia;
+    // Agregar el id_estancia al objeto de actividad
+    actividad.id_estancia = id_estancia;
+
+    const response = await API.post("registroActividadEstancias", actividad);
+    return response.data;
+}
+
+export const registroEstancia = async (estancia, id_estancia_residente, residente_correo) => {
+       // Agregar el id_estudiante al objeto de programa
+       estancia.id_estancia_residente = id_estancia_residente;
+       // Agregar el correo_estudiante al objeto de programa
+       estancia.residente_correo = residente_correo;
+    const response = await API.post('registroEstancias', estancia);
+    console.log(response.data);
+    return response.data;
+}

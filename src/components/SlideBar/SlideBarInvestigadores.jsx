@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SlideBar.css'
 import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto, consultaProgramas, listadoEstancias } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -50,6 +50,11 @@ const SlideBarInvestigadores = () => {
         navigate(`/listadoAlumnos/${correo || coordinador_correo || correo_investigador}`);
     }
 
+    const redireccionarAlumnosExternos = () => {
+        navigate(`/listadoAlumnosExternos/${correo || coordinador_correo || correo_investigador}`);
+    }
+
+    
     const redireccionarProyectos = () => {
         navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
@@ -65,7 +70,6 @@ const SlideBarInvestigadores = () => {
         const fetchInvestigador = async () => {
             try {
                 const investigador = await consultaInvestigadores();
-                console.log(investigador);
                 setInvestigador(investigador); // Almacena los proyectos del investigador en el estado
             } catch (error) {
                 console.error('Error al obtener proyectos:', error);
@@ -79,7 +83,6 @@ const SlideBarInvestigadores = () => {
         const fetchPerfilInvestigador = async () => {
             try {
                 const perfil = await navbarInvestigador(correo);
-                console.log(perfil);
                 setPerfilInvestigador(perfil);
             } catch (error) {
                 console.error('Error al obtener perfil:', error);
@@ -174,7 +177,6 @@ const SlideBarInvestigadores = () => {
         const obtenerPrograma = async () => {
             try {
                 const response = await consultaProgramas();
-                console.log("datos", response);
                 setPrograma(response);
                 setFilteredProgramas(response); // Inicializa la lista filtrada con todos los programas
             } catch (error) {
@@ -223,7 +225,6 @@ const SlideBarInvestigadores = () => {
         const fetchEstancias = async () => {
             try {
                 const estancias = await listadoEstancias();
-                console.log(estancias);
                 setEstancias(estancias); // Almacena los datos en el estado
                 setFilteredEstancias(estancias); // Inicializa la lista filtrada con todos los proyectos
             } catch (error) {
@@ -454,7 +455,7 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                        onClick={toggleModal5}>
+                                        onClick={redireccionarAlumnosExternos}>
                                         
                                             Ver alumnos Externos
                                         </button>
@@ -963,117 +964,6 @@ const SlideBarInvestigadores = () => {
             )}
 
             {/** Aqui termina ver programa */}
-
-            {/** Aqui inicia ver alumnos internos */}
-
-             {/** Aqui inicia ver programa */}
-             {showModal5 && (
-                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className="border border-gray-200 rounded-lg shadow-lg p-5">
-                        <div className='bg-slate-700 flex items-center justify-center from-gray-700 via-gray-800 to-gray-900'>
-                            <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
-                                <div className="px-4 py-2 flex justify-between items-center">
-                                    <input
-                                        type="text"
-                                        placeholder="Buscar por correo..."
-                                        value={searchTerm}
-                                        className="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        onChange={handleSearchExternos}
-                                    />
-                                    <button
-                                        onClick={handleClearSearchExternos}
-                                        className="ml-4 bg-blue-500 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        Limpiar búsqueda
-                                    </button>
-                                </div>
-                                <table className="text-sm text-left rtl:text-right text-gray-400">
-                                    <caption className="px-6 py-4 text-lg font-semibold text-white bg-gray-800 min-w-8">
-                                        Los alumnos registrado en programas son
-                                        <p className="mt-1 text-sm font-normal text-gray-400">
-                                            Bienvenido, { } { } los programas registrados son:
-                                        </p>
-                                    </caption>
-                                    <thead className="text-xs uppercase bg-gray-700 text-gray-400">
-                                        <tr>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Nombres
-                                            </th>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Apellidos
-                                            </th>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Correo
-                                            </th>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Tipo
-                                            </th>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Telefono
-                                            </th>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Fecha de inicio
-                                            </th>
-                                            <th scope="col" className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 px-6 py-3">
-                                                Fecha de fin
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {filteredEstancias.slice(offset, offset + alumnosPerPage).map((estancia) => (
-                                            <tr className="border-b bg-gray-800 border-gray-700" key={estancia.id}>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.nombres}
-                                                </td>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.apellido_p} {estancia.apellido_m}
-                                                </td>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.residente_correo}
-                                                </td>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.tipoEstancia}
-                                                </td>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.telefono}
-                                                </td>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.fecha_inicio}
-                                                </td>
-                                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {estancia.fecha_fin}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                                <div className='flex justify-center mt-4'>
-                                    <ReactPaginate
-                                        previousLabel={<i className="fas fa-chevron-left"></i>}
-                                        nextLabel={<i className="fas fa-chevron-right"></i>}
-                                        breakLabel={'...'}
-                                        pageCount={pageCount}
-                                        marginPagesDisplayed={1}
-                                        pageRangeDisplayed={2}
-                                        onPageChange={handlePageChange}
-                                        containerClassName={'pagination flex'}
-                                        activeClassName={'active'}
-                                        disabledClassName={'bg-gray-500 text-gray-300 cursor-not-allowed'}
-                                        pageClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
-                                        pageLinkClassName={'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'}
-                                    />
-                                    <div className="flex justify-center">
-                                        <button onClick={toggleModal5 } className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/** Aqui termina ver programa */}
-
         </>
     )
 }
