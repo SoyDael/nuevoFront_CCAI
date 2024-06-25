@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './SlideBar.css'
-import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto, consultaProgramas, listadoEstancias } from '../../api/APIS'
+import { navbarInvestigador, createUsuario, registroEstudiante, consultaInvestigadores, registroProyecto, consultaProgramas, listadoEstancias, registroInvestigador, registroEstanciaResidente } from '../../api/APIS'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 
@@ -256,6 +256,49 @@ const SlideBarInvestigadores = () => {
         setFilteredEstancias(Estancias); // Restaurar la lista original
     };
 
+    // registro investigador
+    const handleInvestigador = async (formulario) => {
+        const formData = new FormData(formulario);
+        const investigador = Object.fromEntries(formData);
+        try {
+            await registroInvestigador(investigador);
+            console.log("dimos clic", investigador);
+            alert('Usuario añadido correctamente');
+            formulario.reset();
+        } catch (error) {
+            console.error('Error al añadir usuario:', error);
+            alert('Error al añadir usuario. Por favor, inténtelo de nuevo más tarde.');
+        }
+    };
+
+    const [showModal6, setshowModal6] = useState(false);
+
+    const toggleModal6 = () => {
+        setshowModal6(!showModal6);
+    };
+
+    // registro alumno externo
+    const handleregistroEstanciaResidente= async (formulario) => {
+        const formData = new FormData(formulario);
+        const alumnoExterno = Object.fromEntries(formData);
+        try {
+            await registroEstanciaResidente (alumnoExterno);
+            console.log("dimos clic", alumnoExterno);
+            alert('Usuario añadido correctamente');
+            formulario.reset();
+        } catch (error) {
+            console.error('Error al añadir usuario:', error);
+            alert('Error al añadir usuario. Por favor, inténtelo de nuevo más tarde.');
+        }
+    };
+
+    const [showModal7, setshowModal7] = useState(false);
+
+    const toggleModal7 = () => {
+        setshowModal7(!showModal7);
+    };
+
+
     return (
         <>
             <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
@@ -486,7 +529,19 @@ const SlideBarInvestigadores = () => {
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                             onClick={toggleModal2}>
-                                            Registro alumno interno
+                                            Registro Alumno Interno
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                            onClick={toggleModal7}>
+                                            Registro Alumno Externo
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                            onClick={toggleModal6}>
+                                            Registro Investigador
                                         </button>
                                     </li>
                                 </ul>
@@ -763,6 +818,302 @@ const SlideBarInvestigadores = () => {
             )}
 
             {/** Aqui termina Registro Alumno interno */}
+
+                        {/** Aqui inicia Registro Alumno externo */}
+                        {showModal7 && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
+                                <h2 className="mb-4 text-xl font-bold text-gray-900 text-white">Registro Alumno Externo</h2>
+                                <form class="max-w-xl mx-auto" id='formulario'>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                  
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="nombres"
+                                                id="nombres"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="nombres"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Nombre(s):
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="apellido_p"
+                                                id="apellido_p"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="apellido_p"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Apellido paterno:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="apellido_m"
+                                                id="apellido_m"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="apellido_m"
+                                                class="peer-focus: font-bold absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Apellido materno:
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="correo"
+                                                id="correo"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="correo"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Correo:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="email"
+                                                name="correo_adicional"
+                                                id="correo_adicional"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="correo_adicional"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Correo adicional:
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="tel"
+                                                name="telefono"
+                                                id="telefono"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="telefono"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Telefóno:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <select type="text"
+                                                name="estatus"
+                                                id="estatus"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required>
+
+                                                <option value="" > Selecciona una opción </option>
+                                                <option value="Activo"  > Activo </option>
+                                                <option value="Inactivo"> Inactivo </option>
+                                               
+                                            </select>
+                                            <label
+                                                htmlFor="division"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Estatus:
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div className="flex justify-center">
+                                    <button type='submit' onClick={() => handleregistroEstanciaResidente(document.getElementById('formulario'))}
+                                        className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrar Alumno</button>
+                                    <button onClick={toggleModal7} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            )}
+
+            {/** Aqui termina Registro Alumno externo */}
+
+                        {/** Aqui inicia Registro Investigador*/}
+                        {showModal6 && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div className=" border border-gray-200 rounded-lg shadow-lg p-5">
+                        <section class="grid  place-content-center bg-slate-600 text-slate-300">
+                            <div className=" rounded-md p-4 relative  border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50">
+                                <h2 className="mb-4 text-xl font-bold text-gray-900 text-white">Registro Investigador</h2>
+                                <form class="max-w-xl mx-auto" id='formulario'>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="titulo"
+                                                id="titulo"
+                                                class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="titulo"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Titulo:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="nombres"
+                                                id="nombres"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="nombres"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Nombre(s):
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="apellido_p"
+                                                id="apellido_p"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="apellido_p"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Apellido paterno:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="apellido_m"
+                                                id="apellido_m"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="apellido_m"
+                                                class="peer-focus: font-bold absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Apellido materno:
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="text"
+                                                name="correo"
+                                                id="correo"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="correo"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Correo:
+                                            </label>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input
+                                                type="tel"
+                                                name="telefono"
+                                                id="telefono"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="telefono"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Telefóno:
+                                            </label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <select type="text"
+                                                name="estatus"
+                                                id="estatus"
+                                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" "
+                                                required>
+
+                                                <option value="" > Selecciona una opción </option>
+                                                <option value="Activo"  > Activo </option>
+                                                <option value="Inactivo"> Inactivo </option>
+                                           
+                                            </select>
+                                            <label
+                                                htmlFor="division"
+                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                            >
+                                                Estatus:
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div className="flex justify-center">
+                                    <button type='submit'  onClick={() => handleInvestigador(document.getElementById('formulario'))}
+                                        className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrar Alumno</button>
+                                    <button onClick={toggleModal6} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cerrar</button>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            )}
+
+            {/** Aqui termina Registro Investigador */}
 
             {/** Aqui inicia Registro Proyecto */}
 

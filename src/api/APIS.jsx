@@ -145,6 +145,16 @@ export const registroEstudiante = async (estudiante) => {
     return response.data;
 }
 
+export const registroInvestigador = async (investigador) => {
+    const response = await API.post("registroInvestigador", investigador);
+    return response.data;
+}
+
+export const registroEstanciaResidente = async (alumnoExterno) => {
+    const response = await API.post("registroEstanciaResidente", alumnoExterno);
+    return response.data;
+}
+
 export const listadoAlumnos = async (estudiante, id_estudiante, correo) => {
     const data = {
         id_estudiante: id_estudiante,
