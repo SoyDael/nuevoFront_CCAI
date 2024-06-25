@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import SlideBarPruebaAlumn from "../SlideBar/SlideBarPruebaAlumn";
 import { recuperarContraseña } from "../../api/APIS";
-import NavbarSimple from "../navbarComponents/NavbarSimple";
 
 const Recuperarcomponent = () => {
 

@@ -89,6 +89,16 @@ export const PerfilInvestigador = async (correo) => {
 }
 
 
+export const actualizarPerfilInvestigador = async (correo, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`editarInvestigador/${correo}`, datos);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
+
 export const proyectosInvestigador = async (correo) => {
     const response = await API.get(`proyectosInvestigador/${correo}`);
     response.data.forEach(programa => {
@@ -132,6 +142,16 @@ export const asignarActividad = async (actividad, id_proyecto, id_estudiante, co
 
 export const registroEstudiante = async (estudiante) => {
     const response = await API.post("registroEstudiante", estudiante);
+    return response.data;
+}
+
+export const registroInvestigador = async (investigador) => {
+    const response = await API.post("registroInvestigador", investigador);
+    return response.data;
+}
+
+export const registroEstanciaResidente = async (alumnoExterno) => {
+    const response = await API.post("registroEstanciaResidente", alumnoExterno);
     return response.data;
 }
 
@@ -253,6 +273,99 @@ export const consultaProgramas = async () => {
         programa.fecha_inicio = programa.fecha_inicio.split('T')[0];
         programa.fecha_fin = programa.fecha_fin.split('T')[0];
     });
+    console.log(response.data);
+    return response.data;
+}
+
+export const eliminarParticipante = async (correo_estudiante) => {
+    const response = await API.delete(`eliminarParticipante/${correo_estudiante}`);
+    console.log(response.data);
+    return response.data;
+}
+
+export const actualizarProyecto = async (id_proyecto, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`actualizarProyecto/${id_proyecto}`, datos);
+        response.data[0].fecha_inicio = response.data[0].fecha_inicio.split('T')[0];
+        response.data[0].fecha_fin = response.data[0].fecha_fin.split('T')[0];
+        response.data[0].fecha_registro = response.data[0].fecha_registro.split('T')[0];
+        console.log(response.data);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
+
+export const perfilExterno = async (correo) => {
+    const response = await API.get(`perfilEstancia/${correo}`);
+    console.log(response.data);
+    return response.data;
+}
+
+export const listadoEstancias = async () =>{
+    const response = await API.get('listadoEstancias');
+    response.data.forEach(listadoestancias => {
+        listadoestancias.fecha_inicio = listadoestancias.fecha_inicio.split('T')[0];
+        listadoestancias.fecha_fin = listadoestancias.fecha_fin.split('T')[0];
+    });
+    console.log(response.data);
+    return response.data;
+}
+
+export const actividadesEstanciasPorCorreo = async (correo) => {
+    const response = await API.get(`consultarActividadEstanciaPorCorreo/${correo}`);
+    response.data.forEach(listadoestancias => {
+        listadoestancias.fecha_inicio = listadoestancias.fecha_inicio.split('T')[0];
+        listadoestancias.fecha_fin = listadoestancias.fecha_fin.split('T')[0];
+    });
+    console.log(response.data);
+    return response.data;
+}
+
+export const proyectosEstancia = async (correo) => {
+    const response = await API.get(`participanteEstanciaPorProyecto/${correo}`);
+    console.log(response.data);
+    return response.data;
+}
+
+export const actualizarPerfilExterno = async (correo, datos) => {
+    try {
+        // Realiza la solicitud PATCH con los datos actualizados
+        const response = await API.patch(`actualizarPerfilEstancia/${correo}`, datos);
+        return response;
+    } catch (error) {
+        throw error; // Propaga el error para manejarlo en el componente
+    }
+}
+
+export const estanciaParticipante = async (id_proyecto) => {
+    const response = await API.get(`participanteEstanciaProyecto/${id_proyecto}`);
+    console.log(response.data);
+    return response.data;
+}
+
+
+export const asignarActividadExterno = async (actividad, id_proyecto, id_estancia ,id_estancia_residente, correo_residente_estancia) => {
+    // Agregar el id_proyecto al objeto de actividad
+    actividad.id_proyecto = id_proyecto;
+    // Agregar el id_estudiante al objeto de actividad
+    actividad.id_estancia_residente = id_estancia_residente;
+    // Agregar el correo_estudiante al objeto de actividad
+    actividad.correo_residente_estancia = correo_residente_estancia;
+    // Agregar el id_estancia al objeto de actividad
+    actividad.id_estancia = id_estancia;
+
+    const response = await API.post("registroActividadEstancias", actividad);
+    return response.data;
+}
+
+export const registroEstancia = async (estancia, id_estancia_residente, residente_correo) => {
+       // Agregar el id_estudiante al objeto de programa
+       estancia.id_estancia_residente = id_estancia_residente;
+       // Agregar el correo_estudiante al objeto de programa
+       estancia.residente_correo = residente_correo;
+    const response = await API.post('registroEstancias', estancia);
     console.log(response.data);
     return response.data;
 }

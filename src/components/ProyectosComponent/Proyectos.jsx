@@ -52,6 +52,7 @@ const Proyectos = () => {
         const proyectos = await proyectosInvestigador(correo); // Obtener los proyectos del investigador
         console.log(proyectos);
         setProyecto(proyectos); // Almacena los proyectos del investigador en el estado
+        setFilteredProyectos(proyectos);
       } catch (error) {
         console.error("Error al obtener proyectos:", error);
         alert("Error al obtener proyectos. Por favor, inténtalo de nuevo.");
@@ -59,6 +60,24 @@ const Proyectos = () => {
     };
     fetchProyectos();
   }, [correo]);
+
+  const [filteredProyectos, setFilteredProyectos] = useState([]); // Copia de la lista original
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (e) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+    const filtered = Proyecto.filter((proy) =>
+      proy.titulo_esp.toLowerCase().includes(term)
+    );
+    setFilteredProyectos(filtered);
+  };
+
+
+  const handleClearSearch = () => {
+    setSearchTerm('');
+    setFilteredProyectos(programa); // Restaurar la lista original
+  };
 
   return (
     <>
@@ -75,6 +94,21 @@ const Proyectos = () => {
                 {Proyecto[0]?.apellido_m} <br></br> Los proyectos que coordinas
                 son:
               </h1>
+              <div className="px-4 py-2 flex justify-between items-center">
+                <input
+                  type="text"
+                  placeholder="Buscar por nombre..."
+                  value={searchTerm}
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={handleSearch}
+                />
+                <button
+                  onClick={handleClearSearch}
+                  className="ml-4 bg-blue-500 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Limpiar búsqueda
+                </button>
+              </div>
             </caption>
             <thead className="text-xs  uppercase  text-gray-400 ">
               <tr>
@@ -117,7 +151,7 @@ const Proyectos = () => {
               </tr>
             </thead>
             <tbody>
-              {Proyecto.slice(offset, offset + alumnosPerPage).map((proyecto) => (
+              {filteredProyectos.slice(offset, offset + alumnosPerPage).map((proyecto) => (
 
                 <tr className=" border-b bg-gray-800 border-gray-700">
                   <td

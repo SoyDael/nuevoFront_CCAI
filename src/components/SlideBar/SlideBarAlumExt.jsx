@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { navbarEstudiante, getPerfilEstudiante, getconsultaActividadesEstudiantesPorId } from '../../api/APIS';
+import { perfilExterno, actividadesEstanciasPorCorreo, proyectosEstancia } from '../../api/APIS';
 
 
-const SlideBarPruebaAlumn = () => {
+const SlideBarAlumnoExt = () => {
 
-    const { correo, correo_estudiante, estudiante_correo } = useParams();
+    const { correo, residente_correo, correo_estancia_residente } = useParams();
 
 
     const [perfilEstudiante, setPerfilEstudiante] = useState([]);
     const [actividadEstudiante, setActividadEstudiante] = useState(null);
     const [proyectoEstudiante, setProyectoEstudiante] = useState(null);
+
 
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
     const [isAsideVisible, setIsAsideVisible] = useState(true);
@@ -23,37 +24,21 @@ const SlideBarPruebaAlumn = () => {
     const navigate = useNavigate();
 
     const redireccionarPerfil = () => {
-        navigate(`/perfilAlumno/${correo || correo_estudiante || estudiante_correo}`);
+        navigate(`/perfilAlumnoExterno/${correo || residente_correo || correo_estancia_residente}`);
     }
 
     const redireccionarEditar = () => {
-        navigate(`/editarPerfil/${correo_estudiante || correo || estudiante_correo}`);
-    }
-
-    const redireccionarProyecto = () => {
-        navigate(`/proyectoAlumnoInt/${correo || correo_estudiante || estudiante_correo}`);
+        navigate(`/editarPerfilExt/${correo || residente_correo || correo_estancia_residente}`);
     }
 
     const redireccionarActividades = () => {
-        navigate(`/perfilActividades/${correo || correo_estudiante || estudiante_correo}`);
+        navigate(`/actividadesEstancia/${correo || residente_correo || correo_estancia_residente}`);
     }
 
-    const obtenerActividades = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await getPerfilEstudiante({ correo: correo }); // Pasar solo el correo del estudiante
-            const token = response.token;
-            console.log(token);
-            localStorage.setItem('token', token);
-
-            const actividades = await getconsultaActividadesEstudiantesPorId(correo);
-            setActividadEstudiante(actividades);
-
-            redireccionarActividades();
-        } catch (error) {
-            console.log('Error al obtener actividades:', error);
-        }
+    const redireccionarProyectos = () => {
+        navigate(`/proyectoEstancia/${correo || residente_correo || correo_estancia_residente}`);
     }
+
 
 
     const cerrarSesion = () => {
@@ -77,7 +62,7 @@ const SlideBarPruebaAlumn = () => {
     useEffect(() => {
         const fetchPerfilEstudiante = async () => {
             try {
-                const perfil = await navbarEstudiante(correo || correo_estudiante || estudiante_correo);
+                const perfil = await perfilExterno(correo || residente_correo || correo_estancia_residente);
                 console.log(perfil);
                 setPerfilEstudiante(perfil);
             } catch (error) {
@@ -87,6 +72,45 @@ const SlideBarPruebaAlumn = () => {
         };
         fetchPerfilEstudiante();
     }, [correo]);
+
+
+    /// rediccionar a la pagina de actividades de estancia
+
+    const obtenerActividades = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await perfilExterno({ correo: correo }); // Pasar solo el correo del estudiante
+            const token = response.token;
+            console.log(token);
+            localStorage.setItem('token', token);
+
+            const actividades = await actividadesEstanciasPorCorreo(correo);
+            console.log(actividades);
+            setActividadEstudiante(actividades);
+
+            redireccionarActividades();
+        } catch (error) {
+            console.log('Error al obtener actividades:', error);
+        }
+    }
+
+    const obtenerProyectos = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await perfilExterno({ correo: correo }); // Pasar solo el correo del estudiante
+            const token = response.token;
+            console.log(token);
+            localStorage.setItem('token', token);
+
+            const proyectos = await proyectosEstancia(correo);
+            console.log(proyectos);
+            setProyectoEstudiante(proyectos);
+
+            redireccionarProyectos();
+        } catch (error) {
+            console.log('Error al obtener proyectos:', error);
+        }
+    }
 
     return (
         <>
@@ -153,7 +177,7 @@ const SlideBarPruebaAlumn = () => {
                                         <div className="px-4 py-3">
                                             <p className="text-sm text-slate-300 ">{perfilEstudiante[0]?.nombres} {perfilEstudiante[0]?.apellido_p} {perfilEstudiante[0]?.apellido_m}</p>
                                             {/**   <p className="text-sm  text-gray-900 dark:text-gray-300">{perfilEstudiante[0]?.correo}</p> */}
-                                            <p className="text-sm font-medium text-slate-300 dark:text-gray-300">{perfilEstudiante[0]?.tipo}</p>
+                                            <p className="text-sm font-medium text-slate-300 dark:text-gray-300">{perfilEstudiante[0]?.tipoEstancia}</p>
                                         </div>
                                         <ul className="py-1 text-sm text-slate-300 dark:text-gray-300" aria-labelledby="user-menu-button">
                                             <li>
@@ -224,7 +248,7 @@ const SlideBarPruebaAlumn = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                            onClick={redireccionarProyecto}
+                                            onClick={obtenerProyectos}
                                         >
                                             Ver Proyecto
                                         </button>
@@ -274,4 +298,4 @@ const SlideBarPruebaAlumn = () => {
     )
 }
 
-export default SlideBarPruebaAlumn
+export default SlideBarAlumnoExt

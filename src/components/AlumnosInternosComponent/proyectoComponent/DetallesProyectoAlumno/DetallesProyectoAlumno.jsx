@@ -11,7 +11,7 @@ const DetallesProyectoAlumno = () => {
     const [documentacion, setDocumentacion] = useState([]);
     const [proyectos, setProyectos] = useState([])
     const [navbar, setNavbar] = useState([])
-    
+
 
 
     const navigate = useNavigate();
@@ -21,22 +21,22 @@ const DetallesProyectoAlumno = () => {
     }
 
     useEffect(() => {
-    const ObtenerAlumno = async () => {
-        try {
-            const res = await navbarEstudiante(correo_estudiante);
-            console.log(res);
-            setNavbar(res);
-        } catch (error) {
-            console.error('Error al obtener navbar:', error);
-            alert('Error al obtener navbar. Por favor, inténtalo de nuevo.');
+        const ObtenerAlumno = async () => {
+            try {
+                const res = await navbarEstudiante(correo_estudiante);
+                console.log(res);
+                setNavbar(res);
+            } catch (error) {
+                console.error('Error al obtener navbar:', error);
+                alert('Error al obtener navbar. Por favor, inténtalo de nuevo.');
+            }
         }
-    }
-    ObtenerAlumno(); 
-}, []);
+        ObtenerAlumno();
+    }, []);
 
     const obtenerDocumentacionProyecto = async (id_proyecto, correo_estudiante) => {
         try {
-            const res = await getProyecto({correo_estudiante: correo_estudiante, id_proyecto: id_proyecto})
+            const res = await getProyecto({ correo_estudiante: correo_estudiante, id_proyecto: id_proyecto })
             const token = res.token;
             console.log(token);
             localStorage.setItem('token', token);
@@ -84,7 +84,7 @@ const DetallesProyectoAlumno = () => {
         setShowModal2(!showModal2);
     };
 
-    
+
     const handleDocumentacion = async (formulario) => {
         const formData = new FormData(formulario);
         const documentacion = Object.fromEntries(formData);
@@ -110,7 +110,7 @@ const DetallesProyectoAlumno = () => {
                         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-5 max-w-lg">
                             <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Descripcion</h1>
                             <p className="mb-3 font-normal text-gray-700">{proyecto[0]?.descripcion}</p>
-                            <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Cerrar</button>
+                            <button onClick={toggleModal} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                         </div>
                     </div>
                 )}
@@ -136,16 +136,16 @@ const DetallesProyectoAlumno = () => {
                                             </div>
 
                                             <div className="sm:col-span-2">
-                                            <input
-                                                type="number"
-                                                id="id_estudiante"
-                                                name="id_estudiante"
-                                                placeholder=""
-                                                class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
-                                                value={navbar[0]?.id_estudiante}
-                                                readOnly
-                                            />
-                                        </div>
+                                                <input
+                                                    type="number"
+                                                    id="id_estudiante"
+                                                    name="id_estudiante"
+                                                    placeholder=""
+                                                    class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
+                                                    value={navbar[0]?.id_estudiante}
+                                                    readOnly
+                                                />
+                                            </div>
 
                                             <div className="sm:col-span-2">
                                                 <input
@@ -160,17 +160,17 @@ const DetallesProyectoAlumno = () => {
                                             </div>
 
                                             <div className="sm:col-span-2">
-                                            <input
-                                                type="text"
-                                                id="id_programa"
-                                                name="id_programa"
-                                                placeholder=""
-                                                class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
-                                                value={navbar[0]?.id_programa}
-                                                readOnly
-                                            />
-                                        </div>
-                                            
+                                                <input
+                                                    type="text"
+                                                    id="id_programa"
+                                                    name="id_programa"
+                                                    placeholder=""
+                                                    class="w-96  rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500 text-white icon-white"
+                                                    value={navbar[0]?.id_programa}
+                                                    readOnly
+                                                />
+                                            </div>
+
                                             <div className="sm:col-span-2">
                                                 <input
                                                     type="number"
@@ -202,22 +202,22 @@ const DetallesProyectoAlumno = () => {
                                                         value="2024-1"
                                                         class="w-96 border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
                                                     >2024-1</option>
-                                                      <option
+                                                    <option
                                                         value="2024-1"
                                                         class="w-96 border-0 bg-slate-900 p-2 px-4 focus:bg-slate-800 focus:ring-2 focus:ring-orange-500"
                                                     >2024-2</option>
                                                 </select>
                                             </div>
 
-                                          
+
                                             <input type="date" id="fecha" name="fecha" placeholder="Fecha de registro" class="w-96 appearance-none rounded-full border-0 bg-slate-900 p-2 px-4 focus:bg-slate-700 focus:ring-2 focus:ring-orange-500 text-white icon-white" />
-                                       
+
                                         </div>
                                         <div className="flex justify-center">
-                                            <button onClick={() => handleDocumentacion(document.getElementById('formulario'))} className="mb-4 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-900 rounded-lg py-2 px-3">Registrar Documentación</button>
+                                            <button onClick={() => handleDocumentacion(document.getElementById('formulario'))} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Registrar Documentación</button>
                                         </div>
                                         <div className="flex justify-center">
-                                            <button onClick={toggleModal2} className="text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-900 rounded-lg py-2 px-3">Cerrar</button>
+                                            <button onClick={toggleModal2} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Cerrar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -236,15 +236,16 @@ const DetallesProyectoAlumno = () => {
                         <p className="mb-3 font-normal  text-gray-200">Objetivo: {proyecto[0]?.objetivo}</p>
                         <p className="mb-3 font-normal  text-gray-200"> Descripcion: {proyecto[0]?.descripcion.substring(0, 100)}...</p>
                         <div className="flex justify-center">
-                            <button onClick={toggleModal} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-5 ">Leer más</button>
+                            <button onClick={toggleModal} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2 ">Leer más</button>
                         </div>
                         <p className="mb-3 font-normal  text-gray-200 mt-2">Fecha de Registro: {proyecto[0]?.fecha_registro}</p>
                         <p className="mb-3 font-normal  text-gray-200">Fecha de Inicio: {proyecto[0]?.fecha_inicio}</p>
                         <p className="mb-3 font-normal  text-gray-200">Fecha de Fin: {proyecto[0]?.fecha_fin}</p>
                         <p className="mb-3 font-normal text-gray-200">Estatus: {proyecto[0]?.estatus}</p>
                         <div className="flex justify-center">
-                            <button onClick={toggleModal2} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3 mr-4">Añadir documentación</button>
-                            <button onClick={() => redireccionarDocumentacionproyecto(proyecto.id_proyecto)} className="text-sm font-medium text-white bg-blue-700 rounded-lg py-1 px-3">Ver Documentación</button>
+                            <button onClick={toggleModal2} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">
+                                Añadir documentación</button>
+                            <button onClick={() => redireccionarDocumentacionproyecto(proyecto.id_proyecto)} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ml-2">Ver Documentación</button>
                         </div>
 
                     </div>
