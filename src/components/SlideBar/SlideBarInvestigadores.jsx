@@ -576,7 +576,7 @@ const SlideBarInvestigadores = () => {
                                 <ul className="pl-4 mt-2 space-y-2">
                                     <li>
                                         <button 
-                                        onClick= {redireccionarVerPrograma}
+                                        onClick= {toggleModal4}
                                         className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
                                             Ver programas
                                         </button>
