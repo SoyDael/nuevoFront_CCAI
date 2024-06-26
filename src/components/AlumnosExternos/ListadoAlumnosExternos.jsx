@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
-import { listadoEstancias } from '../../api/APIS';
+import { listadoEstancias, consultaEstanciasResidentes } from '../../api/APIS';
 import SlideBarInvestigadores from '../SlideBar/SlideBarInvestigadores';
 
 const ListadoAlumnosExternos = () => {
@@ -26,7 +26,7 @@ const ListadoAlumnosExternos = () => {
     useEffect(() => {
         const fetchEstancias = async () => {
             try {
-                const estancias = await listadoEstancias();
+                const estancias = await consultaEstanciasResidentes();
                 setEstancias(estancias); // Almacena los datos en el estado
                 setFilteredEstancias(estancias); // Inicializa la lista filtrada con todos los proyectos
             } catch (error) {
@@ -39,7 +39,7 @@ const ListadoAlumnosExternos = () => {
 
     const obtenerIdEstancias = async (id_estancia_residente) => {
         try {
-            const estancias = await listadoEstancias();
+            const estancias = await consultaEstanciasResidentes();
             const estancia = estancias.find(estancia => estancia.id_estancia_residente === id_estancia_residente);
             console.log(estancia);
           
@@ -67,7 +67,7 @@ const ListadoAlumnosExternos = () => {
         const term = e.target.value.toLowerCase();
         setSearchTerm(term);
         const filtered = Estancias.filter((es) =>
-            es.residente_correo.toLowerCase().includes(term)
+            es.correo.toLowerCase().includes(term)
         );
         setFilteredEstancias(filtered);
     };
@@ -137,7 +137,7 @@ const ListadoAlumnosExternos = () => {
                                             {estancia.apellido_p} {estancia.apellido_m}
                                         </td>
                                         <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                            {estancia.residente_correo}
+                                            {estancia.correo}
                                         </td>
 
                                         <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
@@ -145,7 +145,7 @@ const ListadoAlumnosExternos = () => {
                                         </td>
                                         <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>
                                         <button
-                                            onClick={() => redireccionarAsignarPrograma(estancia.id_estancia_residente, estancia.residente_correo)}
+                                            onClick={() => redireccionarAsignarPrograma(estancia.id_estancia_residente, estancia.correo)}
                                             className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
                                         >
                                             Registrar programa

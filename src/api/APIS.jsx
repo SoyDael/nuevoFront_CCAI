@@ -369,3 +369,9 @@ export const registroEstancia = async (estancia, id_estancia_residente, resident
     console.log(response.data);
     return response.data;
 }
+
+export const consultaEstanciasResidentes = async () => {
+    const response = await API.get('consultaEstanciaResidente');
+    console.log(response.data);
+    return response.data;
+}
