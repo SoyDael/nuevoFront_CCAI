@@ -392,3 +392,9 @@ export const consultaProgramasPorAlumnoExterno = async (residente_correo) => {
     console.log(response.data);
     return response.data;
 }
+
+export const pruebaPA = async (usuario) => {
+    const response = await API.post('altaUsuarios', usuario);
+    console.log(response.data);
+    return response.data;
+}

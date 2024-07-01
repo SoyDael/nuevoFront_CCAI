@@ -38,6 +38,7 @@ import ListadoAlumnosExternos from '../components/AlumnosExternos/ListadoAlumnos
 import AsigActExterno from '../components/ProyectosComponent/AsigActComponent/AsigActExterno.jsx';
 import ProgramaExternos from '../components/ProyectosComponent/programaComponent/ProgramaExternos.jsx';
 import AsigProyExterno from '../components/ProyectosComponent/AsigProyComponent/AsigProyExterno.jsx';
+import PruebaPA from '../components/pruebaPA/PruebaPA.jsx';
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
         <Route path='/asignarActividadExterno/:id_proyecto/:correo/:id_estancia/:id_estancia_residente/:correo_residente_estancia' element={<AsigActExterno />} />
         <Route path='/programaExternos/:correo/:id_estancia_residente/:residente_correo' element={<ProgramaExternos />} />
         <Route path='/asignarProyectoExterno/:correo/:id_estancia_residente/:residente_correo' element={<AsigProyExterno />} />
+        <Route path='/pruebaPA/:correo' element={<PruebaPA />} />
 
       </Routes>
     </BrowserRouter>

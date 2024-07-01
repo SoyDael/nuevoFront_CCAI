@@ -59,6 +59,10 @@ const SlideBarInvestigadores = () => {
         navigate(`/proyectos/${correo || coordinador_correo || correo_investigador}`);
     }
 
+    const redireccionarPruebaPA = () => {
+        navigate(`/pruebaPA/${correo || coordinador_correo || correo_investigador}`);
+    }
+
 
     // api consultaInvestigadores
 
@@ -521,6 +525,12 @@ const SlideBarInvestigadores = () => {
                             </button>
                             {isCalendarOpen && (
                                 <ul className="pl-4 mt-2 space-y-2">
+                                      <li>
+                                        <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                            onClick={redireccionarPruebaPA}>
+                                            Registrar nuevo prueba
+                                        </button>
+                                    </li>
                                     <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                             onClick={toggleModal}>

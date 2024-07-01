@@ -23,7 +23,7 @@ const ProgramaExternos = () => {
         try {
             await registroEstancia(programa, id_estancia_residente, residente_correo);
             alert('Programa asignado correctamente');
-           // redireccionarAsignarProyecto(`/asignarProyecto/${correo}/${id_estudiante}/${estudiante_correo}`);
+            redireccionarAsignarProyecto(`/asignarProyectoExterno/${correo}/${id_estancia_residente}/${residente_correo}`);
 
             e.target.reset();
         } catch (error) {

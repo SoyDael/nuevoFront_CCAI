@@ -63,17 +63,17 @@ const UsuarioForm = () => {
                                     Regresar
                                 </a>
                             </div>
-                        </div>   
+                        </div>
                     </section>
-                    </div>
                 </div>
-            </>
-            );
+            </div>
+        </>
+    );
 };
 
-            export default UsuarioForm;
+export default UsuarioForm;
 
-            {/**
+{/**
  <form action="" onSubmit={handleSubmit}>
             <label htmlFor="correo">Correo: </label>
             <input type="email" name="correo" id="correo" />
