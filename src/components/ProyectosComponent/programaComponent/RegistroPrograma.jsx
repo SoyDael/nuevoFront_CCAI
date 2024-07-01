@@ -42,7 +42,6 @@ const RegistroPrograma = () => {
                     confirmButtonText: 'Registrar Proyecto',
                     cancelButtonText: 'Cancelar',
                     preConfirm: () => {
-                        // Aquí puedes colocar la lógica que deseas ejecutar cuando se hace clic en el botón "Registrar Proyecto"
                         redireccionarAsignarProyecto(`/asignarProyecto/${correo}/${id_estudiante}/${estudiante_correo}`);
                     }
                 });

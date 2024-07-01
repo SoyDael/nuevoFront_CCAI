@@ -375,3 +375,20 @@ export const consultaEstanciasResidentes = async () => {
     console.log(response.data);
     return response.data;
 }
+
+export const asignarProyectoExterno = async (id_proyecto, id_estancia, id_estancia_residente, correo_residente_estancia) => {
+    const data = {
+        id_proyecto: id_proyecto,
+        id_estancia: id_estancia,
+        id_estancia_residente: id_estancia_residente,
+        correo_residente_estancia: correo_residente_estancia
+    };
+    const response = await API.post("registroParticipanteEstancias", data);
+    return response.data;
+}
+
+export const consultaProgramasPorAlumnoExterno = async (residente_correo) => {
+    const response = await API.get(`consultaEstancia/${residente_correo}`);
+    console.log(response.data);
+    return response.data;
+}

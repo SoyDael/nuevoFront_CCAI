@@ -9,6 +9,11 @@ const ProgramaExternos = () => {
     const { id_proyecto, id_estancia_residente, residente_correo } = useParams();
     const { correo } = useParams();
 
+    const navigate = useNavigate();
+
+    const redireccionarAsignarProyecto = () => {
+        navigate(`/asignarProyectoExterno/${correo}/${id_estancia_residente}/${residente_correo}`);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,7 +37,7 @@ const ProgramaExternos = () => {
                     confirmButtonText: 'Registrar Proyecto',
                     cancelButtonText: 'Cancelar',
                     preConfirm: () => {
-                        redireccionarAsignarProyecto(`/asignarProyecto/${correo}/${id_estudiante}/${residente_correo}`);
+                        redireccionarAsignarProyecto(`/asignarProyectoExterno/${correo}/${id_estancia_residente}/${residente_correo}`);
                     }
                 });
             } else {
