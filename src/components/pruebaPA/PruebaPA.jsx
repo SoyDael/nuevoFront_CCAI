@@ -102,7 +102,7 @@ const PruebaPA = () => {
                     </div>
                     <div className='mb-4'>
                       <label htmlFor="estatus" className='block text-gray-600'>Tipo de usuario: </label>
-                      <select name="estatus" id="estatus" 
+                      <select name="estatus" id="estatus"
                         className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-center'>
                         <option value="Activo">Activo</option>
                         <option value="Inactivo">Inactivo</option>
@@ -114,12 +114,137 @@ const PruebaPA = () => {
                 {tipoUsuario === 'Alumno Interno' && (
                   <>
                     {/* Campos específicos para Alumno Interno */}
-                    <div className='mb-4'>
-                      <label htmlFor="institucion" className='block text-gray-600'>Institución: </label>
-                      <input type="text" name="institucion" id="institucion" required
-                        className='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
-                        autoComplete='off'
-                      />
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                      <div class="relative z-0 w-full mb-5 group">
+                        <input
+                          type="text"
+                          name="matricula"
+                          id="matricula"
+                          class="block py-3 px-3 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                        />
+                        <label
+                          htmlFor="matricula"
+                          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Matricula:
+                        </label>
+                      </div>
+                      <div class="relative z-0 w-full mb-5 group">
+                        <input
+                          type="text"
+                          name="nombres"
+                          id="nombres"
+                          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                        />
+                        <label
+                          htmlFor="nombres"
+                          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Nombre(s):
+                        </label>
+                      </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                      <div class="relative z-0 w-full mb-5 group">
+                        <input
+                          type="text"
+                          name="apellido_p"
+                          id="apellido_p"
+                          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                        />
+                        <label
+                          htmlFor="apellido_p"
+                          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Apellido paterno:
+                        </label>
+                      </div>
+                      <div class="relative z-0 w-full mb-5 group">
+                        <input
+                          type="text"
+                          name="apellido_m"
+                          id="apellido_m"
+                          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                        />
+                        <label
+                          htmlFor="apellido_m"
+                          class="peer-focus: font-bold absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Apellido materno:
+                        </label>
+                      </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                      <div class="relative z-0 w-full mb-5 group">
+                        <input
+                          type="email"
+                          name="correo_adicional"
+                          id="correo_adicional"
+                          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                        />
+                        <label
+                          htmlFor="correo_adicional"
+                          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Correo adicional:
+                        </label>
+                      </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                      <div class="relative z-0 w-full mb-5 group">
+                        <input
+                          type="tel"
+                          name="telefono"
+                          id="telefono"
+                          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                        />
+                        <label
+                          htmlFor="telefono"
+                          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Telefóno:
+                        </label>
+                      </div>
+                      <div class="relative z-0 w-full mb-5 group">
+                        <select type="text"
+                          name="division"
+                          id="division"
+                          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required>
+
+                          <option value="" > Selecciona una opción </option>
+                          <option value="Ingenería Informática"  > Ingenería Informática </option>
+                          <option value="Ingenería en Sistemas Computacionales"> Ingenería en Sistemas Computacionales </option>
+                          <option value="Ingenería Electrónica"> Ingenería Electrónica </option>
+                          <option value="Ingenería Mecánica"> Ingenería Mecánica </option>
+                          <option value="Ingenería Bioquímica"> Ingenería Bioquímica </option>
+                          <option value="Ingenería Química"> Ingenería Química </option>
+                          <option value="Ingenería Industrial"> Ingenería Industrial </option>
+                          <option value="Ingenería Mecatrónica"> Ingenería Mecatrónica </option>
+                          <option value="Ingenería en Gestión Empresarial"> Ingenería en Gestión Empresarial </option>
+                          <option value="Ingenería Aeronáutica"> Ingenería Aeronáutica </option>
+                          <option value="Contador Público"> Contador Público </option>
+                        </select>
+                        <label
+                          htmlFor="division"
+                          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          División:
+                        </label>
+                      </div>
                     </div>
                   </>
                 )}
@@ -143,7 +268,7 @@ const PruebaPA = () => {
                 </button>
               </form>
               <div className="mb-6 text-blue-500 text-center">
-                <a href='login' className="hover:underline">
+                <a href='/login' className="hover:underline">
                   Regresar
                 </a>
               </div>
