@@ -398,3 +398,9 @@ export const pruebaPA = async (usuario) => {
     console.log(response.data);
     return response.data;
 }
+
+export const perfilEstanciaResidente = async (correo) => {
+    const response = await API.get(`perfilEstanciaResidente/${correo}`);
+    console.log(response.data);
+    return response.data;
+}

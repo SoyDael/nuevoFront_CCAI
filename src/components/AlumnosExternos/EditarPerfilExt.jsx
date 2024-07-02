@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
-import { perfilExterno, actualizarPerfilExterno } from '../../api/APIS';
+import { perfilEstanciaResidente, actualizarPerfilExterno } from '../../api/APIS';
 import SlideBarAlumExt from '../SlideBar/SlideBarAlumExt'
 
 const EditarPerfilExt = () => {
@@ -56,7 +56,7 @@ const EditarPerfilExt = () => {
     useEffect(() => {
         const fetchPerfilEstudiante = async () => {
             try {
-                const perfil = await perfilExterno(correo);
+                const perfil = await perfilEstanciaResidente(correo);
                 console.log(perfil);
                 setPerfilEstudiante(perfil);
             } catch (error) {

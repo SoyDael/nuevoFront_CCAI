@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { perfilExterno } from '../../api/APIS';
+import { perfilEstanciaResidente } from '../../api/APIS';
 import SlideBarAlumExt from '../SlideBar/SlideBarAlumExt';
 
 const PerfilAlumnoExterno = () => {
@@ -19,7 +19,7 @@ const PerfilAlumnoExterno = () => {
     useEffect(() => {
         const fetchPerfilEstudiante = async () => {
           try {
-            const perfil = await perfilExterno(correo);
+            const perfil = await perfilEstanciaResidente(correo);
             console.log(perfil);
             setPerfilEstudiante(perfil);
           } catch (error) {
@@ -53,17 +53,17 @@ const PerfilAlumnoExterno = () => {
                   </div>
                   <br></br>
                 </div>
-                <div class="py-2">
-                  <div class="inline-flex text-slate-300 dark:text-gray-300 items-center">
+                <div class="py-2 items-center">
+                  <div class="inline-flex justify-center text-gray-700 dark:text-gray-300 items-center">
                     <h3 class="text-2xl text-slate-300 dark:text-dark mb-1">
-                      Estancia:<br></br> {perfilEstudiante[0]?.tipoEstancia}
+                      Correo:<br></br> {perfilEstudiante[0]?.correo}
                     </h3>
                   </div>
                 </div>
                 <div class="py-2 items-center">
                   <div class="inline-flex justify-center text-gray-700 dark:text-gray-300 items-center">
                     <h3 class="text-2xl text-slate-300 dark:text-dark mb-1">
-                      Correo: {perfilEstudiante[0]?.correo}
+                      Correo Adicional:<br></br> {perfilEstudiante[0]?.correo_adicional}
                     </h3>
                   </div>
                 </div>
@@ -71,6 +71,13 @@ const PerfilAlumnoExterno = () => {
                   <div class="inline-flex justify-center text-slate-300 dark:text-gray-300 items-center">
                     <h3 class="text-2xl text-slate-300 dark:text-dark mb-1">
                       Telefono:<br></br> {perfilEstudiante[0]?.telefono}
+                    </h3>
+                  </div>
+                </div>
+                <div class="py-2 items-center">
+                  <div class="inline-flex justify-center text-slate-300 dark:text-gray-300 items-center">
+                    <h3 class="text-2xl text-slate-300 dark:text-dark mb-1">
+                      Estatus:<br></br> {perfilEstudiante[0]?.estatus}
                     </h3>
                   </div>
                 </div>

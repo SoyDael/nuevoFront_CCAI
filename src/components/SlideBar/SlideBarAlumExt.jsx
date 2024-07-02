@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { perfilExterno, actividadesEstanciasPorCorreo, proyectosEstancia } from '../../api/APIS';
+import { perfilExterno, actividadesEstanciasPorCorreo, proyectosEstancia, perfilEstanciaResidente } from '../../api/APIS';
 
 
 const SlideBarAlumnoExt = () => {
@@ -62,9 +62,11 @@ const SlideBarAlumnoExt = () => {
     useEffect(() => {
         const fetchPerfilEstudiante = async () => {
             try {
-                const perfil = await perfilExterno(correo || residente_correo || correo_estancia_residente);
+                const perfil = await perfilEstanciaResidente(correo || residente_correo || correo_estancia_residente);
+                const perfil2 = await perfilExterno( correo || residente_correo || correo_estancia_residente );
                 console.log(perfil);
                 setPerfilEstudiante(perfil);
+                setPerfilEstudiante(perfil2);
             } catch (error) {
                 //console.error('Error al obtener perfil:', error);
                 //alert('Error al obtener perfil. Por favor, inténtalo de nuevo.');

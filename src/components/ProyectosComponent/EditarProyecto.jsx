@@ -250,7 +250,7 @@ const EditarProyecto = () => {
 
                                                             {Investigador.map((investigador) => (
                                                                 <option key={investigador.id_investigador} value={investigador.correo}>
-                                                                    {investigador.nombres} {investigador.apellido_p} {investigador.apellido_m}
+                                                                    {investigador[0]?.nombres} {investigador[0]?.apellido_p} {investigador[0]?.apellido_m}
                                                                 </option>
                                                             ))}
                                                         </select>
