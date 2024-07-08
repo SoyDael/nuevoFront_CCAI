@@ -11,7 +11,7 @@ const SlideBarInvestigadores = () => {
     const [perfilInvestigador, setPerfilInvestigador] = useState([]);
     const navigate = useNavigate();
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
-    const [isAsideVisible, setIsAsideVisible] = useState(true);
+    const [isAsideVisible, setIsAsideVisible] = useState(false);
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isKanbanOpen, setIsKanbanOpen] = useState(false);
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -451,6 +451,11 @@ const SlideBarInvestigadores = () => {
                                             Registrar nuevo proyecto
                                         </button>
                                     </li>
+                                    <li>
+                                        <button onClick={toggleModal3} className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
+                                            Descargar Listado de Proyectos
+                                        </button>
+                                    </li>
                                 </ul>
                             )}
                         </li>
@@ -528,10 +533,10 @@ const SlideBarInvestigadores = () => {
                                       <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                             onClick={redireccionarPruebaPA}>
-                                            Registrar nuevo prueba
+                                            Registrar nuevo usuario
                                         </button>
                                     </li>
-                                    <li>
+                                  {/**   <li>
                                         <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
                                             onClick={toggleModal}>
                                             Registrar nuevo usuario
@@ -555,6 +560,7 @@ const SlideBarInvestigadores = () => {
                                             Registro Investigador
                                         </button>
                                     </li>
+                                    */}
                                 </ul>
                             )}
                         </li>

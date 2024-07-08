@@ -13,12 +13,15 @@ const SlideBarPruebaAlumn = () => {
     const [proyectoEstudiante, setProyectoEstudiante] = useState(null);
 
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
-    const [isAsideVisible, setIsAsideVisible] = useState(true);
+    const [isAsideVisible, setIsAsideVisible] = useState(false);
 
 
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isKanbanOpen, setIsKanbanOpen] = useState(false);
-    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const [isCartaAceptacionOpen, setIsCartaAceptacionOpen] = useState(false);
+    const [isCartaFinalizacionOpen, setIsCartaFinalizacionOpen] = useState(false);
+    const [tipo, setTipo] = useState(''); // Estado para almacenar el tipo
+
 
     const navigate = useNavigate();
 
@@ -87,6 +90,31 @@ const SlideBarPruebaAlumn = () => {
         };
         fetchPerfilEstudiante();
     }, [correo]);
+
+    const handleTipoChange = (event) => {
+        const newTipo = event.target.value;
+        setTipo(newTipo);
+
+        // Verificar el tipo y habilitar/deshabilitar los botones
+        if (newTipo === 'Residencias Profesionales') {
+            setIsCartaAceptacionOpen(true);
+            setIsCartaFinalizacionOpen(true);
+        } else {
+            setIsCartaAceptacionOpen(false);
+            setIsCartaFinalizacionOpen(false);
+        }
+    };
+
+    const descargarPDFCartaAceptacion = async () => {
+        const pdfCartaAceptacion = `/Hoja_de_Aceptación_Residencias.docx`;
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = pdfCartaAceptacion;
+        downloadLink.setAttribute("download", `Hoja_de_Aceptación_Residencias.docx`);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
 
     return (
         <>
@@ -267,6 +295,84 @@ const SlideBarPruebaAlumn = () => {
                                 </ul>
                             )}
                         </li>
+                        {perfilEstudiante[0]?.tipo === 'Residencias Profesionales' && (
+                            <div>
+                                <li>
+                                    <button
+                                        onClick={() => setIsCartaAceptacionOpen(!isCartaAceptacionOpen)}
+                                        className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                    >
+                                        <span className="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 0 1 3.75 3.75v1.875C13.5 8.161 14.34 9 15.375 9h1.875A3.75 3.75 0 0 1 21 12.75v3.375C21 17.16 20.16 18 19.125 18h-9.75A1.875 1.875 0 0 1 7.5 16.125V3.375Z" />
+                                                <path d="M15 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 17.25 7.5h-1.875A.375.375 0 0 1 15 7.125V5.25ZM4.875 6H6v10.125A3.375 3.375 0 0 0 9.375 19.5H16.5v1.125c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V7.875C3 6.839 3.84 6 4.875 6Z" />
+                                            </svg>
+
+                                            <span className="ms-3">
+                                                Carta de Aceptacion
+                                            </span>
+                                        </span>
+                                        <svg
+                                            className={`w-4 h-4 transition-transform ${isCartaAceptacionOpen ? 'rotate-180' : ''}`}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    {isCartaAceptacionOpen && (
+                                        <ul className="pl-4 mt-2 space-y-2">
+                                            <li>
+                                                <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                                    onClick={descargarPDFCartaAceptacion}
+                                                >
+                                                    Descargar carta de aceptación
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    )}
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={() => setIsCartaFinalizacionOpen(!isCartaFinalizacionOpen)}
+                                        className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                    >
+                                        <span className="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 0 1 3.75 3.75v1.875C13.5 8.161 14.34 9 15.375 9h1.875A3.75 3.75 0 0 1 21 12.75v3.375C21 17.16 20.16 18 19.125 18h-9.75A1.875 1.875 0 0 1 7.5 16.125V3.375Z" />
+                                                <path d="M15 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 17.25 7.5h-1.875A.375.375 0 0 1 15 7.125V5.25ZM4.875 6H6v10.125A3.375 3.375 0 0 0 9.375 19.5H16.5v1.125c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V7.875C3 6.839 3.84 6 4.875 6Z" />
+                                            </svg>
+
+                                            <span className="ms-3">
+                                                Carta de Finalización
+                                            </span>
+                                        </span>
+                                        <svg
+                                            className={`w-4 h-4 transition-transform ${isCartaFinalizacionOpen ? 'rotate-180' : ''}`}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    {isCartaFinalizacionOpen && (
+                                        <ul className="pl-4 mt-2 space-y-2">
+                                            <li>
+                                                <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
+                                                    onClick={obtenerActividades}
+                                                >
+                                                    Descargar carta de finalización
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    )}
+                                </li>
+                            </div>
+                        )}
                     </ul>
                 </div>
             </aside>

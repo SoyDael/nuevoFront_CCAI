@@ -15,6 +15,10 @@ const ProgramaExternos = () => {
         navigate(`/asignarProyectoExterno/${correo}/${id_estancia_residente}/${residente_correo}`);
     }
 
+    const redireccionarListadoAlumnos = () => {
+        navigate(`/listadoAlumnos/${correo}`);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -121,7 +125,9 @@ const ProgramaExternos = () => {
                         </div>
 
                         <div class=" py-2 px-4 mx-0 min-w-full flex flex-col items-center">
-                            <button  className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Regresar</button>
+                            <button  className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            onClick={redireccionarListadoAlumnos}
+                            >Regresar</button>
                         </div>
                     </form>
 

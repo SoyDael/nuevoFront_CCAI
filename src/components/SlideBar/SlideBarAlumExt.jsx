@@ -14,7 +14,7 @@ const SlideBarAlumnoExt = () => {
 
 
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
-    const [isAsideVisible, setIsAsideVisible] = useState(true);
+    const [isAsideVisible, setIsAsideVisible] = useState(false);
 
 
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
