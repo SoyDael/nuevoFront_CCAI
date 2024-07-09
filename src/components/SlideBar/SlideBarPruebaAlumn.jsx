@@ -116,6 +116,18 @@ const SlideBarPruebaAlumn = () => {
         document.body.removeChild(downloadLink);
     }
 
+    const descargarPDFCartaTermino = async () => {
+        const pdfCartaAceptacion = `/Hoja_termino_residencias.docx`;
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = pdfCartaAceptacion;
+        downloadLink.setAttribute("download", `Hoja_Termino_Residencias.docx`);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+
+
     return (
         <>
             <nav className="fixed top-0 z-50 w-full bg-slate-950 bg-opacity-90 border-b border-slate-800">
@@ -363,7 +375,7 @@ const SlideBarPruebaAlumn = () => {
                                         <ul className="pl-4 mt-2 space-y-2">
                                             <li>
                                                 <button className="block p-2 rounded-lg text-slate-300 dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group"
-                                                    onClick={obtenerActividades}
+                                                    onClick={descargarPDFCartaTermino}
                                                 >
                                                     Descargar carta de finalización
                                                 </button>

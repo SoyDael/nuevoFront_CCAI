@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import { proyectos } from '../../api/APIS';
+import { proyectos, infoProyecto } from '../../api/APIS';
 import SlideBarInvestigadores from '../SlideBar/SlideBarInvestigadores';
 
 const styles = StyleSheet.create({
@@ -50,7 +50,7 @@ const MyDocument = ({ data }) => (
           <View style={styles.divider} />
           <Text style={styles.text}>{`Descripción: ${item.descripcion}`}</Text>
           <View style={styles.divider} />
-          <Text style={styles.text}>{`Coordinador: ${item.coordinador_correo}`}</Text>
+          <Text style={styles.text}>{`Coordinador: ${item.coord_nombres || ''} ${item.coord_apellido_p || ''} ${item.coord_apellido_m || ''}`} </Text>
         </View>
       ))}
     </Page>
@@ -76,7 +76,7 @@ const PDFPrueba = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await proyectos();
+        const response = await infoProyecto();
         console.log('Datos recibidos del API:', response);
         setData(response);
         setLoading(false);
@@ -88,6 +88,8 @@ const PDFPrueba = () => {
     fetchData();
   }, []);
 
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -96,6 +98,11 @@ const PDFPrueba = () => {
     console.log('Data is empty or undefined:', data);
     return <div>No hay datos disponibles.</div>;
   }
+
+   // Función para filtrar los proyectos por tipo de servicio
+   const filtrarPorTipoServicio = (items, tipoServicio) => {
+    return items.filter(item => item.tipoServicio === tipoServicio);
+  };
 
   return (
     <div>
@@ -133,7 +140,7 @@ const PDFPrueba = () => {
                     )}
                   </p>
                   <p className="text-gray-400 mb-1">
-                    <span className="font-semibold text-gray-200">Coordinador:</span> {item.coordinador_correo}
+                    <span className="font-semibold text-gray-200">Coordinador:</span> {item.coord_nombres || ''} {item.coord_apellido_p || ''} {item.coord_apellido_m || ''}
                   </p>
                 </div>
               ))}
