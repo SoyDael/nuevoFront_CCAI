@@ -101,7 +101,7 @@ const PDFPrueba = () => {
     <div>
       <SlideBarInvestigadores />
       <div className="flex justify-center items-center bg-slate-700">
-        <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50 p-6">
+        <div className="rounded-md relative border shadow-2xl bg-gray-800 border-gray-700 shadow-blue-500/50 p-40">
           <h1 className="font-serif text-lg text-gray-200 text-center pb-6">
             Bienvenido, los proyectos de investigación CCAI 2024-1 son los siguientes:
           </h1>
