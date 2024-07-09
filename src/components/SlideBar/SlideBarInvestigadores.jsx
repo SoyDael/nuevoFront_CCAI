@@ -30,6 +30,10 @@ const SlideBarInvestigadores = () => {
         navigate(`/perfilInvestigador/${correo || coordinador_correo || correo_investigador}`);
     }
 
+    const redireccionarPDF = () => {
+        navigate(`/listadoProyectos/${correo || coordinador_correo || correo_investigador}`);
+    }
+
     const redireccionarVerPrograma = () => {
         navigate(`/verProgramas`);
     }
@@ -452,7 +456,7 @@ const SlideBarInvestigadores = () => {
                                         </button>
                                     </li>
                                     <li>
-                                        <button onClick={toggleModal3} className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
+                                        <button onClick={redireccionarPDF} className="flex items-center justify-between w-full p-2 text-slate-300 rounded-lg dark:text-white hover:bg-slate-800 dark:hover:bg-slate-300 group">
                                             Descargar Listado de Proyectos
                                         </button>
                                     </li>
